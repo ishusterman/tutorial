@@ -52,12 +52,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#the-algorithms-of-accessibility-calculator">2.3. The Algorithms of Accessibility Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-data-necessary-for-accessibility-computations">2.4. The data necessary for accessibility computations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-menu-of-accessibility-calculator">2.5. The menu of Accessibility  Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#constructing-databases">2.6. Constructing Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preprocessing-and-constructing-databases">2.6. Data Preprocessing and Constructing Databases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#from-accessibility-versus-to-accessibility">2.7. From-accessibility versus To-accessibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#service-area-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region">2.8. Service area of several facilities versus accessibility of all buildings in the region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessibility-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region">2.8. Accessibility  of several facilities versus accessibility of all buildings in the region</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable">2.9. Adjustment of the trip’s start or arrival time to the transit timetable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#car-speed-for-accessibility-computation">2.10. Car speed for accessibility computation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#comparison-of-accessibility-computations-for-different-scenarios">2.11. Comparison of accessibility computations for different scenarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-of-accessibility-in-different-scenarios">2.11. Comparison of accessibility in different scenarios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visualization-of-accessibility-computations">2.12. Visualization of accessibility computations</a></li>
 </ul>
 </li>
@@ -113,7 +113,7 @@
 <li><p>To estimate transit accessibility we employ the <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a>.</p></li>
 <li><p>To estimate accessibility with the private car we employ the <a class="reference internal" href="glossary.html#term-Dijkstra-Algorithm"><span class="xref std std-term">Dijkstra algorithm</span></a>.</p></li>
 </ul>
-<p>Both algorithms are modified to deal with real-world data on the transit and road networks and to consider accessibility to city buildings and not only network nodes.
+<p>Both algorithms are modified to deal with real-world data on the transit and road networks and to assess accessibility to city buildings (and not the network nodes or PT stops).
 <span style="display: block; margin-top: 5px;"></span></p>
 </section>
 <section id="the-data-necessary-for-accessibility-computations">
@@ -122,58 +122,65 @@
 <ul class="simple">
 <li><p>The layer of roads.</p></li>
 <li><p>The layer of buildings that are represented by polygons or points.</p></li>
-<li><p>The <a class="reference internal" href="glossary.html#term-GTFS"><span class="xref std std-term">GTFS</span></a> dataset of the PT network and schedule.</p></li>
+<li><p>The <a class="reference internal" href="glossary.html#term-GTFS"><span class="xref std std-term">GTFS</span></a> dataset of the PT lines and their schedule.</p></li>
 </ul>
-<p>Three datasets are checked and translated into three fast-access databases. The first one contains a topologically cleaned road network, the second is constructed for computing transit accessibility and the third is constructed for computing car accessibility. It is often convenient to use datasets that cover an area that is larger than the region of the current interest.
-<span style="display: block; margin-top: 5px;"></span>
-In this tutorial, we use GTFS datasets that cover the entire Israel and exploit them for computing accessibility maps for the Tel Aviv Metropolitan Area. The Israeli GTFS datasets are available from <a class="reference external" href="https://gtfs.pro/">https://gtfs.pro/</a>, and in our examples, we use GTFS datasets for June 2018 and June 2024. The OSM layers of roads and buildings for Israel are available from <a class="reference external" href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a>. In this tutorial, we use the <code class="docutils literal notranslate"><span class="pre">gis_osm_buildings_a_free</span></code> layer of buildings (as polygons) and the <code class="docutils literal notranslate"><span class="pre">gis_osm_roads_free</span> <span class="pre">layer</span></code> layer of roads.</p>
+<p>The Accessibility Calculator checks the consistency of these three datasets and translates them into three fast-access databases. The first one contains a topologically cleaned road network, the second is built  for computing transit accessibility and the third is built for computing car accessibility.
+<span style="display: block; margin-top: 5px;"></span></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The layer of roads that you download from the OSM site often contains significant topological errors and must be topologically cleaned before using for computations. This cleaning is a part of the construction of the road database, see section 4.2.</p>
+<p>It is often convenient to use datasets and build databases that cover an area that is larger than the region of the current interest.</p>
+</div>
+<p>In this tutorial, we use GTFS datasets that cover the entire Israel and exploit them for computing accessibility maps for the Tel Aviv Metropolitan Area. The Israeli GTFS datasets are available from <a class="reference external" href="https://gtfs.pro/">https://gtfs.pro/</a>, and in our examples, we use GTFS datasets for June 2018 and June 2024. The OSM layers of roads and buildings for Israel are available from <a class="reference external" href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a>. In this tutorial, we use the <code class="docutils literal notranslate"><span class="pre">gis_osm_buildings_a_free</span></code> layer of buildings (as polygons) and the <code class="docutils literal notranslate"><span class="pre">gis_osm_roads_free</span> <span class="pre">layer</span></code> layer of roads. We also supply a zip file of all these layers as an appendix to this tutorial, see section 11.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The layer of roads that you download from the OSM site often contains significant topological errors and must be topologically cleaned before using them for computations. This cleaning is a part of the road database construction, see section 4.2.</p>
 </div>
 </section>
 <section id="the-menu-of-accessibility-calculator">
 <h2><span class="section-number">2.5. </span>The menu of Accessibility  Calculator<a class="headerlink" href="#the-menu-of-accessibility-calculator" title="Link to this heading"></a></h2>
 <p>Figure 1 presents the menu of the Accessibility Calculator.</p>
-<p><em>The service area is employed for accessing accessibility of the specific set of locations.</em>
-<span style="display: block; margin-top: 5px;"></span>
-<em>The region accessibility is employed for assessing accessibility of all locations in the area.</em></p>
+<ul class="simple">
+<li><p><em>The Service area maps assess accessibility of the specific set of locations.</em></p></li>
+<li><p><em>The Region maps assess accessibility of all locations in the area.</em></p></li>
+</ul>
 <p>In this introductory section, we briefly present the abilities of the Accessibility Calculator. Each of these abilities is then presented in detail in the consequent sections.</p>
  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 1. The menu of the Accessibility Calculator</p></section>
-<section id="constructing-databases">
-<h2><span class="section-number">2.6. </span>Constructing Databases<a class="headerlink" href="#constructing-databases" title="Link to this heading"></a></h2>
-<p>To accelerate data access for accessibility computations and fix the data inconsistencies, all three datasets necessary for computations are translated into the internal databases. You can build different databases for different versions of the infrastructure or transit network development, assess accessibility for each of them, and compare the results. The databases are usually constructed for large areas, or even the entire country. We recommend working with the datasets that represent areas containing 0.5-1M buildings.</p>
+<section id="data-preprocessing-and-constructing-databases">
+<h2><span class="section-number">2.6. </span>Data Preprocessing and Constructing Databases<a class="headerlink" href="#data-preprocessing-and-constructing-databases" title="Link to this heading"></a></h2>
+<p>To fix the data inconsistencies and accelerate data access for accessibility computations, all three datasets - roads, buildings, and GTFS, are cleaned and translated into internal databases. You can build several databases for different versions of the infrastructure or transit network development, assess accessibility for each of them, and then compare the results. The databases are usually constructed for large areas, or even the entire country. We recommend working with the datasets that represent areas containing 0.5-1M buildings.</p>
 </section>
 <section id="from-accessibility-versus-to-accessibility">
 <h2><span class="section-number">2.7. </span>From-accessibility versus To-accessibility<a class="headerlink" href="#from-accessibility-versus-to-accessibility" title="Link to this heading"></a></h2>
-<p>From-accessibility is based on the travel time from each of the selected buildings to all other locations in the city (Figure 2 left). The typical application of from-accessibility is the assessment of the residents’ travel time to the locations of their possible employment.
+<p>From-accessibility is based on the travel time from each of the selected buildings to all other locations in the city (Figure 2, left). The typical application of from-accessibility is the assessment of the residents’ travel time to the locations of their possible employment.
 <span style="display: block; margin-top: 5px;"></span>
-To-accessibility is based on the travel time to each of the selected buildings from all other locations in the city (Figure 2 right). The typical application of to-accessibility is the assessment of the residents’ travel time to shops and attractions in the city center.</p>
+To-accessibility is based on the travel time to each of the selected buildings from all other locations in the city (Figure 2, right). The typical application of the to-accessibility is assessment of the residents’ travel time to shops and attractions in the city center.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/forward-backward.png" style="width: 70%; border: 3px solid white;margin-bottom: 20px" />
 </div>
 <p>Figure 2. From-accessibility (left) versus To-accessibility (right)</p><p><span style="display: block; margin-top: 5px;"></span></p>
 </section>
-<section id="service-area-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region">
-<h2><span class="section-number">2.8. </span>Service area of several facilities versus accessibility of all buildings in the region<a class="headerlink" href="#service-area-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region" title="Link to this heading"></a></h2>
-<p>From- and To-accessibility computations can be performed to assess the service area of several facilities located in the buildings or aggregate measures of accessibility for all buildings in the region of interest – <em>region accessibility</em>. In both cases, origins and destinations can be all or just selected buildings. In the latter case, the selected buildings will be stored as a layer as a part of the results.
+<section id="accessibility-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region">
+<h2><span class="section-number">2.8. </span>Accessibility  of several facilities versus accessibility of all buildings in the region<a class="headerlink" href="#accessibility-of-several-facilities-versus-accessibility-of-all-buildings-in-the-region" title="Link to this heading"></a></h2>
+<p>From- and To-accessibility computations can be performed to assess the service area of several facilities located in the buildings or to assess accessibility for all buildings in the region of interest – <em>region accessibility</em>. In both cases, origins and destinations can be a separate layer of buildings or just selected buildings. In the latter case, the selected buildings will be stored as a layer as a part of the results.
 <span style="display: block; margin-top: 5px;"></span>
 <em>The service area</em> consists of buildings that can be served by at least one of the facilities.</p>
 <ul class="simple">
-<li><p>The “From” service area of the set of facilities includes all buildings that can be reached in maximum travel time or faster, from at least one of the facilities in this set. If the building can be reached from several facilities, then the trip with the minimal travel time is considered.</p></li>
-<li><p>The “To” service area of the set of facilities, includes all buildings from which at least one of the facilities can be reached in maximum travel time or faster. If several facilities can be reached, then the trip with minimal travel time is considered.</p></li>
+<li><p>The “From-” service area of the set of facilities includes all buildings that can be reached in maximum travel time or faster, from at least one of the facilities in this set. If the building can be reached from several facilities, then the fastest trip is considered.</p></li>
+<li><p>The “To-” service area of the set of facilities, includes all buildings from which at least one of the facilities can be reached in maximum travel time or faster. If several facilities can be reached, then the fastest trip considered.</p></li>
 </ul>
-<p>The details of each leg of the fastest trips are stored as attributes of the served building and the thematic map presents the total travel time from the facilities to the served building or from the served building to the facility. Importantly, the service area of <em>every</em> facility is also stored. The user can exploit this file for computing other measures of accessibility, like the area from where the residents can reach more than half of the facilities in the center of the city in a maximum travel time.
+<p>The details of each leg of the fastest trips are stored as attributes of the served building and the thematic map presents the minimal total travel time from the set of facilities to the served building or from the served building to the set of facilities.
+<span style="display: block; margin-top: 5px;"></span>
+Importantly, the service area of <em>every</em> facility is also stored, including travel times from each of the facilities to or from every accessible building. This output is not mapped but can be exploited for computing other measures of accessibility, like the area from where the residents can reach more than half of the facilities in the center of the city in a maximum travel time.
 <span style="display: block; margin-top: 5px;"></span>
 <em>The region accessibility</em> represents aggregate measures of accessibility for each building in the region.</p>
 <ul class="simple">
-<li><p>The default aggregate measure of the from-accessibility for the region’s building is the number of other buildings accessible from it. Other measures, like the number of shops, or jobs, accessible from the building can be calculated if the information on jobs or use at a building resolution is available.</p></li>
-<li><p>The default aggregate measure of the to-accessibility for the region’s building is the number of buildings from which it is accessible. Other measures, like the total population that can reach the building, can be calculated if the information on the population at a building resolution is available.</p></li>
+<li><p>The default aggregate measure of the from-accessibility for the region’s buildings is the number of other buildings accessible from each of them. Other measures, like the number of shops, or jobs, accessible from the building can be calculated if the information on jobs in the building or the building’s use is available.</p></li>
+<li><p>The default aggregate measure of the to-accessibility for the region’s building is the number of other buildings from which it is accessible. Other measures, like the total population that can reach the building, can be calculated if the information on the population at a building resolution is available.</p></li>
 </ul>
-<p>The accessibility of a region is computed at a time resolution that is defined by the user. All aggregate measures are stored as attributes of the region’s buildings, for each time interval.</p>
+<p>The accessibility measures of a region are stored as attributes of the region’s buildings, by the time bins defined by the user, like the number of buildings accessible in 5, 10, etc. minutes.</p>
 </section>
 <section id="adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable">
 <h2><span class="section-number">2.9. </span>Adjustment of the trip’s start or arrival time to the transit timetable<a class="headerlink" href="#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable" title="Link to this heading"></a></h2>
@@ -276,8 +283,8 @@ The effect of the hour of the day is reflected by the Congestion Delay Index (CD
     </div>
 </div>
 <p>Figure 3. Free flow speeds by the link types (left) and the CDI index, by hours of the day (right)</p></section>
-<section id="comparison-of-accessibility-computations-for-different-scenarios">
-<h2><span class="section-number">2.11. </span>Comparison of accessibility computations for different scenarios<a class="headerlink" href="#comparison-of-accessibility-computations-for-different-scenarios" title="Link to this heading"></a></h2>
+<section id="comparison-of-accessibility-in-different-scenarios">
+<h2><span class="section-number">2.11. </span>Comparison of accessibility in different scenarios<a class="headerlink" href="#comparison-of-accessibility-in-different-scenarios" title="Link to this heading"></a></h2>
 <p>Typically, the accessibility is computed for different scenarios of urban transportation development, and then the outputs for these scenarios are compared.
 <span style="display: block; margin-top: 5px;"></span>
 Let the scenarios be S<sub>1</sub> and S<sub>2</sub> and accessibility for each of them is already computed. The Accessibility Calculator includes three options for comparison scenarios’ outputs:</p>
@@ -298,14 +305,14 @@ Let the scenarios be S<sub>1</sub> and S<sub>2</sub> and accessibility for each 
 </dl>
 </li>
 </ul>
-<p>Note that scenarios S<sub>1</sub> and S<sub>2</sub> must be comparable, i.e.,  both must be for the same single location or, in the case of region accessibility, for the overlapping regions. The Accessibility Calculator tests the comparability of the scenarios, and either reports incomparability or performs the comparison.</p>
+<p>Note that scenarios S<sub>1</sub> and S<sub>2</sub> must be comparable, i.e., in sets of facilities must be similar in the case of the service areas or the regions, in the case of region accessibility, must overlap. The Accessibility Calculator tests the comparability of the scenarios, and either reports incomparability or performs the comparison.</p>
 </section>
 <section id="visualization-of-accessibility-computations">
 <h2><span class="section-number">2.12. </span>Visualization of accessibility computations<a class="headerlink" href="#visualization-of-accessibility-computations" title="Link to this heading"></a></h2>
-<p>The Accessibility Calculator results are always presented as thematic maps. These maps are based on one of the coverages that are supplied together with the plugin (Figure 4):</p>
+<p>The Accessibility Calculator results are always presented as thematic maps (Figure 4). These maps are based on one of the five layers that are constructed at the stage of data preparation (see Section 4), and one of them must be chosen by the user for constructing the map:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="glossary.html#term-Voronoi-diagram"><span class="xref std std-term">Voronoi polygons</span></a> that are constructed based on the buildings’ foundations,</p></li>
-<li><p><a class="reference internal" href="glossary.html#term-H3"><span class="xref std std-term">H3 hexagons</span></a> of the h11, h10, h9, and h8 scales.</p></li>
+<li><p>The layer of the <a class="reference internal" href="glossary.html#term-Voronoi-diagram"><span class="xref std std-term">Voronoi polygons</span></a> constructed based on the buildings’ centroids, or</p></li>
+<li><p>One of the four layers of:term:<cite>H3 hexagons &lt;H3&gt;</cite>, with the distance between centers 100, 200, 400, and 800 meters.</p></li>
 </ul>
 <div style="display: flex; justify-content: space-between;">
     <img src="_images/sample/visual1.png" style="width: 32%; border: 0px solid black;margin-bottom: 10px" />
@@ -313,8 +320,8 @@ Let the scenarios be S<sub>1</sub> and S<sub>2</sub> and accessibility for each 
     border: 0px solid black;margin-bottom: 20px" />
     <img src="_images/sample/visual3.png" style="width: 32%; border: 0px solid black;margin-bottom: 10px" />
 </div>
-<p>Figure 4: Left to right – The 45-min transit service maps from the Gesher theater in the center of the Yafo area, Tel Aviv, presented with the Voronoi polygons, h3-10, and h3-9 hexagons</p><p><span style="display: block; margin-top: 5px;"></span></p>
-<p>Accessibility Calculator visualization options are considered in <a class="reference internal" href="visualization.html"><span class="doc">section 9</span></a>.</p>
+<p>Figure 4: Left to right – The 45-min transit service maps from the Gesher theater in the center of the Yafo area, Tel Aviv, presented with the Voronoi polygons, 100 and 200 m hexagons</p><p><span style="display: block; margin-top: 5px;"></span></p>
+<p>The visualization options are considered in detail in <a class="reference internal" href="visualization.html"><span class="doc">Section 9</span></a>.</p>
 </section>
 </section>
 
