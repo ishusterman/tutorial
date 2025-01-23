@@ -7,14 +7,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9518a68" />
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
       <script src="_static/documentation_options.js?v=4c4d3c97"></script>
-      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
@@ -48,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing for fast routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the     Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
@@ -387,7 +387,7 @@ The left map below presents the relative difference for the buildings from which
 </div>
 <p>Figure 14. The comparison of the to-accessibility maps: Relative difference for the buildings from which the visitors could reach the theater in less than 45 minutes in 2018 and 2024 (left) and the map of the areas that are accessible in 2024 only (right)</p><p>As can be seen, the result is not that simple. Overall, the Red Line essentially improved the PT accessibility for the Gesher visitors. In 2024, Gesher can be achieved in less than 45 minutes from 44646 buildings versus 34437 buildings in 2018 (you should check the output CSV files to know these numbers), and the green shades that denote buildings from which the PT travel time in 2024 is less than travel time in 2018 cover 60% of overlapping areas. Yet there are areas from which one could reach Gesher in less than 45 minutes in 2018 and cannot do that in 2024.
 <span style="display: block; margin-top: 5px;"></span>
-More comparison studies will help us to understand the reasons for the differences. To confirm the result, one can compare the to-accessibility maps for the longer maximum travel time or go deeper and, based on the full output of the single-location accessibility that contains the full description of the trip (section <a class="reference internal" href="raptor_area.html#raptor-area-log"><span class="std std-ref">The structure of the service area log file and reports</span></a>), investigate how the travelers get to the Gesher Theater from each of the “only” parts in 2018 and 2024.
+More comparison studies will help us to understand the reasons for the differences. To confirm the result, one can compare the to-accessibility maps for the longer maximum travel time or go deeper and, based on the full output of the single-location accessibility that contains the full description of the trip (section <a class="reference internal" href="raptor_area.html#raptor-area-log"><span class="std std-ref">Service area computations - the log file and the structure of the report</span></a>), investigate how the travelers get to the Gesher Theater from each of the “only” parts in 2018 and 2024.
 <span style="display: block; margin-top: 5px;"></span>
 To conclude this section, let us compare fixed-time accessibility from the Gesher Theater at 22:30, in 2024 and 2018 (Figure 15). Qualitatively, the differences revealed in Figure 14 are repeated. Yet the maps do not repeat the maps in Figure 14 exactly.</p>
 <div style="display: flex;">
