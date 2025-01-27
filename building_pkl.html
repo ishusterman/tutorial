@@ -57,7 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the     Region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
@@ -113,14 +113,18 @@ The menu for data preprocessing and database construction consists of two sectio
 <span style="display: block; margin-top: 5px;"></span>
 Accessibility computations demand road and transit routing and, thus, cannot be performed with the topologically inconsistent road layers. To be sure that the spatial data that we use is correct for accessibility computation we have included the basic topological cleaning procedures into the plugin. If the layers of roads and buildings are topologically correct, the cleaning procedures will not change them.
 <span style="display: block; margin-top: 5px;"></span>
-To clean the road network the Accessibility Calculator employs the <span class="guilabel">v.clean</span> GRASS procedure, see <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/v.clean.html">https://grass.osgeo.org/grass-stable/manuals/v.clean.html</a> for details. The cleaning of roads is performed in two steps. In the first step, <span class="guilabel">v.clean.break</span> is employed and the overlapping links are broken at the points of intersection, and new junctions are created. Then <span class="guilabel">v.clean.rmdupl</span> is employed to preserve one version only of the overlapping links.
-<span style="display: block; margin-top: 5px;"></span>
-To perform data cleaning for roads choose the <em>Data preprocessing → Clean road network</em> and enter the parameters (Figure 2):</p>
+Cleaning road network The Accessibility Calculator is performed with the <span class="guilabel">v.clean</span> GRASS procedure, see details at <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/v.clean.html">https://grass.osgeo.org/grass-stable/manuals/v.clean.html</a>. It is done in three steps. First, the links’ ends are snapped at junctions. This is done by applying <span class="guilabel">v.clean.snap</span> with the threshold of 1 m. That is, all links’ ends that are at a distance of 1 m or less form from each other will be snapped to one of them. In the second step, <span class="guilabel">v.clean.break</span> is employed - the intersecting links are broken at the points of intersection, and new junctions are created at these points. Then <span class="guilabel">v.clean.rmdupl</span> is employed to reveal the overlapping links and the additional postprocessing is performed to preserve one of them only.
+<span style="display: block; margin-top: 5px;"></span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The OSM layer of roads contains significant topological errors and the cleaning procedures that we employ in the Accessibility Calculator make the layer formally topologically consistent. However, it may happen that, contextually, the layer of roads does not reflect the real structure of the road network. One of the ways to test this is to employ the v.clean procedure, in the order and with the parameters we mention above, manually. You can also vary the 1m threshold that we employ. When cleaning procedures are applied manually, the results, at each step, include the errors report that will help you to understand the road layer inconsistencies. Then you could decide whether to edit the roads layer or keep it as is.</p>
+</div>
+<p>To perform data cleaning for roads choose the <em>Data preprocessing → Clean road network</em> and enter the parameters (Figure 2):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/pkl_v_cleen.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px;" />
 </div>
 <p>Figure 2. <i>Clean road network dialog</i></p><ul class="simple">
-<li><p><span class="guilabel">Initial road network</span> -  the initial layer of roads.  We advise to open the layer in the current QGIS project and to ensure that the choice of the layer is correct.</p></li>
+<li><p><span class="guilabel">Initial road network</span> -  the initial layer of roads.  We advise opening the layer in the current QGIS project and to ensure that the choice of the layer is correct.</p></li>
 <li><p><span class="guilabel">Folder to store clean road network</span> - the folder to store the clean road layer.</p></li>
 </ul>
 <p>The cleaning of the layer of buildings is performed in several steps. In the first step, the delete holes algorithm is employed to delete holes in the buildings, see <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes</a>. Then, the features with the absent (NULL) geometry are deleted from the layer and multipart features are split into single parts <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts</a>. Finally, the building features that have got identical identifiers are selected and their identifiers are made unique by adding “_1,” “_2,” etc. to the repeating identifier.
@@ -156,7 +160,7 @@ To build layers for visualization choose the Data preprocessing → Build visual
     <img src="_images/pkl_visualization_clean.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px;" />
 </div>
 <p>Figure 4. <i>Build layers for visualization</i> dialog</p><ul class="simple">
-<li><p><span class="guilabel">Initial road network</span> -  the initial layer of buildings. We advise to open the layer in the current QGIS project and to ensure that the choice of the layer is correct.</p></li>
+<li><p><span class="guilabel">Initial road network</span> -  the initial layer of buildings. We advise opening the layer in the current QGIS project and to ensure that the choice of the layer is correct.</p></li>
 <li><p><span class="guilabel">•  Folder to store layers for visualization</span> - the folder to store the layers for visualization.</p></li>
 </ul>
 <p>After setting the parameters of each of the cleaning procedures, click <strong>Run</strong> to start.
