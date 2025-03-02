@@ -18,7 +18,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Glossary" href="glossary.html" />
+    <link rel="next" title="11. The datasets used in this tutorial" href="database1.html" />
     <link rel="prev" title="9. Visualization of accessibility map" href="visualization.html" /> 
 </head>
 
@@ -57,7 +57,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#let-us-arrange-the-data">10.1. Let us arrange the data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-preprocessing">10.2. Data preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#construct-databases">10.3. Construct databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constructing-databases">10.3. Constructing databases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-service-area-maps">10.4. Transit accessibility, service area maps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#from-to-accessibility-fixed-time-arrival-departure">10.4.1. From/To-accessibility, fixed-time arrival/departure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-to-accessibility-schedule-based-arrival-departure-time">10.4.2. From/To-accessibility, schedule-based arrival/departure time</a></li>
@@ -78,9 +78,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database1.html">11. The datasets used in this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database2.html">12. Small database for the fast tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">13. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">14. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">15. Contact US</a></li>
 </ul>
 
         </div>
@@ -124,7 +126,7 @@ The TAMA area is about 1500 sq. km, and it includes a dozen cities and many mino
 <p>Figure 1. TAMA roads (a); Zoom to the area served by the Red LRT line (b)</p><p>The examples of this section are all computed with the Accessibility Plugin v 5_32 and QGIS v3.34. We use a Lenovo ThinkPad X1 laptop with the Intel i7 2.80GHz processor and 32MB memory and accompany each example with the estimates of computing time.</p>
 <section id="let-us-arrange-the-data">
 <h2><span class="section-number">10.1. </span>Let us arrange the data<a class="headerlink" href="#let-us-arrange-the-data" title="Link to this heading"></a></h2>
-<p>To study TAMA transport accessibility with and without the Red LRT line, we will use TAMA layers of buildings and roads and two GTFS datasets for Israel for the years 2018 and 2024. We assume that buildings and roads did not change much between 2018 and 2024 and used the 2024 data.</p>
+<p>To study TAMA transport accessibility with and without the Red LRT line, we will use TAMA layers of buildings and roads and two GTFS datasets for Israel for the years 2018 and 2024. We assume that buildings and roads did not change much between 2018 and 2024 and used the 2024 data. These datasets are provided as zip files, see <a class="reference internal" href="database1.html#database1"><span class="std std-ref">here</span></a>. There is also essentially a smaller dataset for the Jaffa area of Tel Aviv (~2500 buildings) that we provide for the initial fast tests see <a class="reference internal" href="database2.html#database2"><span class="std std-ref">here</span></a>.</p>
 <ul class="simple">
 <li><p>The layers of buildings and roads were selected as “entirely within” the TAMA polygon (Figure 1) from the OSM layers of buildings and roads in Israel that were downloaded in June 2024. The road layer was topologically cleaned.</p></li>
 <li><p>To study the Red line effects, we exploit two GTFS datasets, both for the entire Israel. The 2018 GTFS is downloaded from <a class="reference external" href="https://openmobilitydata.org/p/ministry-of-transport-and-road-safety/820/20180711">https://openmobilitydata.org/p/ministry-of-transport-and-road-safety/820/20180711</a> and the one for 2024 from <a class="reference external" href="https://s3.gtfs.pro/files/sourcedata/israel-public-transportation.zip">https://s3.gtfs.pro/files/sourcedata/israel-public-transportation.zip</a>.</p></li>
@@ -170,9 +172,13 @@ The major characteristics of the exploited datasets are presented in  Table 1.</
 </table>
 <p>Table 1. The characteristics of the TAMA layers of roads and buildings and of two Israeli GTFS datasets.
 <span style="display: block; margin-top: 5px;"></span>
-The OSM layers of roads and buildings were topologically cleaned, see the next section 10.2. To remind, for roads, all road links must be split at the points of intersection, and links’ ends must connect at junctions. For buildings, there should be no holes in the buildings’ polygons and there should not be overlapping buildings’ polygons.
+The OSM layers of roads and buildings for TAMA are already topologically cleaned (see the next section 10.2) and you don’t have to repeat cleaning for it. Topological cleaning, for roads, includes splitting road links at the points of intersection, connecting links’ ends at junctions, and deleting duplicated links. For buildings, topological cleaning includes deleting holes in the buildings’ polygons and “flatting” the layer by cutting the overlapping parts of the buildings’ polygons.
 <span style="display: block; margin-top: 5px;"></span>
-We do not recommend cutting parts of GTFS. This operation demands a great care, while the increase in performance that you will obtain with the smaller GTFS database will not be significant. In this tutorial we use the full Israeli GTFS datasets.</p>
+We do not recommend cutting parts of GTFS. This operation demands great care, while the increase in performance that you will obtain with the smaller GTFS database will not be significant. In this tutorial, we use the full Israeli GTFS datasets in all cases, no matter what area is covered by roads and buildings.
+<span style="display: block; margin-top: 5px;"></span>
+The total computation time of the data preparation stage for the TAMA dataset is about an hour and a half. For the Jaffa dataset (with yet full GTFS datasets of the public transport for 2024) it will take about 15 mins. We recommend you perform the entire data preparation procedure with the Jaffa dataset and check the changes in the road and building layers before you proceed to your data.
+<span style="display: block; margin-top: 5px;"></span>
+Last but not least – there are minor differences between the GTFS datasets in different countries. We tried our best and tested many yet not all of them. Let us know if you get an error message at the stage of the transit routing database construction.</p>
 </section>
 <section id="data-preprocessing">
 <span id="sample-data-preprocessing"></span><h2><span class="section-number">10.2. </span>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading"></a></h2>
@@ -192,7 +198,7 @@ Let us reproduce the steps of the data preparation procedure:</p>
 <p>Figure 2. <i>Clean road network</i> dialog</p><ul class="simple">
 <li><p>Click the <em>Clean layer of buildings</em> menu item and choose the layer of buildings (Figure 3). This layer can be chosen directly, but we recommend opening it in the current QGIS project before starting the work with the Accessibility Calculator, to confirm that this is the layer you need.</p></li>
 <li><p>Define the folder for the clean layer of buildings, which can be the same as the folder for the clean layer of roads, while we suggest using a special folder for each of the datasets you use in your study.</p></li>
-<li><p>Cleaning building layer cleaning is much faster than cleaning roads and cleaning ~250K TAMA buildings took about 5 minutes</p></li>
+<li><p>Cleaning building layer cleaning is much faster than cleaning roads and cleaning ~250K TAMA buildings took about 5 minutes.</p></li>
 </ul>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/sample/pkl_buildings_clean.png" style="width: 30%; border: 3px solid white;margin-bottom: 10px" />
@@ -207,8 +213,8 @@ Let us reproduce the steps of the data preparation procedure:</p>
 </div>
 <p>Figure 4. <i>Build visualization layers</i> dialog </p><p>Summing up, for the areas of TAMA size, data preprocessing will take between half an hour and an hour. Most of the time will be spent on roads and buildings cleaning. Formally, you can work with non-clean layers of roads and buildings. However, cleaning is strongly recommended to ensure that the input data for navigation algorithms are correct.</p>
 </section>
-<section id="construct-databases">
-<h2><span class="section-number">10.3. </span>Construct databases<a class="headerlink" href="#construct-databases" title="Link to this heading"></a></h2>
+<section id="constructing-databases">
+<h2><span class="section-number">10.3. </span>Constructing databases<a class="headerlink" href="#constructing-databases" title="Link to this heading"></a></h2>
 <p>The next step is to use all four datasets – two clean layers of roads and buildings and two GTFS datasets, for constructing three databases – two for transit routing in 2018 and 2024 and one for car routing. This construction is described in sections 1 and 2 of the <a class="reference internal" href="building_pkl.html#building-data"><span class="std std-ref">Data Preprocessing and Constructing Databases for Fast Routing</span></a> section of this tutorial.
 <span style="display: block; margin-top: 5px;"></span>
 Let us start with the transit routing database.</p>
@@ -221,7 +227,7 @@ Let us start with the transit routing database.</p>
 </div>
 <p>Figure 5. <i>Transit routing database</i> dialog</p><p>The log file (Figure 6) preserves all necessary data on the GTFS database construction GTFS and is stored in the database folder.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/fig5.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/fig6.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 6. Log file of the <i>Transit routing database</i> construction</p><p>Repeat this step with the GTFS datasets of 2018 and 2024.
 <span style="display: block; margin-top: 5px;"></span>
@@ -379,15 +385,14 @@ The only source of systematic knowledge of the traffic speed we are aware of is 
 As an example of a car service area map, we calculate car accessibility of the Gesher Theater in Yaffo: To-accessibility, to the performance that starts at 20:00, and from-accessibility at 22:30, when the performance ends (Figure 14).</p>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; text-align: center;">
     <div style="width: 49%; text-align: center; margin-bottom: 10px;">
-        <img src="_images/sample/img19.png" style="width: 100%; border: 3px solid white; margin-bottom: 5px;" />
+        <img src="_images/sample/img19.png" style="width: 100%; height: 500px; object-fit: cover; border: 1px solid white; margin-bottom: 5px;" />
         <p style="margin-top: 0px;">a</p>
     </div>
     <div style="width: 49%; text-align: center; margin-bottom: 10px;">
-        <img src="_images/sample/img20.png" style="width: 100%; border: 3px solid white; margin-bottom: 5px;" />
+        <img src="_images/sample/img20.png" style="width: 100%; height: 500px; object-fit: cover; border: 1px solid white; margin-bottom: 5px;" />
         <p style="margin-top: 0px;">b</p>
     </div>
 </div>
-
 <p>Figure 14. <i>Car accessibility → Service area maps</i> computations dialogs. In the to-accessibility dialog (a), Gesher is a destination and TAMA buildings are origins; in the from-accessibility dialog (b), it's vice versa, Gesher is an origin and TAMA buildings are destinations</p><p>As should be expected, the maps of Gesher’s to- and from-accessibility (Figure 15) look much simpler than those of the PT accessibility. It’s worth noting, however, that the car accessibility from the theater at 22:30, when the congestion is over, is essentially higher than to-accessibility at 20:00 when the congestion is still there. Overall, car accessibility at 20:00 and 22:30 is essentially higher than PT accessibility for the same hours.</p>
 <div style="display: flex; text-align: center;">
     <div style="width: 49%;">
@@ -429,7 +434,7 @@ In the case of from-accessibility, the buildings of a region are origins, and we
 </div>
 <p>Figure 17. The choice of the number of bins and attributes to aggregate in the <i>Transit accessibility → Region maps → From/To all locations - Fixed-time accessibility</i> dialog<p><p>To remind, if the maximum travel time does not contain an integer number of bins, the results are also stored for the maximum travel time.
 <span style="display: block; margin-top: 5px;"></span>
-Figure 18 presents maps of region accessibility for 2018 before the red LTR line was established in 2024 when the line was in full operation. We will compare them numerically in the next section.</p>
+Figure 18 presents maps of region accessibility in 45 minutes for Tel Aviv city in the year 2018, before the red LTR line was established, and in 2024 when this line was in full operation. To speed up computations, these maps were computed based on hexagons of 231m diameter (the diameter of the hexagons in the coverage that is obtained by constructing “200m hexagons” with the Create Grid QGIS command that is employed by the Accessibility Calculator). The number of the hexagons of this size that cover all buildings in Tel Aviv is 1750 and computations took about 30 mins, close to 1sec/origin. We will compare these two maps numerically in the next section.</p>
 <div style="display: flex; text-align: center;">
     <div style="width: 49%;">
         <img src="_images/sample/img27.png" style="width: 100%; border: 3px solid white; margin-bottom: 5px;" />
@@ -440,7 +445,7 @@ Figure 18 presents maps of region accessibility for 2018 before the red LTR line
         <p style="margin-top: 0px;">b</p>
     </div>
 </div>
-<p>Figure 18. The maps of region accessibility for 2018 before the red LTR line was established (a) and in 2024 when the line was in full operation (b)</p></section>
+<p>Figure 18. The maps of the Tel Aviv city region accessibility in 45 minutes were computed based on the 200m hexagon in the year 2018 before the Red LTR line was established (a) and in 2024 when the Red LRT line was in full operation (b)</p></section>
 <section id="region-transit-accessibility-schedule-dependent-arrival-departure-time">
 <h3><span class="section-number">10.5.2. </span>Region transit accessibility, schedule-dependent arrival/departure time<a class="headerlink" href="#region-transit-accessibility-schedule-dependent-arrival-departure-time" title="Link to this heading"></a></h3>
 <p>Calculation of the transit region accessibility according to the schedule-dependent view repeats the fixed-time approach in all other respects.</p>
@@ -462,13 +467,13 @@ To remind, the Accessibility Calculator provides three measures of difference:</
 </ul>
 <p>For each of the three measures, in addition to the map of the measure, two more maps are presented. The first one presents the buildings that are accessible in Scenario 1 but not accessible in Scenario 2 (Result_1 is not NULL, while Result_2 is NULL). The second map presents the buildings that are in Scenario 2 but not accessible in Scenario 1 (Result_2 is not NULL, while Result_1 is NULL).
 <span style="display: block; margin-top: 5px;"></span>
-In this tutorial we employ the relative difference.</p>
+In this tutorial, we employ the difference between two maps.</p>
 <section id="comparing-service-area-maps">
 <span id="sample-compare-single"></span><h3><span class="section-number">10.6.1. </span>Comparing service area maps<a class="headerlink" href="#comparing-service-area-maps" title="Link to this heading"></a></h3>
-<p>Our first question is “Whether the Red Line increased the accessibility for Gesher visitors who arrive by public transport?” To answer, we compare fixed-time maps of to-accessibility at 20:00 and from accessibility at 22:30 for the years 2024 and 2018, calculating</p>
+<p>Our first question is “Whether the Red Line increased the accessibility for Gesher visitors who arrive by public transport?” To answer, we compare schedule-based maps of to-accessibility to Gesher at 20:00 for the years 2024 and 2018, calculating the travel time difference:</p>
 <div style="text-align: center;">
-    (Result_2024 – Result_2018)/Result_2018.
-</div><p>Figure 19 presents the relative difference between two to-accessibility maps, including the “only” parts.</p>
+    Result_2024 – Result_2018
+</div><p>Figure 19 presents the difference between two to-accessibility maps, and the “only” parts. Note, that two “only” maps can be always combined into one.</p>
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center; width: 49%;">
         <img src="_images/sample/img29.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
@@ -479,37 +484,19 @@ In this tutorial we employ the relative difference.</p>
         <div>b</div>
     </div>
 </div>
-<p>Figure 19. Comparison of transit accessibility maps for Gesher theater visitors at 20:00 in 2018 and 2024. Relative difference (a); Areas that are accessible in 2018 or 2024 only (b)</p><p>As can be seen, overall, the Red Line essentially improved transit accessibility for the visitors who get to Gesher’s performance. In 2024, the theater can be reached in less than 45 minutes from 44646 buildings, while in 2018 from 34437 buildings only (these are the numbers of rows in the output CSV files). The green shades of the map in Figure 19a denote buildings from which the transit travel time in 2024 is lower than in 2018, and these areas cover 60% of the overlapping areas. Yet there are areas from which transit travel to Gesher will take more time in 2024 than in 2018 (Figure 19a, brown shades).
+<p>Figure 19. Comparison of transit to-accessibility maps for Gesher theater visitors at 20:00 in 2018 and 2024. The travel time difference (a); Areas accessible in 2018 or 2024 only (b)</p><p>As can be seen, overall, the Red Line essentially improved transit accessibility for the visitors who get to Gesher’s performance. The green shades of the map in Figure 16a denote buildings from which the transit travel time in 2024 is lower than in 2018, and these areas cover 60% of the overlapping areas. For 20% of buildings in the overlapping areas, the travel time is almost the same, while for 20% transit travel to the Gesher Theater will take more time in 2024 than in 2018 (Figure 16a, brown shades). The Red LRT line makes the Gesher Theater accessible in not more than 45 minutes from the vast areas it was not accessible in 2018.
 <span style="display: block; margin-top: 5px;"></span>
-More comparison studies will help us to understand the reasons for the differences. One can compare the to-accessibility maps for the longer maximum travel time or go deeper and, based on the full output of the service area computations with the full description of the trip (see <a class="reference internal" href="raptor_area.html#raptor-area-log"><span class="std std-ref">Service area computations - the log file and the structure of the report</span></a>), investigate how the travelers get to the Gesher Theater from each of the “only” parts in 2018 and 2024.
-<span style="display: block; margin-top: 5px;"></span>
-To conclude this section, let us compare fixed-time accessibility from the Gesher Theater at 22:30, in 2024 and 2018 (Figure 20): Qualitatively, but not quantitatively, the differences revealed in Figure 19 are repeated.</p>
-<div style="display: flex; justify-content: space-between;">
-    <div style="text-align: center; width: 49%;">
-        <img src="_images/sample/img29.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-        <div>a</div>
-    </div>
-    <div style="text-align: center; width: 49%;">
-        <img src="_images/sample/img30.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-        <div>b</div>
-    </div>
-</div>
-<p>Figure 20. Comparison of transit accessibility maps for Gesher theater visitors at 20:00 in 2018 and 2024. Relative difference (a); Areas that are accessible in 2018 or 2024 only (b)</p></section>
+More comparison studies will help us to understand the reasons for the differences revealed. One can compare the to-accessibility maps for the longer than 45 minutes maximum travel time or go deeper and, based on the full output of the service area computations with the full description of the trip (see <a class="reference internal" href="raptor_area.html#raptor-area-log"><span class="std std-ref">Service area computations - the log file and the structure of the report</span></a>), investigate how the travelers get to the Gesher Theater from each of the “only” parts in 2018 and 2024.</p>
+</section>
 <section id="compare-fixed-time-and-schedule-based-accessibility">
 <span id="sample-comparison-time-fixed-schedule-dependent"></span><h3><span class="section-number">10.6.2. </span>Compare fixed-time and schedule-based accessibility<a class="headerlink" href="#compare-fixed-time-and-schedule-based-accessibility" title="Link to this heading"></a></h3>
-<p>To assess the effect of the schedule-based view of the accessibility let us compare the schedule-based and fixed-time 2024 accessibility maps for the Gesher visitors, to-accessibility maps for the performance start at 20:00 and from-accessibility maps for the performance end of 22:30. Figure 21 presents maps of two relative difference measures
+<p>To assess the effect of the schedule-based view of accessibility let us compare the schedule-based and fixed-time 2024 to-accessibility maps for the Gesher visitors, for the performance starting at 20:00. Figure 20 presents maps of the travel time difference:
 <span style="display: block; margin-top: 5px;"></span></p>
 <div style="text-align: center;">
-    (<b>Schedule_based</b>_TO_Result_24 –
-    <b>Fixed_time</b>_TO_Result_24)/
-    <b>Fixed_time</b>_TO_Result_24, and
-</div><p><span style="display: block; margin-top: 5px;"></span></p>
-<div style="text-align: center;">
-    (<b>Schedule_based</b>_FROM_Result_24 –
-    <b>Fixed_time</b>_FROM_Result_24)/
-    <b>Fixed_time</b>_FROM_Result_24
-</div><p><span style="display: block; margin-top: 5px;"></span>
-As can be seen, the schedule-based accessibility is always higher than the fixed-time based.</p>
+    <b>Schedule_based</b>_TO_GESHER_24 –
+    <b>Fixed_time</b>_TO_GESHER_24
+ </div><p><span style="display: block; margin-top: 5px;"></span></p>
+<p>As can be seen, the schedule-based accessibility is always higher than the fixed-time based.</p>
 <div style="display: flex; justify-content: space-between;">
     <div style="text-align: center; width: 49%;">
         <img src="_images/sample/img31.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
@@ -520,16 +507,16 @@ As can be seen, the schedule-based accessibility is always higher than the fixed
         <div>b</div>
     </div>
 </div>
-<p>Figure 21. Comparison of the schedule-based and fixed-time accessibility maps for the Gesher Theater in 2024. To-accessibility at 20:00 (a); From-accessibility at 22:30 (b)</p></section>
+<p>Figure 20. Comparison of the schedule-based and fixed-time accessibility maps for the Gesher Theater in 2024. To-accessibility at 20:00 (a); From-accessibility at 22:30 (b)</p></section>
 <section id="compare-region-accessibility">
 <span id="sample-compare-region"></span><h3><span class="section-number">10.6.3. </span>Compare Region accessibility<a class="headerlink" href="#compare-region-accessibility" title="Link to this heading"></a></h3>
-<p>Comparison of the Region accessibility maps goes in the same way as the comparison of the service areas maps. Figure 22 presents this comparison for the from-accessibility maps for 2024 and 2018, for the fixed-time trip start at 08:00 in the morning. As can be expected, the Red LRT line essentially increased accessibility for most of the Tel Aviv locations. Yet some locations, far from the Red LRT line, have lower accessibility in 2024 than in 2018 due to the changes in the bus lines network.
+<p>Comparison of the Region accessibility maps goes in the same way as the comparison of the service areas maps. Figure 21 presents this comparison of two from-accessibility maps for 2024 and 2018, computed for the fixed-time trip starting at 08:00 in the morning (Figure 18). As we have already seen in Figure 18, the Red LRT line essentially increased accessibility for most of the Tel Aviv locations – the greenish hexagons cover about 85% of the Tel Aviv area. Yet the number of buildings achievable from some locations that are far from the Red LRT line is lower in 2024 than in 2018 due to the changes in the bus network that follow the introduction of the Red LRT line.
 <span style="display: block; margin-top: 5px;"></span>
-It is worth noting that in the case of service area maps, when the travel times are compared, the range of difference is limited by the maximum travel time. In the case of Region accessibility, the range differences can be very high. The aggregate measure of accessibility of a certain building can very low in one of scenarios since there is no PT line at a walkable distance from it and all accessible buildings are reached by foot only, while in the second scenario transit lines get closer, and the number of accessible buildings becomes much higher.</p>
+It is worth noting that in the case of service area maps when the travel times are compared, the range of difference is limited by the maximum travel time in each of the compared scenarios. In the case of the Region accessibility, the range differences can be very high. The aggregate measure of accessibility of a certain building can be very low in one scenario since there is no PT line at a walkable distance from it and all accessible buildings are reached by foot only, while in the other scenario transit lines get closer, and the number of accessible buildings becomes much higher.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/sample/img35.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 22. The differences in region from-accessibility in 2024 and 2018, for the fixed time trip starting at 08:00 in the morning</p></section>
+<p>Figure 21. The differences in region from-accessibility with the public transport in 2024 and 2018, for the trips starting at 08:00 in the morning</p></section>
 </section>
 </section>
 
@@ -538,7 +525,7 @@ It is worth noting that in the case of service area maps, when the travel times 
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="visualization.html" class="btn btn-neutral float-left" title="9. Visualization of accessibility map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="glossary.html" class="btn btn-neutral float-right" title="11. Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="database1.html" class="btn btn-neutral float-right" title="11. The datasets used in this tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

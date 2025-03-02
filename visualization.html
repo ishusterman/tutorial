@@ -107,26 +107,40 @@
 <ul class="simple">
 <li><p>The layer of buildings (not recommended)</p></li>
 <li><p>The layer of the <a class="reference internal" href="glossary.html#term-Voronoi-diagram"><span class="xref std std-term">Voronoi polygons</span></a> that are constructed based on the buildings’ centroids.</p></li>
-<li><p>The layers of <span class="xref std std-term">hexagonal cells</span> with the side of 100, 200, 400 and 800 m.</p></li>
+<li><p>The layers hexagonal cells. The standard layers that are suggested are the layers of hexagons with the side of 50, 100, 200, 400, and 800 m. The user can choose to build some of these layers only or construct the layer of hexagons with different side length. There is no need to build all layers in advance, the hexagon layers can be constructed at any stage of plugin use.</p></li>
 </ul>
 <p>The layers of the Voronoi polygons and four hexagon layers are built at the <em>Data preprocessing → Build visualization layers</em> stage.
 <span style="display: block; margin-top: 5px;"></span>
-The IDs of the visualization polygons must repeat the IDs of the buildings, and each polygon will present the results for the building with this ID. The maps below (Figure 1) present the results of the same computations based on the Voronoi polygons of buildings, and the hexagons with the side of 100, 200, 400 and 800 m.</p>
-<div style="display: flex; justify-content: space-between;">
-    <img src="_images/sample/vis1.png" style="width: 48%; border: 0px solid black;margin-bottom: 10px" />
-    <img src="_images/sample/vis2.png" style="width: 48%; border: 0px solid black;margin-bottom: 10px" />
-</div>   <div style="display: flex; justify-content: space-between;">
-    <img src="_images/sample/vis3.png" style="width: 48%; border: 0px solid black;margin-bottom: 10px" />
-    <img src="_images/sample/vis4.png" style="width: 48%; border: 0px solid black;margin-bottom: 10px" />
+The IDs of the visualization polygons must repeat the IDs of the buildings, and each polygon will present the results for the building with this ID. The maps below (Figure 1) present the results of the same computations based on the Voronoi polygons of buildings, and the hexagons with the side of 100, 200 and 400 m.</p>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align: center; width: 48%;">
+        <img src="_images/sample/vis1.png" style="width: 100%; height: auto; border: 0px solid black; margin-bottom: 10px;" />
+        <p>a</p>
+    </div>
+    <div style="text-align: center; width: 48%;">
+        <img src="_images/sample/vis2.png" style="width: 100%; height: auto; border: 0px solid black; margin-bottom: 10px;" />
+        <p>b</p>
+    </div>
+</div><div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align: center; width: 48%;">
+        <img src="_images/sample/vis3.png" style="width: 100%; height: auto; border: 0px solid black; margin-bottom: 10px;" />
+        <p>c</p>
+    </div>
+    <div style="text-align: center; width: 48%;">
+        <img src="_images/sample/vis4.png" style="width: 100%; height: auto; border: 0px solid black; margin-bottom: 10px;" />
+        <p>d</p>
+    </div>
 </div>
-<p>Figure 1. Gesher Theater in Yafo from-accessibility at 22:30, after the performance is finished. Calculated with the <i>Transit accessibility → Service area maps → From service locations - Fixed-time departure</i> option. Visualized with the Voronoi polygons of buildings (a), and 100m (b), 200m (c), 400m (d) and 800m (e) hexagons</p></section>
+ <p>Figure 1. Gesher Theater in Yafo from-accessibility at 22:30, after the performance is finished. Calculated with the <i>Transit accessibility → Service area maps → From service locations - Fixed-time departure</i> option. Visualized with the Voronoi polygons of buildings (a), and 100m (b), 200m (c), 400m (d) hexagons.</p></section>
 <section id="visualization-of-accessibility-maps-comparison">
 <h2><span class="section-number">9.3. </span>Visualization of accessibility maps comparison<a class="headerlink" href="#visualization-of-accessibility-maps-comparison" title="Link to this heading"></a></h2>
-<p>The map in Figure 2 presents the region accessibility map for the Tel Aviv city:</p>
+<p>The map in Figure 2 presents the region accessibility map for Tel Aviv city computed based on the 200m hexagons that cover the buildup areas of the city:</p>
 <div style="display: flex; justify-content: center">
      <img src="_images/sample/vis5.png" style="width: 50%; border: 0px solid black;margin-bottom: 10px" />
 </div>
-<p>Figure 2. <i>Transit accessibility → Region maps → From every location – Fixed time departure</i> accessibility map. The map presents the number of buildings accessible in 45 minutes from each of the region’s buildings</p><p>Figure 3 presents the comparison between two to-accessibility scenarios of the Yafo Gesher Theater at the beginning of the performance, 20:00. One of them is computed before and the other after the Red LRT line was established in the Tel Aviv Metropolitan Area in 2024. After the Red LRT line was established, accessibility to the distant buildings along the North-East part of the LRT line increased, while accessibility to the buildings to the south and west of the LRT line decreased (Figure 3a) due to cancellation of several bus lines. At the same time, many buildings that were not accessible before became accessible after the Red LRT line was established (Figure 3b).</p>
+<p>Figure 2. <i>Transit accessibility → Region maps → From every location – Fixed time departure</i> accessibility map presents the number of buildings accessible in 45 minutes from each of Tel Aviv buildings with the transit network of 2024 that includes the Red LRT line</p><p>Figure 3 presents the comparison between two to-accessibility scenarios of the Yafo Gesher Theater at the beginning of the performance, 20:00. One of them is computed before and the other after the Red LRT line was established in the Tel Aviv Metropolitan Area in 2024.
+<span style="display: block; margin-top: 5px;"></span>
+After the Red LRT line was established, accessibility to the distant buildings along the northeast part of the LRT line increased, while accessibility to the buildings to the south and west of the LRT line decreased (Figure 3a) due to the cancellation of several bus lines. At the same time, The Gesher Theater became accessible in less than 45 minutes from many additional buildings after the Red LRT line was established, while the number of buildings from which is became non-accessible due to the cancellation of the bus lines after the LRT line started functioning are few (Figure 3b).</p>
    <div style="display: flex; justify-content: space-between;">
        <div style="text-align: center; width: 48%;">
            <img src="_images/sample/vis6.png" style="width: 100%; border: 0px solid black; margin-bottom: 10px;" />
@@ -137,7 +151,7 @@ The IDs of the visualization polygons must repeat the IDs of the buildings, and 
            <div>b</div>
        </div>
    </div>
-<p>Figure 3. The output of the <i>Compare accessibility maps → Service Areas</i> comparison between two to-accessibility transit maps of the Gesher Theater in Yaffo before and after the Red LRT line was established. The difference between two maps (a) and the map of buildings that were not accessible before, but became accessible after the Red LRT line was established. The layer of buildings’ Voronoi polygons is chosen for the visualization. The maximum travel time is 45 minutes. </p><p>More examples of visualization <a class="reference internal" href="sample.html#sample-compare-single"><span class="std std-ref">here</span></a>.</p>
+<p>Figure 3. The output of the <i>Compare accessibility maps → Service Areas</i> comparison between two to-accessibility transit maps of the Gesher Theater in Yaffo before and after the Red LRT line was established. The difference between the two maps (a) and the map of buildings that are accessible in 45 minutes with one of the networks only (b). The layer of buildings’ Voronoi polygons is chosen for the visualization. The maximum travel time is 45 minutes</p><p>For more examples of visualization see <a class="reference internal" href="sample.html#sample-compare-single"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>
 
