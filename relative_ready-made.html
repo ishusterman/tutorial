@@ -50,7 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">8. Compare accessibility maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
@@ -85,44 +85,44 @@
              
   <section id="compare-accessibility-maps">
 <span id="relative-ready-made"></span><h1><span class="section-number">8. </span>Compare accessibility maps<a class="headerlink" href="#compare-accessibility-maps" title="Link to this heading"></a></h1>
-<p>Accessibility can be fully understood in comparative study, when the results of accessibility computations for two or more scenarios that consider different travel modes or different sets of parameters. The Compare accessibility maps part of the Accessibility Calculator menu (Figure 1) is developed for this purpose.</p>
+<p>Accessibility can be fully understood in the comparative study for two or more scenarios that consider different travel modes or different sets of parameters. The Compare accessibility maps part of the Accessibility Calculator menu (Figure 1) is developed for this purpose.</p>
    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow-compare.png" style="width: 35%; border: 3px solid white;margin-bottom: 10px" />
 </div>
- <p>Figure 1. <i>Compare accessibility maps menu</i></p><p>Formally, comparison is performed for the outcomes of two scenarios, and to start, Accessibility Calculator verifies that the comparison can be performed. The verification is based on the Log files of these scenarios that must be in the folder of each scenario’s output, otherwise the comparison will be quit. The compatibility tests verify that:</p>
+ <p>Figure 1. <i>Compare accessibility maps menu</i></p><p>The comparison is performed for the outcomes of two scenarios. On start, the Accessibility Calculator verifies that the comparison can be performed. The verification is based on the Log files of these scenarios that must be in the folder of each scenario’s output, otherwise the comparison will be quit.
+The compatibility tests verify that:</p>
 <ul class="simple">
-<li><p>The compared maps are both maps of the service areas, or region accessibility.</p></li>
+<li><p>The compared maps are both of the service areas, or region accessibility computations.</p></li>
 <li><p>The overlap between two maps is not empty.</p></li>
-<li><p>In the REGION regime, the time bins of both outputs are the same.</p></li>
+<li><p>When comparing Region maps, the time bins of both outputs are the same.</p></li>
 </ul>
 <p><span style="display: block; margin-top: 5px;"></span>
 Note that the comparison of the from- and to-accessibility maps is allowed.
 <span style="display: block; margin-top: 5px;"></span>
-If all tests are successfully passed, the comparison is made for the spatially overlapping parts of the output. The non-overlapping parts are presented as additional layers, together with the results of the comparison.
-<span style="display: block; margin-top: 5px;"></span>
-The dialog and parameters of the <em>Compare accessibility maps → Service areas</em> and <em>Compare accessibility maps → Regions</em> are the same. We illustrate them with the <em>Compare accessibility maps → Service areas</em> comparison.
-<span style="display: block; margin-top: 5px;"></span>
-Enter the parameters:</p>
+If all tests are successfully passed, the comparison is made for the spatially overlapping parts of the outputs. The non-overlapping parts are presented as additional layers, together with the results of the comparison. The dialog and parameters of the <em>Compare accessibility maps → Service areas</em> and <em>Compare accessibility maps → Regions</em> are the same. We illustrate them with the <em>Compare accessibility maps → Service areas</em> comparison.</p>
 <blockquote>
 <div><div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/compare.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
-</div></div></blockquote>
+</div>
+<p>Figure 1. <i>Copmare accessibility maps</i> dialog</p></div></blockquote>
 <p><span class="guilabel">Result1 folder</span> — the folder that contains the outputs of the first scenario.
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">Name of file1</span>— the CSV file of the Scenario_1 results in the
-<span class="guilabel">Result1 folder</span>, found automatically.
+<span class="guilabel">Result1 folder</span>.
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">Result2 folder</span> — the folder that contains the results of the second scenario.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Name of file2</span> — the CSV file of the Scenario_2 results in the <span class="guilabel">Result2 folder</span>, found automatically.
+<span class="guilabel">Name of file2</span> — the CSV file of the Scenario_2 results in the <span class="guilabel">Result2 folder</span>.
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">Output folder</span> — the folder to store the results of the comparison.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Output alias</span> — the alias for the files of results and layers of visualization.
+<span class="guilabel">Output alias</span> — the alias for the files of results.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Basic visualization layer</span> — the name of the layer that will be used for visualization of accessibility maps, must be a part of the current QGIS project.
+<span class="guilabel">Visualization layer</span> — the name of the visualization layer, must be a part of the QGIS project.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">id</span>- the name of the unique identifier field of the visualization layer unit. The values of the identifier must be the subset of the set of buildings’ identifiers. More information <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
+<span class="guilabel">id</span> — the unique identifier of the visualization layer unit, must be the subset of the buildings’ identifiers.
+<span style="display: block; margin-top: 5px;"></span>
+More information on the visulaization layers see <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
 <span style="display: block; margin-top: 5px;"></span>
 The measures of comparison:
 <br/>
@@ -130,13 +130,13 @@ The measures of comparison:
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">Difference: Result_1 - Result_2</span> — the difference between the result of the first scenario and the results of the second scenario, for the overlapping part of the outputs.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Relative difference: [Result_1 - Result_2]/Result 2</span> — the difference between the result of the first scenario and the results of the second scenario divided by the result of the second scenario, for the overlapping part of the outputs. The result is presented in percents.
+<span class="guilabel">Relative difference: [Result_1 - Result_2]/Result 2</span> — the difference between the result of the first scenario and the results of the second scenario divided by the result of the second scenario, for the overlapping part of the outputs. The results are presented in percents.
 <span style="display: block; margin-top: 5px;"></span>
-For each of the three cases, in addition to the map of the selected measure of difference, two more maps are presented. The first one presents the buildings that were accessible in Scenario 1 (Result_1 is not NULL) but are not accessible in Scenario 2 (Result_2 is NULL). The second map presents the buildings that were accessible in Scenario 2 (Result_2 is not NULL) but are not accessible in Scenario 1 (Result_1 is NULL).
+For each of the three cases, in addition to the map of the selected measure of difference, two more maps are presented. The first presents the buildings accessible in Scenario 1 (Result_1 is not NULL) but unaccessible in Scenario 2 (Result_2 is NULL). The second, the buildings that were accessible in Scenario 2 (Result_2 is not NULL) but not in Scenario 1 (Result_1 is NULL).
 <span style="display: block; margin-top: 5px;"></span>
 Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.
 <span style="display: block; margin-top: 5px;"></span>
-The <strong>Log</strong> tab repeats the <strong>Log</strong> information of each of the compared scenarios and contains the metadata about the chosen measures and the overlapping parts of the outputs. If the comparison has failed the Log file contains the reason for the failure (Figure 2).</p>
+The <strong>Log</strong> tab repeats the <strong>Log</strong> information of each of the compared scenarios and the metadata about the chosen measures and the overlapping parts of the outputs. If the comparison has failed the Log file contains the reason for the failure (Figure 2).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/compare_log.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
 </div>
