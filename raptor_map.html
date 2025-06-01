@@ -13,7 +13,7 @@
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
-      <script src="_static/documentation_options.js?v=4c4d3c97"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -33,9 +33,6 @@
           <a href="index.html" class="icon icon-home">
             Introduction to QGIS plugin "Accessibility Calculator"
           </a>
-              <div class="version">
-                1.1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -103,14 +100,14 @@
 <h2><span class="section-number">6.1. </span>The necessary datasets<a class="headerlink" href="#the-necessary-datasets" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Transit routing database, see Construct Databases → Transit routing database.</p></li>
-<li><p>The layer of buildings that must be a part of the current QGIS project.</p></li>
+<li><p>The layer of buildings. This layer must be a part of the current QGIS project.</p></li>
 </ul>
 </section>
 <section id="transit-accessibility-from-every-location-in-the-region-fixed-time-departure">
 <span id="raptor-map-fixed-time"></span><h2><span class="section-number">6.2. </span>Transit accessibility from every location in the region, fixed-time departure<a class="headerlink" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure" title="Link to this heading"></a></h2>
 <p>Choose <em>From every location – fixed-time departure</em> (Figure 2).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pt-fr-m.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/pt-fr-m.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 2: Region maps <i>From every location – fixed-time departure</i> dialog</p><p><span class="guilabel">Transit routing database folder</span> — the folder of the transit routing database. Must contain the following files: <code class="docutils literal notranslate"><span class="pre">stops.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers_dict.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_by_route_stop.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code>
 <br/>
@@ -156,9 +153,9 @@
 <span class="guilabel">Number of bins</span> — the number of bins for splitting the possible trip time interval, [0, Maximum travel time]. The region buildings’ accessibility measures will be stored by the time bins. The <span class="guilabel">Number of bins</span> must not exceed the <span class="guilabel">Maximum travel time</span>.
 <br/>
 The bin width is calculated as the <span class="guilabel">Maximum travel time</span>/<span class="guilabel">Number of bins</span>. If the last bin does not match the <span class="guilabel">Maximum travel time</span>, the buildings’ accessibility measures for the <span class="guilabel">Maximum travel time</span> are also stored. Typically, the <span class="guilabel">Number of bins</span> is selected in a way to have the bin’s width of 5 or 10 minutes, while a 2- or even 1-minute bin can be useful for further analysis of accessibility.
-<span class="guilabel">Accessibility of</span> — each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several fields to aggregate (Figure 3). Besides, the total number of buildings accessible from each building of the region is always calculated.</p>
+<span class="guilabel">Choose buildings charactersitics for accessibility assessment</span> — The total number of buildings accessible from each building of the region is a defauls measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characterisitcs for this assessment (Figure 3).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/map_opt1.png" style="width: 60%; border: 0px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/map_opt1.png" style="width: 80%; border: 0px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 3. The choice of attributes for the region accessibility assessment</p><p>The sum of the attribute values over buildings achievable during the time of one, two, etc., bins will be stored as a separate file for each of the chosen attributes in the <span class="guilabel">Output folder</span>, and accessibility to each of the attributes is presented by the thematic map. In case the computations are based on the selection of buildings, the results will include the new layer that represents the selected buildings of the trip origin. The structure of the result files is described in the next section.
 <span style="display: block; margin-top: 5px;"></span>
@@ -169,7 +166,7 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/log_area.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
   </div>
-<p>Figure 4. The log file of the Region map <i>From every location – fixed-time departure</i> computations</p><p>The default output presents the total number of buildings that can be reached from each of the region’s buildings after every time bin. Figure 5 presents this file for the case of the from-accessibility:</p>
+<p>Figure 4. The log file of the Region map <i>From every location – fixed-time departure</i> computations</p><p>The default CSV output file presents the total number of buildings that can be reached from each of the region’s buildings after every time bin. Figure 5 presents this file for the case of the from-accessibility:</p>
 <style>
     .custom-table {
         border-collapse: collapse;
@@ -238,7 +235,7 @@ The Log and Result files are the same as for the from-accessibility, with minor 
 </section>
 <section id="region-accessibility-for-the-schedule-based-departure-or-arrival">
 <h2><span class="section-number">6.4. </span>Region accessibility for the schedule-based departure or arrival<a class="headerlink" href="#region-accessibility-for-the-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
-<p>The reasons for introducing and the basic idea of the schedule-based view of accessibility are presented in <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">Section 5.4</span></a>.The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a> and the comparison between the time-fixed and schedule-dependent region accessibility is <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">here</span></a>.</p>
+<p>The reasons for introducing and the basic idea of the schedule-based view of accessibility are presented in <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">Section 5.4</span></a>. The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a> and the comparison between the time-fixed and schedule-dependent region accessibility is <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>
 

@@ -13,7 +13,7 @@
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
-      <script src="_static/documentation_options.js?v=4c4d3c97"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -33,9 +33,6 @@
           <a href="index.html" class="icon icon-home">
             Introduction to QGIS plugin "Accessibility Calculator"
           </a>
-              <div class="version">
-                1.1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -110,13 +107,13 @@
 <h2><span class="section-number">5.2. </span>Accessibility starting from the location of services, fixed-time departure<a class="headerlink" href="#accessibility-starting-from-the-location-of-services-fixed-time-departure" title="Link to this heading"></a></h2>
 <p>Choose <em>From service locations – fixed-time departure</em> (Figure 2):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pt-fr-a.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/pt-fr-a.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 2. <i>Service area maps → From service locations – Fixed-time departure</i> dialog</p><p>Parameters of the computations:
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">Transit routing database folder</span> — the folder that contains the transit routing database. Must contain the following files: <code class="docutils literal notranslate"><span class="pre">stops.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers_dict.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_by_route_stop.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code>
 <br/>
-<span class="guilabel">Output folder</span> — the folder for storing the results of the computation. The system’s suggestion is a subfolder in the folder where the QGIS project is stored with the name that is a concatenation of the name of a project and “_output.”
+<span class="guilabel">Output folder</span> — the folder for storing the results of the computation. The system’s suggestion is a subfolder in the folder where the QGIS project is stored with the name that is a concatenation of the name of a project (TAMA) and “_output.”
 <br/>
 <span class="guilabel">Output alias</span> — the alias for the files of results.
 <br/>
@@ -142,17 +139,17 @@
 <br/>
 <span class="guilabel">Walking speed (km/h)</span> — walking speed.
 <br/>
-<span class="guilabel">Maximal waiting time at the initial stop, min</span> — the maximum waiting time at the initial stop of the trip.
+<span class="guilabel">Maximum waiting time at the initial stop, min</span> — the maximum waiting time at the initial stop of the trip.
 <br/>
-<span class="guilabel">Maximal waiting time at the transfer stop, min</span> — the maximum waiting time at the transfer stop.
+<span class="guilabel">Maximum waiting time at the transfer stop, min</span> — the maximum waiting time at the transfer stop.
 <br/>
-<span class="guilabel">Maximal time travel, min</span> — the maximum total trip time.
+<span class="guilabel">Maximum travel time, min</span> — the maximum total trip time.
 <br/></p>
-<p>Click <strong>Run</strong> to start. The <strong>Progressbar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.The <strong>Log</strong> tab presents the run metadata.
+<p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.The <strong>Log</strong> tab presents the run metadata.
 <span style="display: block; margin-top: 5px;"></span>
-The results of the computations are stored as two CSV report files in the <span class="guilabel">Output folder</span>. The first depicts the service area - all buildings that can be reached from <em>at least one</em> of the facilities in <span class="guilabel">Maximal time travel, min</span> or faster. Each of these accessible buildings is represented by the record that contains the <span class="guilabel">id</span> of the facility that served it, and all details of the trip between the facility and the building.
+The results of the computations are stored as two CSV report files in the <span class="guilabel">Output folder</span>. The first depicts the service area - all buildings that can be reached from <em>at least one</em> of the facilities in <span class="guilabel">Maximum travel time</span> or faster. Each of these accessible buildings is represented by the record that contains the <span class="guilabel">id</span> of the facility that served it, and all details of the trip between the facility and the building.
 <span style="display: block; margin-top: 5px;"></span>
-The service area is visualized based on the <span class="guilabel">Visualization layer</span>. For the example of the <em>From service locations – Fixed-time departure</em> computations and maps for the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-constructing-databases"><span class="std std-ref">section 10.3</span></a>
+The service area is visualized based on the <span class="guilabel">Visualization layer</span>. For the example of the <em>From service locations – Fixed-time departure</em> computations and maps for the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>
 <span style="display: block; margin-top: 5px;"></span>
 The service area file does not contain information on whether a building can be served by more than one facility. This information can be retrieved from the second output file, where for each facility, all buildings that can be served by it are listed. This second file can be used for deeper analysis of the accessibility, for example for recognizing buildings that can be reached from half or more of the facilities. In both output files, the details of every leg for every trip are described in detail, see the next section.</p>
 <section id="service-area-computations-the-log-file-and-the-structure-of-the-report">
@@ -161,7 +158,7 @@ The service area file does not contain information on whether a building can be 
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/log_point.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
   </div>
-<p>Figure 3. Log file of the <i>From service locations – fixed-time departure</i> transit computations</p><p>The file of results contains all the details of a trip to each accessible building (Figure 4):</p>
+<p>Figure 3. Log file of the <i>From service locations – fixed-time departure</i> transit computations</p><p>The CSV file of results contains all the details of a trip to each accessible building (Figure 4):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
@@ -209,7 +206,7 @@ The service area file does not contain information on whether a building can be 
 <td><p>Waiting time for a bus at the first transfer stop</p></td>
 </tr>
 <tr class="row-odd"><td><p>Next motorized legs and transfers</p></td>
-<td><p>…If more transfers are performed</p></td>
+<td><p>...If more transfers are performed</p></td>
 </tr>
 <tr class="row-even"><td><p>DestWalk_time</p></td>
 <td><p>Walking time from the last stop to a destination</p></td>
@@ -239,7 +236,7 @@ The service area file does not contain information on whether a building can be 
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/sample/area_opt2.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
   </div>
-<p>Figure 6. The Arrival time part of the <i>To service locations - fixed time arrival</i> dialog</p><p>The Log and Result files for the to-accessibility have the same format as for the from-accessibility, with minor changes that reflect the changes in the direction of trips. The output table includes an additional attribute: “Latest time at destination”, that contains <span class="guilabel">Arrives before</span> time. The example of the <em>To service locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+<p>Figure 6. The Arrival time part of the <i>To service locations - fixed time arrival</i> dialog</p><p>The Log and Result files for the to-accessibility have the same format as for the from-accessibility, with minor changes that reflect the changes in the direction of trips. The output table includes an additional attribute: “Latest time at destination”, that contains <span class="guilabel">Arrive before</span> time. The example of the <em>To service locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="service-area-for-schedule-based-departure-or-arrival">
 <span id="raptor-area-schedule-based"></span><h2><span class="section-number">5.4. </span>Service area for schedule-based departure or arrival<a class="headerlink" href="#service-area-for-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
