@@ -189,7 +189,7 @@ Let us reproduce the steps of the data preparation procedure:</p>
 </ul>
 <p>Road layer cleaning takes time, and for the TAMA road layer with its ~300K links it takes about 20 minutes.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/pkl_v_cleen.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/pkl_v_cleen.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 2. <i>Clean road network</i> dialog</p><ul class="simple">
 <li><p>Click the <em>Clean layer of buildings</em> menu item and choose the layer of buildings (Figure 3). This layer also must be a part of the current QGIS project. Before activating the Accessibility Calculator, confirm that this is the layer you need.</p></li>
@@ -197,7 +197,7 @@ Let us reproduce the steps of the data preparation procedure:</p>
 <li><p>Cleaning the building layer is much faster than cleaning roads and ~250K TAMA buildings took about 5 minutes.</p></li>
 </ul>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/pkl_buildings_clean.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/pkl_buildings_clean.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 3. <i>Clean layer of buildings</i> dialog </p><ul class="simple">
 <li><p>Click the <em>Build visualization layers</em> menu item and choose the layer of buildings (Figure 4).</p></li>
@@ -205,7 +205,7 @@ Let us reproduce the steps of the data preparation procedure:</p>
 <li><p>Building visualization layers takes 2-3 minutes.</p></li>
 </ul>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/pkl_visualization_clean.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/pkl_visualization_clean.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 4. <i>Build visualization layers</i> dialog </p><p>Summing up, for the areas of TAMA size, data preprocessing will take up to an hour and a half. Most of the time will be spent on roads and buildings cleaning. Formally, you can work with non-clean layers of roads and buildings. However, cleaning is strongly recommended to ensure that the input data for navigation algorithms are correct.</p>
 </section>
@@ -219,11 +219,11 @@ Let us start by constructing the transit routing database.</p>
 <li><p>Transit routing database construction takes about 15 minutes.</p></li>
 </ul>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/fig5.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/fig5.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 5. <i>Transit routing database</i> dialog</p><p>The log file (Figure 6) stores the data on the GTFS database construction and is located in the database folder.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/fig6.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/fig6.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 6. Log file of the <i>Transit routing database</i> construction</p><p>Repeat the transit routing database step with the GTFS datasets of 2024. As already mentioned, we do not recommend cutting parts of the GTFS – it demands very careful querying of the dataset, while the gain in the database size will not be accompanied by the gain in performance.
 <span style="display: block; margin-top: 5px;"></span>
@@ -231,7 +231,7 @@ The last step in preparing data for accessibility computations is to construct a
 <span style="display: block; margin-top: 5px;"></span>
 Click the <em>Car routing database</em> menu item and choose the layer of roads and buildings (Figure 7). Be careful with the choice of fields that represent the link’s speed, type, traffic direction, and building ID. Set a new folder to store the car routing database.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/fig7.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/fig7.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 7. <i>Car routing database</i> dialog</p><p>The log file describes all data used for the TAMA car routing database construction and is stored in the database folder.
 <span style="display: block; margin-top: 5px;"></span>
@@ -290,15 +290,11 @@ Table 2 presents the characteristics of all three constructed databases. Importa
 <p>Additional parameters for the service area computations are the arrival and departure times, and as defined, we use 20:00 for the to-, and 22:30 for the from accessibility (Figure 8a). Note that we use the network and not aerial distance in all computations below (the air distance checkbox is disabled). As can be seen in Figure 8a, the to-accessibility is computed for the transit network of 2018.
 <span style="display: block; margin-top: 5px;"></span>
 The computations take 9 seconds (Figure 8b) and the folder of results will contain two files: The log file <code class="docutils literal notranslate"><span class="pre">log_BPTGesher.txt</span></code>, and the file of results <code class="docutils literal notranslate"><span class="pre">BPTGesher_45m_tot_265984731.csv</span></code>. The 265984731 in the name of the result file is an OSM_ID of the Gesher Theater building. At the end of the computation, the CSV file of results is joined to the visualization layer and presented as a map.</p>
-<div style="display: flex; justify-content: center; gap: 1%;">
-    <div style="text-align: center; width: 49%;">
-        <img src="_images/sample/fig9a.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-        <div>a</div>
-    </div>
-    <div style="text-align: center; width: 49%;">
-        <img src="_images/sample/fig9b.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-        <div>b</div>
-    </div>
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="_images/sample/fig9a.png" style="width: 100%; border: 3px solid white; margin-bottom: 5px;" />
+    <div style="margin-bottom: 20px;">a</div>
+    <img src="_images/sample/fig9b.png" style="width: 50%; border: 3px solid white; margin-bottom: 5px;" />
+    <div>b</div>
 </div>
 <p>Figure 8. The dialog of the <i>Transit accessibility map → Service area maps → To service locations – fixed time arrival (a)</i> and the Log file of the computations (b)</p><p>The maps of accessibility to/from the Gesher theater, two before and two after the Red LRT line was introduced are presented in Figure 9. It took 2-3 seconds per scenario to compute each. You can notice that the areas accessible with up to 45 minutes’ trip after the Red LRT line was introduced are larger than the areas that were accessible during the same time before. We will compare accessibility in 2018 and 2024 and assess the Red line effect quantitatively in the <a class="reference internal" href="#sample-compare-accessibility"><span class="std std-ref">Compare Accessibility</span></a> section below.</p>
 <div style="display: flex; flex-wrap: wrap;">
@@ -364,11 +360,11 @@ These conditions define the earliest arrival time and the interval of arrival (F
 As an example of a car service area map, we calculate car accessibility of the Gesher Theater in Yaffo: To-accessibility, to the performance that starts at 20:00, and from-accessibility at 22:30, when the performance ends (Figure 13).</p>
 <div style="text-align: center;">
     <div style="width: 100%; text-align: center; margin-bottom: 20px;">
-        <img src="_images/sample/img19.png" style="width: 100%; height: 500px; object-fit: contain; border: 1px solid white; margin-bottom: 5px;" />
+        <img src="_images/sample/img19.png" style="max-width: 100%; height: auto; border: 1px solid white; margin-bottom: 5px;" />
         <p style="margin-top: 0px;">a</p>
     </div>
     <div style="width: 100%; text-align: center; margin-bottom: 20px;">
-        <img src="_images/sample/img20.png" style="width: 100%; height: 500px; object-fit: contain; border: 1px solid white; margin-bottom: 5px;" />
+        <img src="_images/sample/img20.png" style="max-width: 100%; height: auto; border: 1px solid white; margin-bottom: 5px;" />
         <p style="margin-top: 0px;">b</p>
     </div>
 </div>
@@ -404,7 +400,7 @@ Let us continue the assessment of the Red LRT line’s effect on transport acces
 </div>
 <p>Figure 15. The <i>Transit accessibility map → Region maps</i> dialogs for the <i>From every location – Fixed time departure</i> (a), and <i>To every location – Fixed time arrival</i> (b) cases</p><p>We can compute regional accessibility based on any attribute (Figure 16), as the sum of the values of this attribute over accessible buildings. If you are interested in computing the weighted sum of some attribute, calculate this weighted attribute for each building and then sum it up with the Accessibility Calculator. To remind, if the maximum travel time does not contain an integer number of bins, the results are also stored for the maximum travel time.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/img26.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/img26.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 16. The choice of the number of bins and attributes to aggregate in the <i>Transit accessibility → Region maps → From/To all locations - Fixed-time accessibility</i> dialog<p><p>Figure 17 presents maps of region accessibility in 45 minutes for Tel Aviv city in the year 2018, before the red LTR line was established, and in 2024 when this line was in full operation. To speed up computations, these maps were computed based on hexagons of 200m side. The number of hexagons of this size that cover all buildings in Tel Aviv is 1750 and computations took about 30 minutes with the performance of ~1sec per origin building. We will compare these two maps numerically in the next section.</p>
 <div style="display: flex; text-align: center;">

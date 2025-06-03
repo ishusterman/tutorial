@@ -107,7 +107,7 @@
 <span id="raptor-map-fixed-time"></span><h2><span class="section-number">6.2. </span>Transit accessibility from every location in the region, fixed-time departure<a class="headerlink" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure" title="Link to this heading"></a></h2>
 <p>Choose <em>From every location – fixed-time departure</em> (Figure 2).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pt-fr-m.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/pt-fr-m.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 2: Region maps <i>From every location – fixed-time departure</i> dialog</p><p><span class="guilabel">Transit routing database folder</span> — the folder of the transit routing database. Must contain the following files: <code class="docutils literal notranslate"><span class="pre">stops.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers_dict.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_by_route_stop.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code>
 <br/>
@@ -155,7 +155,7 @@
 The bin width is calculated as the <span class="guilabel">Maximum travel time</span>/<span class="guilabel">Number of bins</span>. If the last bin does not match the <span class="guilabel">Maximum travel time</span>, the buildings’ accessibility measures for the <span class="guilabel">Maximum travel time</span> are also stored. Typically, the <span class="guilabel">Number of bins</span> is selected in a way to have the bin’s width of 5 or 10 minutes, while a 2- or even 1-minute bin can be useful for further analysis of accessibility.
 <span class="guilabel">Choose buildings charactersitics for accessibility assessment</span> — The total number of buildings accessible from each building of the region is a defauls measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characterisitcs for this assessment (Figure 3).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/map_opt1.png" style="width: 80%; border: 0px solid white;margin-bottom: 10px" />
+    <img src="_images/sample/map_opt1.png" style="width: 100%; border: 0px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 3. The choice of attributes for the region accessibility assessment</p><p>The sum of the attribute values over buildings achievable during the time of one, two, etc., bins will be stored as a separate file for each of the chosen attributes in the <span class="guilabel">Output folder</span>, and accessibility to each of the attributes is presented by the thematic map. In case the computations are based on the selection of buildings, the results will include the new layer that represents the selected buildings of the trip origin. The structure of the result files is described in the next section.
 <span style="display: block; margin-top: 5px;"></span>
@@ -164,7 +164,7 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the
 <h3><span class="section-number">6.2.1. </span>The log file and Region accessibility report<a class="headerlink" href="#the-log-file-and-region-accessibility-report" title="Link to this heading"></a></h3>
 <p>The log file (Figure 4) is stored in the folder of the results. It lists all the settings of the run and the computation time.</p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/log_area.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+      <img src="_images/log_area.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
   </div>
 <p>Figure 4. The log file of the Region map <i>From every location – fixed-time departure</i> computations</p><p>The default CSV output file presents the total number of buildings that can be reached from each of the region’s buildings after every time bin. Figure 5 presents this file for the case of the from-accessibility:</p>
 <style>

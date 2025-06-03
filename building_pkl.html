@@ -117,7 +117,7 @@ Road layer cleaning includes two non-topological operations that ensure data con
 </div>
 <p>To clean the layer of the road links choose <em>Data preprocessing → Clean road network</em> (Figure 2):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl_v_cleen.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px;" />
+    <img src="_images/pkl_v_cleen.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px;" />
 </div>
 <p>Figure 2. <i>Clean road network dialog</i></p><ul class="simple">
 <li><p><span class="guilabel">Initial road network</span> -  the initial layer of roads that must be a part of the project. All line layers of the project will appear in the list.</p></li>
@@ -130,7 +130,7 @@ Cleaning of the layer of buildings is performed in three steps. First, the featu
 <span style="display: block; margin-top: 5px;"></span>
 To clean the layer of buildings choose <em>Data preprocessing → Clean layer of buildings</em> (Figure 3):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl_buildings_clean.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px;" />
+    <img src="_images/pkl_buildings_clean.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px;" />
 </div>
 <p>Figure 3. The <i>clean layer of buildings</i> dialog</p><ul class="simple">
 <li><p><span class="guilabel">Initial layer of buildings</span> -  the initial layer of buildings that must be a part of the project. All polygon layers of the project will appear in the list.</p></li>
@@ -142,8 +142,8 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show
 <section id="building-layers-for-visualization">
 <span id="building-data-visualization"></span><h2><span class="section-number">4.2. </span>Building layers for visualization<a class="headerlink" href="#building-layers-for-visualization" title="Link to this heading"></a></h2>
 <p>Accessibility Calculator assigns the values of accessibility to each accessible building and the results are visualized with the thematic maps at the resolution of buildings or lower. Buildings themselves can be used for the visualization but, a lion’s share of the constructed area is not covered by the buildings and these maps are inconvenient to use. The coverage becomes continuous if buildings are substituted by their Voronoi polygons. These polygons are built based on the building centroids, applying <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons</a> algorithm, with the Voronoi polygons’ identifiers repeating identifiers of the buildings. Voronoi polygons are clipped by layer buildings’ centroids buffers of 50m radius, to avoid large Voronoi polygons that always appear at the boundary of the constructed area. In addition to constructing the layer of Voronoi polygons of buildings, the layers of hexagons can be constructed. The defaults are hexagon layers of the 50, 100, 200, 400, and 800 m side lengths. The user-defined layers can be constructed too applying the <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid</a>  algorithm. Each layer covers the entire extent of the layer of buildings layer. In each layer, the hexagons that do not overlap any building are deleted and each hexagon has the identifier of the building that is closest to its centroid. If several buildings are at the same distance from the centroid, the minimal identifier is chosen. Note that the same building may be closest to more than one hexagon’s centroids and in this case, these hexagons are dissolved into one. To build layers for visualization choose the <em>Data preprocessing → Build visualization layers</em> (Figure 4):</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl_visualization_clean.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px;" />
+<div style="text-align: center;">
+    <img src="_images/pkl_visualization_clean.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
 </div>
 <p>Figure 4. <i>Build visualization layers</i> dialog</p><ul class="simple">
 <li><p><span class="guilabel">Layer of buildings</span> - the cleaned layer of buildings that must be a part of the project. All polygon layers of the project will appear in the list.</p></li>
@@ -156,8 +156,8 @@ The constructed layers will be automatically added to the current GIS project. G
 <section id="building-database-for-transit-accessibility-computations">
 <h2><span class="section-number">4.3. </span>Building database for transit accessibility computations<a class="headerlink" href="#building-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
 <p>To allow fast accessibility computations, the data on roads, buildings, and public transport routes and timetables are translated into a database. During this transformation, the buildings that are not connected to the road network are related to the nearest road link of the cleaned layer of roads. The shortest distance to these links is calculated, stored, and employed for establishing the network path between the building and bus stops. The result of this operation is stored in the database and the cleaned layer of roads is not changed. To build the database for transit routing choose the <em>Construct databases → Transit routing database</em> (Figure 5):</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl1.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px;" />
+<div style="text-align: center;">
+    <img src="_images/pkl1.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
 </div>
 <p>Figure 5. <i>Transit routing database</i> construction dialog</p><ul class="simple">
 <li><p><span class="guilabel">Layer of roads</span> - the clean layer of the road links. Must be a part of the current GIS project.</p></li>
