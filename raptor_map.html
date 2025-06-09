@@ -152,8 +152,13 @@
 <br/>
 <span class="guilabel">Number of bins</span> — the number of bins for splitting the possible trip time interval, [0, Maximum travel time]. The region buildings’ accessibility measures will be stored by the time bins. The <span class="guilabel">Number of bins</span> must not exceed the <span class="guilabel">Maximum travel time</span>.
 <br/>
-The bin width is calculated as the <span class="guilabel">Maximum travel time</span>/<span class="guilabel">Number of bins</span>. If the last bin does not match the <span class="guilabel">Maximum travel time</span>, the buildings’ accessibility measures for the <span class="guilabel">Maximum travel time</span> are also stored. Typically, the <span class="guilabel">Number of bins</span> is selected in a way to have the bin’s width of 5 or 10 minutes, while a 2- or even 1-minute bin can be useful for further analysis of accessibility.
-<span class="guilabel">Choose buildings charactersitics for accessibility assessment</span> — The total number of buildings accessible from each building of the region is a defauls measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characterisitcs for this assessment (Figure 3).</p>
+The bin width is calculated as the <span class="guilabel">Maximum travel time</span>/<span class="guilabel">Number of bins</span>.
+<span style="display: block; margin-top: 5px;"></span>
+If the last bin does not match the <span class="guilabel">Maximum travel time</span>, the buildings’ accessibility measures for the <span class="guilabel">Maximum travel time</span> are also stored.
+<span style="display: block; margin-top: 5px;"></span>
+Typically, the <span class="guilabel">Number of bins</span> is selected in a way to have the bin’s width of 5 or 10 minutes, while a 2- or even 1-minute bin can be useful for further analysis of accessibility.
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">Choose buildings characteristics for accessibility assessment</span> — The total number of buildings accessible from each building of the region is a defaults measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characteristics for this assessment (Figure 3).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/sample/map_opt1.png" style="width: 100%; border: 0px solid white;margin-bottom: 10px" />
 </div>
@@ -234,7 +239,7 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the
 The Log and Result files are the same as for the from-accessibility, with minor differences that reflect the <em>from-accessibility</em> to the <em>to-accessibility</em> changes. The example of the <em>Transit accessibility → Region maps → From all locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-region-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="region-accessibility-for-the-schedule-based-departure-or-arrival">
-<h2><span class="section-number">6.4. </span>Region accessibility for the schedule-based departure or arrival<a class="headerlink" href="#region-accessibility-for-the-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
+<span id="raptor-map-schedule-based"></span><h2><span class="section-number">6.4. </span>Region accessibility for the schedule-based departure or arrival<a class="headerlink" href="#region-accessibility-for-the-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
 <p>The reasons for introducing and the basic idea of the schedule-based view of accessibility are presented in <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">Section 5.4</span></a>. The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a> and the comparison between the time-fixed and schedule-dependent region accessibility is <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>

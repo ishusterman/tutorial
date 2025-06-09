@@ -91,7 +91,7 @@
              
   <section id="transit-accessibility-service-area">
 <span id="raptor-area"></span><h1><span class="section-number">5. </span>Transit accessibility – Service area<a class="headerlink" href="#transit-accessibility-service-area" title="Link to this heading"></a></h1>
-<p>This section explains the <em>Transit accessibility → Service Area maps</em> part of the Accessibility Calculator menu (Figure 1).</p>
+<p>This section explains the <em>Transit accessibility → Service Area maps</em> part of the Accessibility Calculator menu (Figure 1). The explanation of the Service Area computations see Sections <a class="reference internal" href="introduction.html#introduction-versus1"><span class="std std-ref">2.7</span></a>, <a class="reference internal" href="introduction.html#introduction-versus2"><span class="std std-ref">2.8</span></a>, <a class="reference internal" href="introduction.html#introduction-timetable"><span class="std std-ref">2.9</span></a>.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow_single_location.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
@@ -105,7 +105,9 @@
 </section>
 <section id="accessibility-starting-from-the-location-of-services-fixed-time-departure">
 <h2><span class="section-number">5.2. </span>Accessibility starting from the location of services, fixed-time departure<a class="headerlink" href="#accessibility-starting-from-the-location-of-services-fixed-time-departure" title="Link to this heading"></a></h2>
-<p>Choose <em>From service locations – fixed-time departure</em> (Figure 2):</p>
+<p>The travel time in this case is estimated for the PT journey with the earliest arrival to the destination.
+<span style="display: block; margin-top: 5px;"></span>
+Choose <em>From service locations – fixed-time departure</em> (Figure 2):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/pt-fr-a.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
@@ -149,8 +151,8 @@
 <span style="display: block; margin-top: 5px;"></span>
 The results of the computations are stored as two CSV report files in the <span class="guilabel">Output folder</span>. The first depicts the service area - all buildings that can be reached from <em>at least one</em> of the facilities in <span class="guilabel">Maximum travel time</span> or faster. Each of these accessible buildings is represented by the record that contains the <span class="guilabel">id</span> of the facility that served it, and all details of the trip between the facility and the building.
 <span style="display: block; margin-top: 5px;"></span>
-The service area is visualized based on the <span class="guilabel">Visualization layer</span>. For the example of the <em>From service locations – Fixed-time departure</em> computations and maps for the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>
-<span style="display: block; margin-top: 5px;"></span>
+The service area is visualized based on the <span class="guilabel">Visualization layer</span>. For the example of the <em>From service locations – Fixed-time departure</em> computations and maps for the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">section 10.4.1</span></a> and <a class="reference internal" href="sample.html#sample-region-from-accessibility-fixed-time"><span class="std std-ref">section 10.5.1</span></a>.</p>
+<p><span style="display: block; margin-top: 5px;"></span>
 The service area file does not contain information on whether a building can be served by more than one facility. This information can be retrieved from the second output file, where for each facility, all buildings that can be served by it are listed. This second file can be used for deeper analysis of the accessibility, for example for recognizing buildings that can be reached from half or more of the facilities. In both output files, the details of every leg for every trip are described in detail, see the next section.</p>
 <section id="service-area-computations-the-log-file-and-the-structure-of-the-report">
 <span id="raptor-area-log"></span><h3><span class="section-number">5.2.1. </span>Service area computations - the log file and the structure of the report<a class="headerlink" href="#service-area-computations-the-log-file-and-the-structure-of-the-report" title="Link to this heading"></a></h3>
@@ -215,10 +217,10 @@ The service area file does not contain information on whether a building can be 
 <td><p>The ID of the destination building</p></td>
 </tr>
 <tr class="row-even"><td><p>Destination_time</p></td>
-<td><p>Time of arrival to destination</p></td>
+<td><p>Time of arrival to destination  for the journey with the earliest arrival to the destination</p></td>
 </tr>
 <tr class="row-odd"><td><p>Duration</p></td>
-<td><p>Total trip duration</p></td>
+<td><p>Total trip duration for the journey with the earliest arrival</p></td>
 </tr>
 </tbody>
 </table>
@@ -228,7 +230,9 @@ The service area file does not contain information on whether a building can be 
 </section>
 <section id="accessibility-to-services-fixed-time-arrival">
 <h2><span class="section-number">5.3. </span>Accessibility to services, fixed-time arrival<a class="headerlink" href="#accessibility-to-services-fixed-time-arrival" title="Link to this heading"></a></h2>
-<p>Run <em>To service locations – fixed-time arrival</em>. Most of the parameters of the to-accessibility computations are the same as for the from-accessibility. The major difference is in establishing facilities and buildings to serve: For the to-accessibility, facilities are destinations and not origins, as in the case of the from-accessibility (Figure 5).</p>
+<p>The travel time in this case is estimated for the PT journey with the latest departure from the origin.
+<span style="display: block; margin-top: 5px;"></span>
+Run <em>To service locations – fixed-time arrival</em>. Most of the parameters of the to-accessibility computations are the same as for the from-accessibility. The major difference is in establishing facilities and buildings to serve: For the to-accessibility, facilities are destinations and not origins, as in the case of the from-accessibility (Figure 5).</p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/sample/area_opt.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
   </div>
@@ -242,9 +246,9 @@ The service area file does not contain information on whether a building can be 
 <span id="raptor-area-schedule-based"></span><h2><span class="section-number">5.4. </span>Service area for schedule-based departure or arrival<a class="headerlink" href="#service-area-for-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
 <p>The modern users of public transport are aware of the time the bus arrives at the stop they plan to start from or at the final stop of the trip. These travelers start their trip and walk to the initial stop to be there just before the bus arrival or choose the bus that arrives at the destination just before they want to be there. Having several travel options during the appropriate time interval, they choose the option that takes minimal time.
 <span style="display: block; margin-top: 5px;"></span>
-As an example of the “from” schedule-based accessibility computation, let us consider a traveler who is willing to start her PT trip to work between 8:00 and 8:20, and travel up to 45 minutes. Let us also assume that there is only one stop nearby at a 3-minute walk, and there are two lines that take her to a destination arriving at this stop at 8:05 and 8:15. With the first line the total travel time is 30 minutes, and the arrival time will be 8:35. The second is an express line, the total travel time is only 20 minutes and the traveler will be at the destination at 8:35. The standard <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> will choose the first trip that is shorter than 45 mins and takes the travel to the destination, the second trip would not be considered at all. The schedule-informed traveler can choose the first trip for different reasons - because it takes her to the destination at the earliest time possible. However, the traveler can also choose the second trip, because it’s the fastest and the start time is still within the acceptable time interval. In both cases, the time between the earliest start time and the actual start of the trip with the earliest arrival (8:02) or the fastest trip (8:12) is not included in the total travel time. Accessibility Calculator records both options and the user can choose any of them for accessibility assessment, as well as compare between accessibility estimates for these two views of the travelers’ behavior.
+As an example of the “from” schedule-based accessibility computation, let us consider a traveler who is willing to start her PT trip to work between 8:00 and 8:30, and travel up to 45 minutes. Let us also assume that there is only one stop nearby at a 3-minute walk, two lines that take her to a destination and the buses of these lines arrive at this stop at 8:05 (Line 1) and 8:25 (Line 2), respectively. With the first line the total travel time is 30 minutes, and the arrival time will be 8:35. The second is an express line, the total travel time is 20 minutes and the traveler will be at the destination at 8:45. The standard <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> will choose the trip with the Line 1 and the earliest arrival to the destination, the second trip would not be considered at all. The schedule-informed traveler can also choose the second trip, because it’s the fastest and the start time is still within the acceptable time interval. Note that in both cases, the time between the earliest start time and the actual start of the trip with the earliest arrival (8:02) or the fastest trip (8:22) is not included in the total travel time. In a Schedule-Based regime, Accessibility Calculator considers both options and constructs two accessibility maps – one based on the earliest arrival and another based on the fastest trip. The user can choose any of them for accessibility assessment, as well as compare between accessibility estimates for these two views of the travelers’ behavior.
 <span style="display: block; margin-top: 5px;"></span>
-In the case of the schedule-based to-accessibility computations, the latest arrival time is also substituted by the arrival interval. A traveler is allowed to arrive at the destination between the “Earliest arrival time” and the “Latest arrival time” that must be the same or later. As above, the fastest trip and the trip with the latest start time are stored and the time between the actual arrival and the latest possible arrival is not included in the travel time.
+In the case of the schedule-based to-accessibility computations, the latest arrival time is also substituted by the arrival interval. A traveler is allowed to arrive at the destination between the “Earliest arrival time” and the “Latest arrival time” that must be the same or later. As above, two maps are constructed and stored – one based on the trips with the latest start time and another based on the fastest trip. The “residual” time between the actual arrival and the latest possible arrival is not included in the travel time.
 <span style="display: block; margin-top: 5px;"></span>
 To compute accessibility for schedule-informed travelers we have modified the <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> and organized these computations as separate items in the Accessibility Calculator menu. The difference between the accessibility computations for travelers behaving according to the fixed time start or finish of the trip, and for the travelers whose behavior is schedule-defined as conceptual, and we will be happy to know your experience in employing these two approaches and comparing the results.
 <span style="display: block; margin-top: 5px;"></span>
