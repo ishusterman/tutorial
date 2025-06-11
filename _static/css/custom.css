@@ -62,3 +62,8 @@ ul.simple {
 h1{
 		white-space: break-spaces  !important;
 }
+
+.bolditalic {
+    font-weight: bold;
+    font-style: italic;
+}

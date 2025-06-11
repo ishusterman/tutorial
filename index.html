@@ -9,7 +9,7 @@
   <title>QGIS ACCESSIBILITY plugin &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9518a68" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
@@ -92,16 +92,103 @@
 <h2>Workshop Modules<a class="headerlink" href="#workshop-modules" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#directions">1.1. Directions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#files-tables-and-fields">1.2. Files, tables, and fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#menus">1.3. Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#dialog-form-controls">1.4. Dialog form controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#notes">1.5. Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-is-it-all-about">2.1. What is it all about?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#accessibility-calculator-accounts-for-every-component-of-a-trip">2.2. Accessibility Calculator accounts for every component of a trip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-algorithms-of-accessibility-calculator">2.3. The Algorithms of Accessibility Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-data-necessary-for-accessibility-computations">2.4. The data necessary for accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-menu-of-accessibility-calculator">2.5. The menu of Accessibility  Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#data-preprocessing-and-constructing-databases">2.6. Data Preprocessing and Constructing Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#from-accessibility-versus-to-accessibility">2.7. From-accessibility versus To-accessibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#accessibility-from-to-several-facilities-service-area-versus-accessibility-from-to-every-building-in-the-region-region-accessibility">2.8. Accessibility from/to several facilities (service area) versus accessibility from/to every building in the region (region accessibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable">2.9. Adjustment of the trip’s start or arrival time to the transit timetable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#car-speed-for-accessibility-computation">2.10. Car speed for accessibility computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#comparison-of-accessibility-in-different-scenarios">2.11. Comparison of accessibility in different scenarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#visualization-of-accessibility-computations">2.12. Visualization of accessibility computations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building_pkl.html#topological-cleaning-of-the-road-and-building-layers">4.1. Topological cleaning of the road and building layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building_pkl.html#cleaning-road-network">4.1.1. Cleaning road network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_pkl.html#cleaning-buildings-layer">4.1.2. Cleaning buildings layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building_pkl.html#building-layers-for-visualization">4.1.3. Building layers for visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building_pkl.html#building-database-for-transit-accessibility-computations">4.2. Building database for transit accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building_pkl.html#building-database-for-car-accessibility-computation">4.3. Building database for car accessibility computation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#the-datasets-that-must-be-ready-for-use">5.1. The datasets that must be ready for use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#accessibility-starting-from-the-location-of-services-fixed-time-departure">5.2. Accessibility starting from the location of services, fixed-time departure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#service-area-computations-the-log-file-and-the-structure-of-the-report">5.2.1. Service area computations - the log file and the structure of the report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#accessibility-to-services-fixed-time-arrival">5.3. Accessibility to services, fixed-time arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#service-area-for-schedule-based-departure-or-arrival">5.4. Service area for schedule-based departure or arrival</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="raptor_map.html#the-necessary-datasets">6.1. The necessary datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_map.html#transit-accessibility-from-every-location-in-the-region-fixed-time-departure">6.2. Transit accessibility from every location in the region, fixed-time departure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raptor_map.html#the-log-file-and-region-accessibility-report">6.2.1. The log file and Region accessibility report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_map.html#transit-accessibility-to-every-location-in-the-region-fixed-time-arrival">6.3. Transit accessibility to every location in the region, fixed-time arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_map.html#region-accessibility-for-the-schedule-based-departure-or-arrival">6.4. Region accessibility for the schedule-based departure or arrival</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#the-necessary-datasets">7.1. The necessary datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#from-service-locations-fixed-time-departure">7.2. From service locations, fixed-time departure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#from-service-locations-accessibility-report-and-a-log-file">7.3. From service locations accessibility report and a log file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#to-service-locations-fixed-time-arrival">7.4. To service locations, fixed-time arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-accessibility-region-maps">7.5. Car Accessibility, Region maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-accessibility-to-every-location-in-the-region">7.6. Car accessibility to every location in the region</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#the-style-of-presentation">9.1. The style of presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#layers-for-visualization">9.2. Layers for visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#visualization-of-accessibility-maps-comparison">9.3. Visualization of accessibility maps comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#data-arrangements">10.1. Data arrangements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#data-preprocessing">10.2. Data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#constructing-databases">10.3. Constructing databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#transit-accessibility-service-area-maps">10.4. Transit accessibility, service area maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#from-to-accessibility-fixed-time-arrival-departure">10.4.1. From/To-accessibility, fixed-time arrival/departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#from-to-accessibility-schedule-based-arrival-departure-time">10.4.2. From/To-accessibility, schedule-based arrival/departure time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#single-location-car-accessibility">10.4.3. Single location CAR accessibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#accessibility-of-every-location-in-a-region">10.5. Accessibility of every location in a region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#region-transit-accessibility-fixed-time-arrival-departure">10.5.1. Region transit accessibility, fixed-time arrival/departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#region-transit-accessibility-schedule-dependent-arrival-departure-time">10.5.2. Region transit accessibility, schedule-dependent arrival/departure time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#car-region-accessibility">10.5.3. CAR region accessibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#compare-accessibility-maps">10.6. Compare accessibility maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#comparing-service-area-maps">10.6.1. Comparing service area maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-fixed-time-and-schedule-based-accessibility">10.6.2. Compare fixed-time and schedule-based accessibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-region-accessibility">10.6.3. Compare Region accessibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#the-datasets-used-in-this-tutorial">10.7. The datasets used in this tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#small-database-for-fast-tests">10.8. Small database for fast tests</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
