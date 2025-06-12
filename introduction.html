@@ -9,7 +9,7 @@
   <title>2. Introduction &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9518a68" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
@@ -59,9 +59,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
@@ -137,6 +137,8 @@ The GTFS databases can be downloaded from different sources, for example, <a cla
 <h2><span class="section-number">2.5. </span>The menu of Accessibility  Calculator<a class="headerlink" href="#the-menu-of-accessibility-calculator" title="Link to this heading"></a></h2>
 <p>Figure 1 presents the menu of the Accessibility Calculator.</p>
 <ul class="simple">
+<li><p><em>The Transit accessibility section contains a set of methods for assessing accessibility with public transport.</em></p></li>
+<li><p><em>The Car accessibility section contains a set of methods for assessing accessibility with the private car.</em></p></li>
 <li><p><em>The Service area maps assess the accessibility of the specific set of locations.</em></p></li>
 <li><p><em>The Region maps assess the accessibility of all locations in the area.</em></p></li>
 </ul>
@@ -160,20 +162,20 @@ To-accessibility is based on the travel time to each of the selected buildings f
 </section>
 <section id="accessibility-from-to-several-facilities-service-area-versus-accessibility-from-to-every-building-in-the-region-region-accessibility">
 <span id="introduction-versus2"></span><h2><span class="section-number">2.8. </span>Accessibility from/to several facilities (service area) versus accessibility from/to every building in the region (region accessibility)<a class="headerlink" href="#accessibility-from-to-several-facilities-service-area-versus-accessibility-from-to-every-building-in-the-region-region-accessibility" title="Link to this heading"></a></h2>
-<p>From- and To-accessibility computations can be performed to assess the <em>service area</em> – buildings that can be served by at least one of the facilities or to assess accessibility for all buildings in the region of interest – <em>region accessibility</em>. In both cases, origins and destinations can be separate layers or selected from the layer of buildings applying the standard QGIS selection tools. In the latter case, the selected buildings will be stored as a separate layer, as a part of the results.
+<p>From- and To-accessibility computations can be performed to assess the <em>service area</em> – buildings that can be served by at least one of the facilities or to assess accessibility for all buildings in the region of interest – <em>region accessibility</em>. In both cases, origins and destinations can be separate layers or selected from the layer of buildings by applying the standard QGIS selection tools. In the latter case, the selected buildings will be stored as a separate layer, as a part of the results.
 <span style="display: block; margin-top: 5px;"></span>
 <em>The service area</em>:</p>
 <ul class="simple">
 <li><p>The “From-” service area of the set of facilities includes all buildings that can be reached in maximum travel time or faster, from at least one of the facilities in this set. If the building can be reached from several facilities, then the fastest trip is selected.</p></li>
 <li><p>The “To-” service area of the set of facilities, includes all buildings from which at least one of the facilities can be reached in maximum travel time or faster. If several facilities can be reached, then the fastest trip is selected.</p></li>
 </ul>
-<p>The details of each leg of the fastest trips are stored as attributes of the served building. The thematic map presents the minimal total travel time from the set of facilities to the served building or from the served building to the set of facilities. Importantly, the service area of <em>every</em> facility is also stored, including travel times from each of the facilities to, or from, every accessible building. This output is not mapped but can be exploited for computing other measures of accessibility, like the area from where the residents can reach more than half of the facilities in the center of the city in a given maximum travel time.
+<p>The details of each leg of the fastest trips are stored as attributes of the served building. The thematic map presents the minimal total travel time from the set of facilities to the served building or from the served building to the set of facilities. Importantly, the service area of <em>every</em> facility is also stored, including travel times from each of the facilities to, or from, every accessible building. This output is not mapped but can be exploited for computing other measures of accessibility, like the area from where the residents can reach more than half of the facilities in the center of the city given the maximum travel time.
 <span style="display: block; margin-top: 5px;"></span>
 The accessibility of different buildings in the region is different and <em>region accessibility</em> reflects these differences in computing and visualizing accessibility for <em>each building in the region</em>:
 <span style="display: block; margin-top: 5px;"></span></p>
 <ul class="simple">
-<li><p>The default measure of the regional from-accessibility is the number of buildings accessible from each of the region’s buildings in a given maximum travel time. Other measures, like the number of shops, or jobs, accessible from each of the region’s buildings can be calculated if the number of jobs in the building or the building’s use is available.</p></li>
-<li><p>The default aggregate measure of the regional to-accessibility for the region’s building is the number of other buildings from which it is accessible in a given travel time. Other measures, like the total population that can reach the building, can be calculated if the information on the population at a building resolution is available.</p></li>
+<li><p>The default measure of the regional from-accessibility is the number of buildings accessible from each of the region’s buildings given the maximum travel time. Other measures, like the number of shops, or jobs, accessible from each of the region’s buildings can be calculated if the number of jobs in the building or the building’s use is available.</p></li>
+<li><p>The default aggregate measure of the regional to-accessibility for the region’s building is the number of other buildings from which it is accessible given the maximum travel time. Other measures, like the total population that can reach the building, can be calculated if the information on the population at a building resolution is available.</p></li>
 </ul>
 <p>The accessibility measures of a region are stored as attributes of the region’s buildings, by the time bins defined by the user, like the number of buildings accessible in 5, 10, etc. minutes from each building in the region.</p>
 </section>
@@ -181,7 +183,7 @@ The accessibility of different buildings in the region is different and <em>regi
 <span id="introduction-timetable"></span><h2><span class="section-number">2.9. </span>Adjustment of the trip’s start or arrival time to the transit timetable<a class="headerlink" href="#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable" title="Link to this heading"></a></h2>
 <p>Modern transit users are aware of the time the bus or train arrives at the stop they plan to start from, or to the final stops of their trip, and plan their trips accordingly. To assess the accessibility for these informed users we modify the <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> to account for the schedule-based trip’s start or finish. Schedule-defined accessibility can be chosen for each of the From/To and Service area/Region regimes.
 <span style="display: block; margin-top: 5px;"></span>
-See more about scheduled-defined accessibility in Sections <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">5.4</span></a> and <a class="reference internal" href="raptor_map.html#raptor-map-schedule-based"><span class="std std-ref">6.4</span></a></p>
+See more about scheduled-defined accessibility in Sections <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">5.5</span></a>.</p>
 </section>
 <section id="car-speed-for-accessibility-computation">
 <span id="car-speed-by-link-type"></span><h2><span class="section-number">2.10. </span>Car speed for accessibility computation<a class="headerlink" href="#car-speed-for-accessibility-computation" title="Link to this heading"></a></h2>

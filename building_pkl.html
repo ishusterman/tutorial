@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. Data preprocessing and constructing databases for fast routing &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>4. Data preprocessing &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -16,7 +16,6 @@
       <script src="_static/documentation_options.js?v=7f41d439"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="5. Transit accessibility – Service area" href="raptor_area.html" />
@@ -46,19 +45,14 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Data preprocessing and constructing databases for fast routing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#topological-cleaning-of-the-road-and-building-layers">4.1. Topological cleaning of the road and building layers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cleaning-road-network">4.1.1. Cleaning road network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cleaning-buildings-layer">4.1.2. Cleaning buildings layer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building-layers-for-visualization">4.1.3. Building layers for visualization</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#building-database-for-transit-accessibility-computations">4.2. Building database for transit accessibility computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-database-for-car-accessibility-computation">4.3. Building database for car accessibility computation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Data preprocessing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cleaning-road-network">4.1. Cleaning road network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cleaning-buildings-layer">4.2. Cleaning buildings layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-layers-for-visualization">4.3. Preparing layers for visualization</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
@@ -82,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4. </span>Data preprocessing and constructing databases for fast routing</li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Data preprocessing</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -91,38 +85,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="data-preprocessing-and-constructing-databases-for-fast-routing">
-<span id="building-data"></span><h1><span class="section-number">4. </span>Data preprocessing and constructing databases for fast routing<a class="headerlink" href="#data-preprocessing-and-constructing-databases-for-fast-routing" title="Link to this heading"></a></h1>
-<p>Accessibility computations are based on repeating calculations of the car or transit fastest routes between buildings. These computations demand topologically clean layers of roads and buildings. These layers are supplied by the user and tested and, if necessary, corrected in the <em>Data preprocessing</em> section of the Accessibility Calculator menu. The layers necessary for visualization of the accessibility calculations are also constructed at this stage. After data cleaning, to save computation time, the networks that are necessary for accessibility computations are translated into two databases, one for transit and one for car network routing. Each version of the transit or road network demands a separate database that must be stored in a dedicated folder. It is worth constructing the dataset for a large area (of up to a million buildings) that covers all potentially interesting locations and regions. The user’s data must be cleaned, and the databases must be constructed at the beginning of the accessibility study.
-<span style="display: block; margin-top: 5px;"></span>
-The menu for data preprocessing and database construction consists of two sections (Figure 1)</p>
+  <section id="data-preprocessing">
+<span id="building-data"></span><h1><span class="section-number">4. </span>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading"></a></h1>
+<p>Accessibility computations are based on repeating calculations of the car or transit fastest routes between buildings. These computations demand topologically clean layers of roads and buildings. These layers are supplied by the user and tested and, if necessary, corrected at the beginning of the accessibility study in the <em>Data preprocessing</em> section of the Accessibility Calculator menu (Figure 1). The layers necessary for the visualization of the accessibility calculations are also prepared at this stage.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/menu_data_proccessing.png" style="width: 40%; border: 3px solid white; margin-bottom: 10px" />
 </div>
-<p>Figure 1. Data processing section of the Accessibility Calculator menu</p><p>In this tutorial, we construct topologically correct versions of the road network and buildings and then exploit them to construct three databases – one for computing car accessibility and two for computing transit accessibility for two different versions of the transit networks. We limit our examples to the Tel Aviv Metropolitan Area (TAMA), with its 250K buildings. Yet, given the GTFS datasets are provided for the entire Israel, the databases for transit routing are constructed for the whole country. Our examples below use the following data.</p>
+<p>Figure 1. Data processing section of the Accessibility Calculator menu</p><p>There are many types of topological errors and the most frequent for the road network is the lack of a junction at an intersection of two visually overlapping links or two or more links that remain unconnected at a junction. In addition, the attributes of the roads, like traffic directions, can be missing or incomplete. In the case of the layer of buildings, the typical errors include buildings represented by multipart polygons, buildings with holes, and the same building repeated twice or more times. If the layers of roads or buildings are topologically correct, the cleaning procedures will not change them.
+<span style="display: block; margin-top: 5px;"></span>
+In this tutorial, we construct topologically correct versions of the road network and buildings and then exploit them to construct three databases – one for computing car accessibility and two for computing transit accessibility for two different versions of the transit networks. Our examples below exploit:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">gis_osm_roads_free</span></code> OSM TAMA road layer, August 2024.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">gis_osm_buildings_a_free</span></code> OSM buildings layers for TAMA, August 2024.</p></li>
-<li><p>Two versions of the GTFS databases, one for June, 2018, reflecting the state of the transit system before the Red LRT line was established in the Tel Aviv Metropolitan area and one for June, 2024, after the Red LRT line started to function. Each GTFS dataset contains <code class="docutils literal notranslate"><span class="pre">stops.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_times.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">routes.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">trips.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">calendar.txt</span></code>.</p></li>
 </ul>
-<p>It is recommended to open the layers of buildings and roads in your QGIS project before cleaning them and to validate that these are indeed the layers you plan to work with. The path to the folder that contains the GTFS dataset must be provided as a parameter of the construction procedure. The clean layers of roads and buildings, as well as the layers built for visualization, are added to your QGIS project.</p>
-<section id="topological-cleaning-of-the-road-and-building-layers">
-<span id="building-data-clean-road"></span><h2><span class="section-number">4.1. </span>Topological cleaning of the road and building layers<a class="headerlink" href="#topological-cleaning-of-the-road-and-building-layers" title="Link to this heading"></a></h2>
-<p>The GIS layers of roads and buildings can be topologically inconsistent. There are many types of topological errors and the most frequent for the road network is the lack of a junction at an intersection of two visually overlapping links or two or more links that remain unconnected at a junction. In addition, the attributes of the roads, like traffic directions, can be missing or incomplete.
-<span style="display: block; margin-top: 5px;"></span>
-In the case of the layer of buildings, the typical errors include buildings represented by multipart polygons, buildings with holes, and the same building repeated twice or more times.
-<span style="display: block; margin-top: 5px;"></span>
-Accessibility computations demand car and transit routing between buildings and, thus, can go wrong if the road or building layers are topologically inconsistent. To be sure of the spatial data correctness and attributes’ completeness we have included topological cleaning as a separate procedure and test roads attribute correctness when constructing the database (see <a class="reference internal" href="#building-data-transit"><span class="std std-ref">section 4.3</span></a>). If the layers of roads and buildings are topologically correct, the cleaning procedures will not change them.</p>
+<p>It is recommended to open the layers of buildings and roads in your QGIS project before cleaning them and to validate that these are indeed the layers you plan to work with. The clean layers of roads and buildings, as well as the layers built for visualization, are added to your QGIS project.</p>
 <section id="cleaning-road-network">
-<h3><span class="section-number">4.1.1. </span>Cleaning road network<a class="headerlink" href="#cleaning-road-network" title="Link to this heading"></a></h3>
+<span id="building-data-clean-road"></span><h2><span class="section-number">4.1. </span>Cleaning road network<a class="headerlink" href="#cleaning-road-network" title="Link to this heading"></a></h2>
 <p>The road network is cleaned in three steps, applying the <span class="guilabel">v.clean</span> GRASS procedure, see details at
 <a class="reference external" href="https://grass.osgeo.org/grass-stable/manuals/v.clean.html">https://grass.osgeo.org/grass-stable/manuals/v.clean.html</a>. First, the links’ ends are snapped at junctions. This is done by applying <span class="guilabel">v.clean.snap</span> with the threshold of 1 m: Links’ ends at a distance of 1 m or less from each other will be snapped to one of them. Second, the intersecting links are broken at the points of intersection, and new junctions are created at these points by applying <span class="guilabel">v.clean.break</span>. Third, the overlapping links are revealed and one of them only is preserved by applying <span class="guilabel">v.clean.rmdupl</span>.
 <span style="display: block; margin-top: 5px;"></span>
-Road layer cleaning includes two non-topological operations that ensure data consistency and make the layer ready for accessibility computations. First, if one of the fields is chosen as a link ID, the uniqueness of the values in this field is checked. If some values in this field are duplicated or NULL, the repeating or NULL values are substituted by the unique values that are counted from the MAX + 1, where MAX is the maximum value in the chosen field before the test. If the option “Create ID” is chosen, a new field <em>link_id</em> is created as the first field in the layer’s attribute table, and filled by the consecutive integer numbers, starting from 0.
+The cleaning procedure includes a non-topological operation that ensures data consistency. Namely, if one of the fields is chosen as a link ID, the uniqueness of the values in this field is checked. If some values in this field are duplicated or NULL, the repeating or NULL values are substituted by the unique values that are counted from the MAX + 1, where MAX is the maximum value in the chosen field before the test. The user can also choose the option “Create ID” – in this case, a new field <em>link_id</em> is created as the first field in the layer’s attribute table, and filled by the consecutive integer numbers, starting from 0.
 <span style="display: block; margin-top: 5px;"></span></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The OSM layer of roads contains significant topological errors and the cleaning procedures that we employ in the Accessibility Calculator make this layer topologically consistent. However, it may happen that, contextually, the layer of roads does not reflect the real structure of the road network. One of the ways to test this is to manually employ the <span class="guilabel">v.clean</span> procedures, in the same order as mentioned above and with the same parameters. When cleaning procedures are applied manually, the results, at each step, include the errors report that will help you to understand the road layer inconsistencies. You can also vary the 1m threshold that we use. Then you could decide whether it is worth editing or updating the roads layer manually in case it does not properly reflect the real-world road structure.</p>
+<p>The OSM layer of roads contains significant topological errors and the cleaning procedures that we employ in the Accessibility Calculator make this layer topologically consistent. However, it may happen that the layer of roads does not reflect the real structure of the road network. Check the context of your data versus the world maps supplied by QGIS, e.g., versus Google Road maps, and add the missing or delete the excessive links.</p>
 </div>
 <p>To clean the layer of the road links choose <em>Data preprocessing → Clean road network</em> (Figure 2):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
@@ -136,8 +122,10 @@ Road layer cleaning includes two non-topological operations that ensure data con
 <p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process of dictionary construction by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters, information on the process of construction, and the edits that were performed. The clean layer of roads and buildings will be added to the current GIS project. For the example of cleaning the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
 </section>
 <section id="cleaning-buildings-layer">
-<h3><span class="section-number">4.1.2. </span>Cleaning buildings layer<a class="headerlink" href="#cleaning-buildings-layer" title="Link to this heading"></a></h3>
-<p>Cleaning of the layer of buildings is performed in four steps. First, the features with the absent (NULL) geometry are deleted from the layer. Second, the multipart features are split into single parts, see <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts</a>, and, in addition, the duplicated features are deleted. Third, duplicated buildings, if they exist, are found and excessive copies are deleted. Fourth, the <em>delete holes</em> algorithm is employed to cover holes in the buildings’ polygons, see <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes</a>. Just as it is done for the road links, the uniqueness of the values chosen as a building ID is tested and if some values in this field are duplicated or NULL, they are substituted by the unique values counted from the MAX + 1, where MAX is the maximum value in the ID field before the test. If the option “Create ID” is chosen, a new field bldg_id is created in the layer’s attribute table and filled by the consecutive integer numbers, starting from 0.
+<h2><span class="section-number">4.2. </span>Cleaning buildings layer<a class="headerlink" href="#cleaning-buildings-layer" title="Link to this heading"></a></h2>
+<p>Cleaning of the layer of buildings is performed in four steps. First, the features with the absent (NULL) geometry are deleted from the layer. Second, the multipart features are split into single parts, see <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgismultiparttosingleparts</a>, and, in addition, the duplicated features are deleted. Third, duplicated buildings, if they exist, are found and excessive copies are deleted. Fourth, the <em>delete holes</em> algorithm is employed to cover holes in the buildings’ polygons, see <a class="reference external" href="https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes">https://docs.qgis.org/3.34/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#qgisdeleteholes</a>.
+<span style="display: block; margin-top: 5px;"></span>
+Just as it is done for the road links, the uniqueness of the values chosen as a building ID is tested and if some values in this field are duplicated or NULL, they are substituted by the unique values counted from the MAX + 1, where MAX is the maximum value in the ID field before the test. If the option “Create ID” is chosen, a new field bldg_id is created in the layer’s attribute table and filled by the consecutive integer numbers, starting from 0.
 <span style="display: block; margin-top: 5px;"></span>
 To clean the layer of buildings choose <em>Data preprocessing → Clean layer of buildings</em> (Figure 3):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
@@ -151,9 +139,9 @@ To clean the layer of buildings choose <em>Data preprocessing → Clean layer of
 <p><span style="display: block; margin-top: 5px;"></span>
 Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process of dictionary construction by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters, information on the process of construction, and the edits that were performed. The clean layer of roads and buildings will be added to the current GIS project. For the example of cleaning the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
 </section>
-<section id="building-layers-for-visualization">
-<span id="building-data-visualization"></span><h3><span class="section-number">4.1.3. </span>Building layers for visualization<a class="headerlink" href="#building-layers-for-visualization" title="Link to this heading"></a></h3>
-<p>Accessibility Calculator assigns the values of accessibility to each accessible building and the results are visualized with the thematic maps at the resolution of buildings or lower. Buildings themselves can be used for the visualization but, a lion’s share of the constructed area is not covered by the buildings and these maps are inconvenient to use. The coverage becomes continuous if buildings are substituted by their Voronoi polygons. These polygons are built based on the building centroids, applying <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons</a> algorithm, with the Voronoi polygons’ identifiers repeating identifiers of the buildings. Voronoi polygons are clipped by layer buildings’ centroids buffers of 50m radius, to avoid large Voronoi polygons that always appear at the boundary of the constructed area. In addition to constructing the layer of Voronoi polygons of buildings, the layers of hexagons can be constructed. The defaults are hexagon layers of the 50, 100, 200, 400, and 800 m side lengths. The user-defined layers can be constructed too applying the <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid</a>  algorithm. Each layer covers the entire extent of the layer of buildings layer. In each layer, the hexagons that do not overlap any building are deleted and each hexagon has the identifier of the building that is closest to its centroid. If several buildings are at the same distance from the centroid, the minimal identifier is chosen. Note that the same building may be closest to more than one hexagon’s centroids and in this case, these hexagons are dissolved into one. To build layers for visualization choose the <em>Data preprocessing → Build visualization layers</em> (Figure 4):</p>
+<section id="preparing-layers-for-visualization">
+<span id="building-data-visualization"></span><h2><span class="section-number">4.3. </span>Preparing layers for visualization<a class="headerlink" href="#preparing-layers-for-visualization" title="Link to this heading"></a></h2>
+<p>Accessibility Calculator computes travel time to each accessible building and the results are visualized with the thematic maps at the resolution of buildings or lower. Buildings themselves can be used for visualization but, a lion’s share of the constructed area is not covered by the buildings and these maps are inconvenient for the eye. The coverage becomes continuous if buildings are substituted by their Voronoi polygons. These polygons are built based on the building centroids, applying <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons</a> algorithm, with the Voronoi polygons’ identifiers repeating identifiers of the buildings. Voronoi polygons are clipped by layer buildings’ centroids buffers of 50m radius, to avoid large Voronoi polygons that always appear at the boundary of the constructed area. In addition to constructing the layer of Voronoi polygons of buildings, the layers of hexagons can be constructed. The defaults are hexagon layers of the 50, 100, 200, 400, and 800 m side lengths. The user-defined layers can be constructed too applying the <a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid</a>  algorithm. Each layer covers the entire extent of the layer of buildings layer. In each layer, the hexagons that do not overlap any building are deleted and each hexagon has the identifier of the building that is closest to its centroid. If several buildings are at the same distance from the centroid, the minimal identifier is chosen. Note that the same building may be closest to more than one hexagon’s centroids and in this case, these hexagons are dissolved into one. To build layers for visualization choose the <em>Data preprocessing → Build visualization layers</em> (Figure 4):</p>
 <div style="text-align: center;">
     <img src="_images/pkl_visualization_clean.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
 </div>
@@ -163,202 +151,9 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show
 </ul>
 <p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process of dictionary construction by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about parameters and the process of construction.
 <span style="display: block; margin-top: 5px;"></span>
-The constructed layers will be automatically added to the current GIS project. Given topologically clean layers of roads and buildings, we can build databases for accessibility computations.</p>
-</section>
-</section>
-<section id="building-database-for-transit-accessibility-computations">
-<span id="building-data-transit"></span><h2><span class="section-number">4.2. </span>Building database for transit accessibility computations<a class="headerlink" href="#building-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
-<p>To allow fast accessibility computations, the data on roads, buildings, and public transport routes and timetables are translated into a database. During this transformation, the buildings that are not connected to the road network are related to the nearest road link of the cleaned layer of roads. The shortest distance to these links is calculated, stored, and employed for establishing the network path between the building and bus stops. The result of this operation is stored in the database and the cleaned layer of roads is not changed. To build the database for transit routing choose the <em>Construct databases → Transit routing database</em> (Figure 5):</p>
-<div style="text-align: center;">
-    <img src="_images/pkl1.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-</div>
-<p>Figure 5. <i>Transit routing database</i> construction dialog</p><ul class="simple">
-<li><p><span class="guilabel">Layer of roads</span> - the clean layer of the road links. Must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">Layer of buildings</span> - the clean layer of buildings. Must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">id</span> - the unique identifier of a building in a table of buildings’ attributes.</p></li>
-<li><p><span class="guilabel">GTFS folder</span> - the path to the folder that contains GTFS files: <code class="docutils literal notranslate"><span class="pre">stops.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_times.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">routes.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">trips.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">calendar.txt</span></code>. The default path is the GTFS subfolder within the folder of the current QGIS project.</p></li>
-<li><p><span class="guilabel">Folder to store transit database</span>- the folder to store the constructed transit routing database. The system’s suggestion is a subfolder in the folder where the project is stored with the name that is a concatenation of the name of a project (TAMA) and “_pkl.”</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you construct several transit routing databases, e.g., for several versions of the transit network arrangements, use different folders for each of them because the database tables have constant names.</p>
-</div>
-<p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a transit routing database for TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
-</section>
-<section id="building-database-for-car-accessibility-computation">
-<span id="building-data-car"></span><h2><span class="section-number">4.3. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
-<p>Constructing a car routing database demands a topologically clean road network and two basic attributes that critically affect the finding algorithms. These attributes are:</p>
-<ul class="simple">
-<li><p>links’ <span class="bolditalic">traffic direction</span> that can be <strong>B</strong> (two-way link), <strong>F</strong> (One-way link, the driving is allowed along the direction the link is drawn), <strong>T</strong> (One-way link, driving is allowed against the direction the link is drawn), or <strong>N</strong>: Pedestrian-only link, always two-directional, and</p></li>
-<li><p>links’ <span class="bolditalic">maximum traffic speed</span></p></li>
-</ul>
-<p>Given the clean road layer, the Accessibility Calculator tests the layer’s attributes and finds candidates for these two fields. If there is more than one candidate for any of them, a user must choose the one to proceed. The actual speed on the link is defined by the maximum one and the congestion delay coefficient that depends on the hour of the day.</p>
-<p>In the current version of the plugin, we deal with the OSM and non-OSM layers of roads slightly differently. If the source of the road layer is the OSM database, then the link’s traffic direction is given by the ONEWAY attribute and the maximum traffic speed by the MAXSPEED attribute. The latter is defined in the OSM road layer by the type of road link - a highway, major city street, neighborhood secondary street, etc., given by the FCLASS attribute. The traffic speeds <span class="math notranslate nohighlight">\(V_p\)</span>, by the road link types <em>p</em>, are given in the <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> table (Figure 6, left) that contains three fields:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">seq</span></code> — the sequential number of the row;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">link_type</span></code> — the OSM type of a link;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">speed</span></code> — the free flow car speed on the link of this type.</p></li>
-</ul>
-<p>If the link’s type is missing in the FCLASS field of the OSM table, the the <span class="guilabel">Default speed</span> will be used. If the traffic direction is missing in the ONEWAY field the Default direction B (two-way) will be used.
+The constructed layers will be automatically added to the current GIS project.
 <span style="display: block; margin-top: 5px;"></span>
-For the non-OSM layer, the traffic direction and maximum traffic speed must be provided by the user.
-<span style="display: block; margin-top: 5px;"></span>
-The average speed by hours of the day is calculated based on the Congestion Delay Index (CDI) — a ratio of the average, for the hour of a day, speed, to the free flow speed. The CDI values, by hours, are given in the <code class="docutils literal notranslate"><span class="pre">cdi_index.csv</span></code> table (Figure 6, right). We constructed this table based on Figure 7 from Wei et al, 2022, paper <a class="reference external" href="https://doi.org/10.1016/j.eiar.2022.106808">https://doi.org/10.1016/j.eiar.2022.106808</a>. Both tables are supplied with the Accessibility Calculator, stored in the system folder, and can be edited by the user.
-<span style="display: block; margin-top: 5px;"></span>
-The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the link <em>p</em> at hour <em>t</em> is calculated as <span class="math notranslate nohighlight">\(V_p(t) = V_p \cdot \text{CDI}_t\)</span></p>
- <style>
-     .custom-table {
-         border-collapse: collapse;
-         width: 100%;
-     }
-
-     .custom-table th, .custom-table td {
-         border: 1px solid #d3d3d3;
-         padding: 8px;
-         text-align: center;
-         vertical-align: middle;
-     }
-
-     .custom-table th {
-         background-color: white;
-         font-weight: normal;
-     }
-
-     .custom-table tr:nth-child(even) {
-         background-color: #f0f8ff;
-     }
-
-     .custom-table tr:nth-child(odd) {
-         background-color: white;
-     }
- </style>
-
- <div style="display: flex; justify-content: space-between; ;margin-bottom: 0px">
-
-     <div style="margin-right: 0px;">
-
-         <table class="custom-table" style="margin-right: 10px;">
-             <tr>
-                 <th style="width: 150px;">link type</th>
-                 <th style="width: 150px;">speed (km/h)</th>
-             </tr>
-             <tr>
-                 <td>busway</td>
-                 <td>18</td>
-             </tr>
-             <tr>
-                 <td>cycleway</td>
-                 <td>15</td>
-             </tr>
-             <tr>
-                 <td>footway</td>
-                 <td>3</td>
-             </tr>
-             <tr>
-                 <td>motorway_link</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>track</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>residential</td>
-                 <td>30</td>
-             </tr>
-             <tr>
-                 <td>service</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>secondary</td>
-                 <td>50</td>
-             </tr>
-             <tr>
-                 <td>living_street</td>
-                 <td>30</td>
-             </tr>
-             <tr>
-                 <td>tertiary_link</td>
-                 <td>50</td>
-             </tr>
-         </table>
-     </div>
-
-     <div>
-
-         <table class="custom-table" style="margin-right: 10px;">
-             <tr>
-                 <th style="width: 150px;">hour</th>
-                 <th style="width: 100px;">CDI</th>
-             </tr>
-             <tr>
-                 <td>0</td>
-                 <td>1.0</td>
-             </tr>
-             <tr>
-                 <td>1</td>
-                 <td>1.0</td>
-             </tr>
-             <tr>
-                 <td>2</td>
-                 <td>1.0</td>
-             </tr>
-             <tr>
-                 <td>3</td>
-                 <td>1.0</td>
-             </tr>
-             <tr>
-                 <td>4</td>
-                 <td>1.0</td>
-             </tr>
-             <tr>
-                 <td>5</td>
-                 <td>0.9</td>
-             </tr>
-             <tr>
-                 <td>6</td>
-                 <td>0.75</td>
-             </tr>
-             <tr>
-                 <td>7</td>
-                 <td>0.6</td>
-             </tr>
-             <tr>
-                 <td>8</td>
-                 <td>0.6</td>
-             </tr>
-             <tr>
-                 <td>9</td>
-                 <td>0.65</td>
-             </tr>
-         </table>
-     </div>
- </div>
-<p>
- Figure 6. Several first rows of the free flow speeds table
- <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">car_speed_by_link_type.csv</span>
- (left) and the CDI table
- <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">cdi_index.csv</span>
- (right). The values of the free flow speed and CDI can be changed by the user.</p><p>To construct a database for car routing database, choose <em>Data preprocessing → Car routing database (Figure 7)</em>:</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl_car1.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 7: <i>Car routing database</i> construction dialog</p><ul class="simple">
-<li><p><span class="guilabel">Layer of buildings</span> - the clean layer of buildings, must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">id</span> - the unique identifier of a building.</p></li>
-<li><p><span class="guilabel">Layer of roads</span> — the clean layer of the road links, must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">Default speed (km/h)</span>- the free flow speed on the link, when unknown.</p></li>
-<li><p><span class="guilabel">Default direction</span>- the traffic direction on the link, when unknown, always <strong>B</strong>.</p></li>
-<li><p><span class="guilabel">Direction</span>- traffic direction on the link, <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>.</p></li>
-<li><p><span class="guilabel">Speed</span>- the field in the attribute table of the layer of roads that contains the link’s free speed.</p></li>
-<li><p><span class="guilabel">Link type</span> — the field in the attribute table of the layer of roads that contains the link’s type.</p></li>
-<li><p><span class="guilabel">Folder to store car database</span> - the folder to store the database for car routing. The system’s suggestion is the same subfolder that is suggested for the transit routing database with the name that is a concatenation of the name of a project (TAMA) and “_pkl.”</p></li>
-</ul>
-<p>To construct a car routing database, the presence and consistency of the road layer critical attributes must be tested. To do that click Test Road Attributes. The test starts with the search of the FCLASS field. If this field is found, the layer’s source is OSM, and the names of the direction and maximum speed attributes are ONEWAY and MAXSPEED, respectively. If the field FCLASS is not found, the layer is considered as a non-OSM one, the Accessibility Calculator searches for fields that can represent links’ traffic direction and free speed and presents candidate fields for the user’s choice, with the percentage of likelihood. In all cases each candidate field is tested whether a sufficiently high percentage of the values in the field matches the consistency criterion like the FCLASS values must be found in the <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> table, the direction must be noted by <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>, and maximum speed must be between 0 and 120 km/h.
-<span style="display: block; margin-top: 5px;"></span>
-If the test is not passed, the message contains the reason for rejection, and a user is asked to fix the data. If the test is passed, the user can take the next step and construct the database.</p>
-<p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a car routing database see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
+Given topologically clean layers of roads and buildings, we can build databases for computing transit and car accessibility and perform accessibility computations. These two parts of the Accessibility Calculator are based on the same data but employ different algorithms, and <em>you can use this plugin for dealing with one of these two components only</em>.</p>
 </section>
 </section>
 

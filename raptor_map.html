@@ -6,10 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. Assessing Transit Accessibility of all locations in the Region &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>6. Transit Accessibility of all locations in the Region &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9518a68" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. Сar accessibility" href="car_accessibility.html" />
-    <link rel="prev" title="5. Transit accessibility – Service area" href="raptor_area.html" /> 
+    <link rel="prev" title="5. Transit accessibility – database construction and service area maps" href="raptor_area.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,16 +45,15 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Assessing Transit Accessibility of all locations in the Region</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-necessary-datasets">6.1. The necessary datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure">6.2. Transit accessibility from every location in the region, fixed-time departure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#the-log-file-and-region-accessibility-report">6.2.1. The log file and Region accessibility report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Transit Accessibility of all locations in the Region</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure">6.1. Transit accessibility from every location in the region, fixed-time departure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-log-file-and-region-accessibility-report">6.1.1. The log file and Region accessibility report</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-to-every-location-in-the-region-fixed-time-arrival">6.3. Transit accessibility to every location in the region, fixed-time arrival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#region-accessibility-for-the-schedule-based-departure-or-arrival">6.4. Region accessibility for the schedule-based departure or arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-to-every-location-in-the-region-fixed-time-arrival">6.2. Transit accessibility to every location in the region, fixed-time arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#region-accessibility-for-the-schedule-based-departure-or-arrival">6.3. Region accessibility for the schedule-based departure or arrival</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
@@ -80,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">6. </span>Assessing Transit Accessibility of all locations in the Region</li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Transit Accessibility of all locations in the Region</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -89,22 +88,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="assessing-transit-accessibility-of-all-locations-in-the-region">
-<span id="raptor-map"></span><h1><span class="section-number">6. </span>Assessing Transit Accessibility of all locations in the Region<a class="headerlink" href="#assessing-transit-accessibility-of-all-locations-in-the-region" title="Link to this heading"></a></h1>
+  <section id="transit-accessibility-of-all-locations-in-the-region">
+<span id="raptor-map"></span><h1><span class="section-number">6. </span>Transit Accessibility of all locations in the Region<a class="headerlink" href="#transit-accessibility-of-all-locations-in-the-region" title="Link to this heading"></a></h1>
 <p>This section explains the <em>Transit accessibility → Region maps</em> calculations(Figure 1).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow-region.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 1. <i>Transit accessibility → Region maps</i> menu</p><p>We present in detail the <em>From every location – Fixed-time departure</em> and then the differences for each of the three other options.</p>
-<section id="the-necessary-datasets">
-<h2><span class="section-number">6.1. </span>The necessary datasets<a class="headerlink" href="#the-necessary-datasets" title="Link to this heading"></a></h2>
+<p>Figure 1. <i>Transit accessibility → Region maps</i> menu</p><p>We present in detail the <em>From every location – Fixed-time departure</em> and then the differences for each of the three other options. These computations demand</p>
 <ul class="simple">
 <li><p>Transit routing database, see Construct Databases → Transit routing database.</p></li>
 <li><p>The layer of buildings. This layer must be a part of the current QGIS project.</p></li>
 </ul>
-</section>
 <section id="transit-accessibility-from-every-location-in-the-region-fixed-time-departure">
-<span id="raptor-map-fixed-time"></span><h2><span class="section-number">6.2. </span>Transit accessibility from every location in the region, fixed-time departure<a class="headerlink" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure" title="Link to this heading"></a></h2>
+<span id="raptor-map-fixed-time"></span><h2><span class="section-number">6.1. </span>Transit accessibility from every location in the region, fixed-time departure<a class="headerlink" href="#transit-accessibility-from-every-location-in-the-region-fixed-time-departure" title="Link to this heading"></a></h2>
 <p>Choose <em>From every location – fixed-time departure</em> (Figure 2).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/pt-fr-m.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
@@ -158,7 +154,7 @@ If the last bin does not match the <span class="guilabel">Maximum travel time</s
 <span style="display: block; margin-top: 5px;"></span>
 Typically, the <span class="guilabel">Number of bins</span> is selected in a way to have the bin’s width of 5 or 10 minutes, while a 2- or even 1-minute bin can be useful for further analysis of accessibility.
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Choose buildings characteristics for accessibility assessment</span> — The total number of building accessible from each building of the region is a default measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characteristics for this assessment (Figure 3).</p>
+<span class="guilabel">Choose building characteristics for accessibility assessment</span> — The total number of buildings accessible from each building of the region is a default measure and is always calculated. In addition, each of the building’s numeric attributes can be selected for accessibility assessment. For example, if the number of jobs is known for a building, then the accessibility to jobs that can be reached from a building can be assessed. You could choose several characteristics for this assessment (Figure 3).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/sample/map_opt1.png" style="width: 100%; border: 0px solid white;margin-bottom: 10px" />
 </div>
@@ -166,7 +162,7 @@ Typically, the <span class="guilabel">Number of bins</span> is selected in a way
 <span style="display: block; margin-top: 5px;"></span>
 Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains the parameters of the run and run’s metadata and is explained in the next section.</p>
 <section id="the-log-file-and-region-accessibility-report">
-<h3><span class="section-number">6.2.1. </span>The log file and Region accessibility report<a class="headerlink" href="#the-log-file-and-region-accessibility-report" title="Link to this heading"></a></h3>
+<h3><span class="section-number">6.1.1. </span>The log file and Region accessibility report<a class="headerlink" href="#the-log-file-and-region-accessibility-report" title="Link to this heading"></a></h3>
 <p>The log file (Figure 4) is stored in the folder of the results. It lists all the settings of the run and the computation time.</p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/log_area.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
@@ -233,14 +229,14 @@ Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the
 </section>
 </section>
 <section id="transit-accessibility-to-every-location-in-the-region-fixed-time-arrival">
-<h2><span class="section-number">6.3. </span>Transit accessibility to every location in the region, fixed-time arrival<a class="headerlink" href="#transit-accessibility-to-every-location-in-the-region-fixed-time-arrival" title="Link to this heading"></a></h2>
+<h2><span class="section-number">6.2. </span>Transit accessibility to every location in the region, fixed-time arrival<a class="headerlink" href="#transit-accessibility-to-every-location-in-the-region-fixed-time-arrival" title="Link to this heading"></a></h2>
 <p>To compute the to-accessibility of every location in the region run the <em>To every location – fixed-time arrival</em>. Most of the parameters of the region’s transit to-accessibility computations are the same as for the from-accessibility. The only difference is in establishing origins and destinations, which, in the case of regional accessibility are often the same, and the user must be very careful not to confuse between them.
 <span style="display: block; margin-top: 5px;"></span>
 The Log and Result files are the same as for the from-accessibility, with minor differences that reflect the <em>from-accessibility</em> to the <em>to-accessibility</em> changes. The example of the <em>Transit accessibility → Region maps → From all locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-region-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="region-accessibility-for-the-schedule-based-departure-or-arrival">
-<span id="raptor-map-schedule-based"></span><h2><span class="section-number">6.4. </span>Region accessibility for the schedule-based departure or arrival<a class="headerlink" href="#region-accessibility-for-the-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
-<p>The reasons for introducing and the basic idea of the schedule-based view of accessibility are presented in <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">Section 5.4</span></a>. The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a> and the comparison between the time-fixed and schedule-dependent region accessibility is <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">here</span></a>.</p>
+<span id="raptor-map-schedule-based"></span><h2><span class="section-number">6.3. </span>Region accessibility for the schedule-based departure or arrival<a class="headerlink" href="#region-accessibility-for-the-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
+<p>The reasons for introducing and the basic idea of the schedule-based view of accessibility are presented in <a class="reference internal" href="raptor_area.html#raptor-area-schedule-based"><span class="std std-ref">Section 5.5</span></a>. The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a> and the comparison between the time-fixed and schedule-dependent region accessibility is <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>
 
@@ -248,7 +244,7 @@ The Log and Result files are the same as for the from-accessibility, with minor 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="raptor_area.html" class="btn btn-neutral float-left" title="5. Transit accessibility – Service area" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="raptor_area.html" class="btn btn-neutral float-left" title="5. Transit accessibility – database construction and service area maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="car_accessibility.html" class="btn btn-neutral float-right" title="7. Сar accessibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
