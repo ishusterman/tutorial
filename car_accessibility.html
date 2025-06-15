@@ -98,7 +98,7 @@
 <p>Figure 1. The <i>Car accessibility</i> menu<p><p>Note that the car trip description is simpler than that of the transit trip and includes three components only – walk from the origin facility to the parking car, drive, and walk from the parking spot to the destination. Importantly, in the case of car accessibility, a fixed start/arrival time only makes sense.</p>
 <section id="building-database-for-car-accessibility-computation">
 <span id="building-data-car"></span><h2><span class="section-number">7.1. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
-<p>Constructing a car routing database demands a topologically clean road network and two basic attributes demanded by the way finding algorithms. These attributes are:</p>
+<p>Constructing a car routing database demands a topologically clean road network and two basic attributes demanded by wayfinding algorithms. These attributes are:</p>
 <ul class="simple">
 <li><p>links’ <span class="bolditalic">traffic direction</span> that can be <strong>B</strong> (two-way link), <strong>F</strong> (One-way link, the driving is allowed along the direction the link is drawn), <strong>T</strong> (One-way link, driving is allowed against the direction the link is drawn), or <strong>N</strong>: Pedestrian-only link, always two-directional, and</p></li>
 <li><p>links’ <span class="bolditalic">maximum traffic speed</span></p></li>
@@ -151,8 +151,8 @@ The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the li
 
          <table class="custom-table" style="margin-right: 10px;">
              <tr>
-                 <th style="width: 150px;">link type</th>
-                 <th style="width: 150px;">speed (km/h)</th>
+                 <th style="width: 150px;">OSM link type (FCLASS)</th>
+                 <th style="width: 150px;">Maximum speed (free flow), km/h</th>
              </tr>
              <tr>
                  <td>busway</td>
@@ -201,32 +201,32 @@ The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the li
 
          <table class="custom-table" style="margin-right: 10px;">
              <tr>
-                 <th style="width: 150px;">hour</th>
-                 <th style="width: 100px;">CDI</th>
+                 <th style="width: 150px;">Hour of the day</th>
+                 <th style="width: 100px;">Congestion Delay Index</th>
              </tr>
              <tr>
                  <td>0</td>
-                 <td>1.0</td>
+                 <td>1.00</td>
              </tr>
              <tr>
                  <td>1</td>
-                 <td>1.0</td>
+                 <td>1.00</td>
              </tr>
              <tr>
                  <td>2</td>
-                 <td>1.0</td>
+                 <td>1.00</td>
              </tr>
              <tr>
                  <td>3</td>
-                 <td>1.0</td>
+                 <td>1.00</td>
              </tr>
              <tr>
                  <td>4</td>
-                 <td>1.0</td>
+                 <td>1.00</td>
              </tr>
              <tr>
                  <td>5</td>
-                 <td>0.9</td>
+                 <td>0.90</td>
              </tr>
              <tr>
                  <td>6</td>
@@ -234,11 +234,11 @@ The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the li
              </tr>
              <tr>
                  <td>7</td>
-                 <td>0.6</td>
+                 <td>0.60</td>
              </tr>
              <tr>
                  <td>8</td>
-                 <td>0.6</td>
+                 <td>0.60</td>
              </tr>
              <tr>
                  <td>9</td>
@@ -267,13 +267,16 @@ The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the li
 <li><p><span class="guilabel">link type</span> — the field in the attribute table of the layer of roads that contains the link’s type.</p></li>
 <li><p><span class="guilabel">Folder to store car database</span> - the folder to store the database for car routing. The system’s suggestion is the same subfolder that is suggested for the transit routing database with the name that is a concatenation of the name of a project (TAMA) and “_pkl.”</p></li>
 </ul>
-<p>To construct a car routing database, the presence and consistency of the road layer critical attributes must be tested. To do that click <strong>Test Road Attributes</strong>.
+<p>To construct a car routing database, the existence and consistency of the critical roads’ attributes must be tested. To do that click <strong>Test Road Attributes</strong>.
 <span style="display: block; margin-top: 5px;"></span>
-The test starts with the search of the FCLASS field. If this field is found, the layer’s source is OSM, and the names of the direction and maximum speed attributes are ONEWAY and MAXSPEED, respectively. If the field FCLASS is not found, the layer is considered as a non-OSM one, the Accessibility Calculator searches for fields that can represent links’ traffic direction and free speed and presents candidate fields with the percentage of likelihood, for the user’s choice. Each candidate field is tested on whether a sufficiently high percentage of the values in the field matches the consistency criterion: The FCLASS values must be found in the car_speed_by_link_type.csv table, the direction must be noted by <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>, and maximum speed must be between 0 and 120 km/h.
+Road Attributes test
+The test starts with the search of the FCLASS field. If this field is found, the layer’s source is OSM, and the names of the direction and maximum speed attributes are ONEWAY and MAXSPEED, respectively. The Accessibility Calculator tests whether the values in the FCLASS field are found in the car_speed_by_link_type.csv table. If they are not, the user is asked to fix the problem and the test is quit. If they are, the values in the fields ONEWAY and MAXSPEED are tested. The values of the ONEWAY attribute must be B, F, T, or N, and the maximum speed must be between 0 and 120 km/h. If these conditions are satisfied, the test is passed, otherwise the user is again asked to fix the table.
 <span style="display: block; margin-top: 5px;"></span>
-If the test is not passed, the message that contains the reason for rejection is presented, and a user is asked to fix the data. If the test is passed, the user can take the next step and construct the database.
+If the field FCLASS is not found, the layer is considered a non-OSM one. In this case, the Accessibility Calculator searches for fields that can represent links’ traffic direction and free speed and presents candidate fields with the percentage of likelihood, for the user’s choice. The likelihood is given by the percentage of the values in the field that satisfy the consistency criterion: the direction must be noted by <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>, and the maximum speed must be between 0 and 120 km/h. The user must choose one of the fields that satisfy the criterion.
 <span style="display: block; margin-top: 5px;"></span>
-Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a car routing database see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
+The test takes several seconds, and the Progress bar will show the test progress. If the test fails, the reasons for the failure are presented, and a user is asked to fix the data. If the test is passed, the user can take the next step and construct the database.
+<span style="display: block; margin-top: 5px;"></span>
+Click <strong>Run</strong> to start car routing database construction. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a car routing database see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
 </section>
 <section id="from-service-locations-fixed-time-departure">
 <span id="car-options"></span><h2><span class="section-number">7.2. </span>From service locations, fixed-time departure<a class="headerlink" href="#from-service-locations-fixed-time-departure" title="Link to this heading"></a></h2>

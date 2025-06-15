@@ -9,7 +9,7 @@
   <title>10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9518a68" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
 
   
     <link rel="shortcut icon" href="_static/app.png"/>
@@ -45,9 +45,9 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing and constructing databases for fast routing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – Service area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Assessing Transit Accessibility of all locations in the Region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
 <li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
@@ -73,8 +73,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#compare-region-accessibility">10.6.3. Compare Region accessibility</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#the-datasets-used-in-this-tutorial">10.7. The datasets used in this tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#small-database-for-fast-tests">10.8. Small database for fast tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-tutorials-dataset">10.7. The tutorial’s dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
@@ -121,7 +120,7 @@
 <p>Figure 1. TAMA roads (a); Zoom to the area served by the Red LRT line (b)</p><p>The examples of this section are all computed with the Accessibility Plugin v 5_32 and QGIS v3.34. We use a Lenovo ThinkPad X1 laptop with the Intel i7 2.80GHz processor and 32MB memory and accompany each example with the estimates of computing time.</p>
 <section id="data-arrangements">
 <h2><span class="section-number">10.1. </span>Data arrangements<a class="headerlink" href="#data-arrangements" title="Link to this heading"></a></h2>
-<p>To study TAMA transport accessibility with and without the Red LRT line, we employ TAMA OSM  layers of buildings and roads for 2024 and two Israeli GTFS datasets for the years 2018 and 2024. We assume that buildings and roads did not change much between 2018 and 2024. These datasets are provided as zip files <a class="reference internal" href="#sample-dataset"><span class="std std-ref">here</span></a>. Essentially smaller dataset for the Jaffa area of Tel Aviv (~2500 buildings) is provided for the initial fast tests <a class="reference internal" href="#sample-dataset-small"><span class="std std-ref">here</span></a>.</p>
+<p>To study TAMA transport accessibility with and without the Red LRT line, we employ TAMA OSM  layers of buildings and roads for 2024 and two Israeli GTFS datasets for the years 2018 and 2024. We assume that buildings and roads did not change much between 2018 and 2024. These datasets are provided as zip files <a class="reference internal" href="#sample-dataset"><span class="std std-ref">here</span></a>. Essentially smaller dataset for the Jaffa area of Tel Aviv (~2500 buildings) is provided for the initial fast tests <a class="reference internal" href="#sample-dataset"><span class="std std-ref">here</span></a>.</p>
 <ul class="simple">
 <li><p>The layers of buildings and road links were selected as “entirely within” the TAMA polygon (Figure 1) from the OSM layers of buildings and roads in Israel downloaded in June 2024.</p></li>
 <li><p>The layers of roads and buildings were topologically cleaned by applying Accessibility Calculator Data preprocessing procedures.</p></li>
@@ -478,11 +477,13 @@ Let us continue the assessment of the Red LRT line’s effect on transport acces
 </div>
 <p>Figure 20. The differences in region from-accessibility with the public transport in 2024 and 2018, for the trips starting at 08:00 in the morning</p></section>
 </section>
-<section id="the-datasets-used-in-this-tutorial">
-<span id="sample-dataset"></span><h2><span class="section-number">10.7. </span>The datasets used in this tutorial<a class="headerlink" href="#the-datasets-used-in-this-tutorial" title="Link to this heading"></a></h2>
-</section>
-<section id="small-database-for-fast-tests">
-<span id="sample-dataset-small"></span><h2><span class="section-number">10.8. </span>Small database for fast tests<a class="headerlink" href="#small-database-for-fast-tests" title="Link to this heading"></a></h2>
+<section id="the-tutorials-dataset">
+<span id="sample-dataset"></span><h2><span class="section-number">10.7. </span>The tutorial’s dataset<a class="headerlink" href="#the-tutorials-dataset" title="Link to this heading"></a></h2>
+<p>Our examples in this tutorial are based on the OSM layers for the Tel-Aviv metropolitan area. These layers are clipped from the zipped set of layers in the shape format downloaded from <a class="reference external" href="https://download.geofabrik.de/asia/israel-and-palestine.html">https://download.geofabrik.de/asia/israel-and-palestine.html</a>. The 200M zip file contains several layers, and we work with two of them: The buildings that we use come from the <code class="docutils literal notranslate"><span class="pre">gis_osm_buildings_a_free_1</span></code>, while the roads from <code class="docutils literal notranslate"><span class="pre">gis_osm_roads_free_1</span></code>. Both OSM layers are in the world coordinate system EPSG:4326 – WGS84, with the latitude-longitude coordinates in degrees.
+<span style="display: block; margin-top: 5px;"></span>
+The Tel Aviv Metropolitan Area (TAMA) is presented by polygon layer TAMA and we employ the QGIS spatial selection operation to select buildings and road links within the TAMA polygon. The area of the TAMA polygon is about 1500 sq.km., and the numbers of buildings and road links within the TAMA polygon are 257K and 143K, respectively. In addition, we have selected an essentially smaller dataset of the buildings and road links in Tel Aviv city with 27K buildings and 17K road links.
+<span style="display: block; margin-top: 5px;"></span>
+The layers of the TAMA dataset are supplied as a <a class="reference external" href="https://github.com/ishusterman/TAMA_QGIS_Project/archive/refs/heads/main.zip">TAMA_tutorial.zip</a> file., and its size is 33MB. The layers of the Tel Aviv dataset are supplied as <a class="reference external" href="https://github.com/ishusterman/TLV_QGIS_Project/archive/refs/heads/main.zip">TLV_tutorial.zip</a> file, and its size is 3.5MB. Each of these files contains project files <code class="docutils literal notranslate"><span class="pre">TAMA.qgz</span></code> and <code class="docutils literal notranslate"><span class="pre">TLV.qgz</span></code> and we advise you to open them after opening zip files. Please pay attention to the <code class="docutils literal notranslate"><span class="pre">TAMA_ITM</span></code> and <code class="docutils literal notranslate"><span class="pre">TLV_ITM</span></code> layers in each of these projects. These layers are copies of the TAMA and TLV polygons, but they are stored in the local Israeli UTM coordinate system whose coordinates are in meters, making distance measuring essentially more intuitive. If you prefer to work with the examples in the UTM-based coordinate system, store each of the layers, buildings, and roads, in the local coordinate system that can be taken from the ITM copies of the area boundary.</p>
 </section>
 </section>
 
