@@ -56,6 +56,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#car-speed-for-accessibility-computation">2.10. Car speed for accessibility computation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#comparison-of-accessibility-in-different-scenarios">2.11. Comparison of accessibility in different scenarios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visualization-of-accessibility-computations">2.12. Visualization of accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roundtrip-accessibility-the-experimental-option">2.13. Roundtrip accessibility – the experimental option</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
@@ -333,6 +334,62 @@ Let the scenarios be S<sub>1</sub> and S<sub>2</sub> and accessibility for each 
 
 <p>Figure 4: Left to right – The 45-min transit from-accessibility service maps from for the Gesher theater that is located in the northern part in the center of the Yaffo area, Tel Aviv, presented with the Voronoi polygons (a), and 100 (b), and 200 m (c) hexagons</p><p><span style="display: block; margin-top: 5px;"></span>
 The visualization options are considered in detail in <a class="reference internal" href="visualization.html"><span class="doc">Section 9</span></a>.</p>
+</section>
+<section id="roundtrip-accessibility-the-experimental-option">
+<h2><span class="section-number">2.13. </span>Roundtrip accessibility – the experimental option<a class="headerlink" href="#roundtrip-accessibility-the-experimental-option" title="Link to this heading"></a></h2>
+<p>The roundtrip accessibility computations are currently available in experimental version 6.3 of the Accessibility Calculator. To download this version the experimental plugin updates must be enabled in the plugin settings:</p>
+ <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/experimental_plugin.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div><p><span style="display: block; margin-top: 5px;"></span>
+Our recent preprint <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258</a> presents more formal introduction of the roundtrip accessibility with a series of examples that exploit the dataset supplied with this tutorial.
+<span style="display: block; margin-top: 5px;"></span>
+A typical journey has several legs. Practically, the minimal, yet basic, case of a roundtrip when a traveler must arrive at the facility and return after the activity is performed.
+<span style="display: block; margin-top: 5px;"></span>
+To assess a total roundtrip time, we must account for the travel time to the facility, back from the facility, and the interval between arrival and departure for the times a traveler may choose for arriving at the facility and traveling back. That is, we must consider accessibility for a variety of possible trips during the periods when the trip to the facility and the trip back could happen. These periods are defined by the content of the problem, like the start and end of the working day in the case of job accessibility, or the time of the performance start and end, in the case of the theater, and are parameters of the problem.
+<span style="display: block; margin-top: 5px;"></span>
+We consider facility <em>F</em> accessible with the roundtrip from a building <em>B</em>, with the mode <em>m</em>, if the total travel time of the trip <em>B→F</em> from <em>B</em> to <em>F</em> and a trip <em>F→B</em> back, with the mode <em>m</em> does not exceed the maximum total trip time. This condition is applied to the fixed-time and schedule-based view of travelers’ behavior.
+<span style="display: block; margin-top: 5px;"></span>
+In addition, to reflect human attitude to the transit trip, we assume that a facility cannot be considered as accessible if one of the <em>B→F</em> or <em>F→B</em> trips is essentially longer than the other. We choose “twice longer” as a threshold, that is, facility <em>F</em> is accessible in a roundtrip from <em>B</em> if the trip in one of the ways is twice longer than the trip in the opposite direction. Note that this implicit condition is equivalent to the explicit one - none of the one-way trips is longer than two-thirds of the maximum total trip time.
+<span style="display: block; margin-top: 5px;"></span>
+Roundtrip accessibility demands the establishment of the arrival and departure intervals and the time resolution <em>τ</em>, at which these intervals are considered. Typical <em>τ</em> we exploit is 15 or 20 minutes.
+<span style="display: block; margin-top: 5px;"></span>
+To assess the roundtrip accessibility of the facility <em>F</em>, AC computes (a) travel time from each building <em>B</em> to <em>F</em> for the maximum travel time equal to two thirds of the total maximum travel time, and, at a time resolution <em>τ</em>, for the interval of possible arrival, and (b) travel time from the facility <em>F</em> back to <em>B</em> for the maximum travel time equal to two thirds of the total maximum travel time, and, at a time resolution <em>τ</em>, for the interval of possible departure from <em>F</em>. The set of all possible combinations of these two series of travel times is constructed, and the average of the total travel times in this set is considered as an average roundtrip time. The standard deviation of the roundtrip time, as well as the minimum and maximum roundtrip times, are also included in the computation outputs. In addition, the output includes the average and STD of the number of transfers during the round trip.
+<span style="display: block; margin-top: 5px;"></span>
+Roundtrip accessibility is an experimental option of the current version of the AC. That is why its parameters must be set up specially, and the computations are activated specially too.
+<span style="display: block; margin-top: 5px;"></span>
+The parameters for computing roundtrip accessibility must be specified in a text file <code class="docutils literal notranslate"><span class="pre">parameters_accessibility_add.txt</span></code> that must be located in the folder of the current GIS project. This  file is created automatically.
+<span style="display: block; margin-top: 5px;"></span>
+The content of this file is as follows
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">to_time_start</span> - the start of the time interval of the <em>F→B</em> trip, HH:MM:SS format
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">to_time_end</span> - the end of the time interval of the <em>F→B</em> trip, HH:MM:SS format
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">from_time_start</span> - the start of the time interval of the <em>B→F</em> trip, HH:MM:SS format
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">from_time_end</span> - the end of the time interval of the <em>B→F</em> trip, HH:MM:SS format
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">time_delta</span> – <em>τ</em> (seconds), the  time step for covering the intervals of the trip to the facility and the trip back
+<span style="display: block; margin-top: 5px;"></span>
+The default values in the file are as follows
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">to_time_start</span> = 08:00:00
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">to_time_end</span> = 10:00:00
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">from_time_start</span> = 16:00:00
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">from_time_end</span> = 18:00:00
+<span style="display: block; margin-top: 5px;"></span>
+<span class="guilabel">time_delta</span> = 900
+<span style="display: block; margin-top: 5px;"></span>
+To change the values, the <code class="docutils literal notranslate"><span class="pre">parameters_accessibility_add.txt</span></code> file must be manually edited by the user before computing roundtrip accessibility.
+<span style="display: block; margin-top: 5px;"></span>
+The rest of the parameters for computing roundtrip accessibility are acquired from the settings of the Service area maps, Fixed-time departure, or Schedule-based departure, as chosen by the user.
+<span style="display: block; margin-top: 5px;"></span>
+To compute the roundtrip accessibility, the user must choose one of two options of the Service area maps construction and press <strong>Run</strong> with the pressed <strong>Ctrl</strong> and <strong>Right Shift</strong> keys - <strong>Ctrl+Shift+Run</strong>.
+<span style="display: block; margin-top: 5px;"></span>
+The calculation is performed similarly for roundtrip regional accessibility.</p>
 </section>
 </section>
 
