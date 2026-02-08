@@ -337,11 +337,11 @@ The visualization options are considered in detail in <a class="reference intern
 </section>
 <section id="roundtrip-accessibility-the-experimental-option">
 <h2><span class="section-number">2.13. </span>Roundtrip accessibility – the experimental option<a class="headerlink" href="#roundtrip-accessibility-the-experimental-option" title="Link to this heading"></a></h2>
-<p>The roundtrip accessibility computations are currently available in experimental version 6.3 of the Accessibility Calculator. To download this version the experimental plugin updates must be enabled in the plugin settings:</p>
+<p>The roundtrip accessibility computations are currently available in experimental version 6.3 of the Accessibility Calculator. To download this version, the experimental plugin updates must be enabled in the plugin settings:</p>
  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/experimental_plugin.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div><p><span style="display: block; margin-top: 5px;"></span>
-Our recent preprint <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258</a> presents more formal introduction of the roundtrip accessibility with a series of examples that exploit the dataset supplied with this tutorial.
+Our recent preprint <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6181258</a> presents a more formal introduction of the roundtrip accessibility with a series of examples that exploit the dataset supplied with this tutorial.
 <span style="display: block; margin-top: 5px;"></span>
 A typical journey has several legs. Practically, the minimal, yet basic, case of a roundtrip when a traveler must arrive at the facility and return after the activity is performed.
 <span style="display: block; margin-top: 5px;"></span>
@@ -357,7 +357,7 @@ To assess the roundtrip accessibility of the facility <em>F</em>, AC computes (a
 <span style="display: block; margin-top: 5px;"></span>
 Roundtrip accessibility is an experimental option of the current version of the AC. That is why its parameters must be set up specially, and the computations are activated specially too.
 <span style="display: block; margin-top: 5px;"></span>
-The parameters for computing roundtrip accessibility must be specified in a text file <code class="docutils literal notranslate"><span class="pre">parameters_accessibility_add.txt</span></code> that must be located in the folder of the current GIS project. This  file is created automatically.
+The parameters for computing roundtrip accessibility must be specified in a text file, <code class="docutils literal notranslate"><span class="pre">roundtrip_additional_parameters.txt</span></code>, that must be located in the folder of the current GIS project. This file is automatically created when you run the plugin.
 <span style="display: block; margin-top: 5px;"></span>
 The content of this file is as follows
 <span style="display: block; margin-top: 5px;"></span>
@@ -383,14 +383,17 @@ The default values in the file are as follows
 <span style="display: block; margin-top: 5px;"></span>
 <span class="guilabel">time_delta</span> = 900
 <span style="display: block; margin-top: 5px;"></span>
-To change the values, the <code class="docutils literal notranslate"><span class="pre">parameters_accessibility_add.txt</span></code> file must be manually edited by the user before computing roundtrip accessibility.
+To change the values, the <code class="docutils literal notranslate"><span class="pre">roundtrip_additional_parameters.txt</span></code> file must be manually edited by the user before computing roundtrip accessibility.
 <span style="display: block; margin-top: 5px;"></span>
-The rest of the parameters for computing roundtrip accessibility are acquired from the settings of the Service area maps, Fixed-time departure, or Schedule-based departure, as chosen by the user.
+In this experimental version, computation of the roundtrip accessibility is added to the TO-accessibility items of the menu, and the standard parameters for accessibility computation are acquired from the settings of the chosen item.
 <span style="display: block; margin-top: 5px;"></span>
-To compute the roundtrip accessibility, the user must choose one of two options of the Service area maps construction and press <strong>Run</strong> with the pressed <strong>Ctrl</strong> and <strong>Right Shift</strong> keys - <strong>Ctrl+Shift+Run</strong>.
-<span style="display: block; margin-top: 5px;"></span>
-The calculation is performed similarly for roundtrip regional accessibility.</p>
-</section>
+To compute roundtrip accessibility
+1.      Manually edit the <code class="docutils literal notranslate"><span class="pre">roundtrip_additional_parameters.txt</span></code> file
+2.      Decide on the kind of accessibility computation and establish the necessary parameters via the item’s dialog
+3.      Press the Run key of the dialog, while holding Ctrl and Left Shift keys: <a href="#id2"><span class="problematic" id="id3">**</span></a>Ctrl+Shift+Run*</p>
+ <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/experimental_plugin_menu.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div></section>
 </section>
 
 
