@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. Tutorial datasets &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
+
+  
+    <link rel="shortcut icon" href="_static/app.png"/>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. Glossary" href="glossary.html" />
+    <link rel="prev" title="10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area" href="sample.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Introduction to QGIS plugin "Accessibility Calculator"
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Tutorial datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Introduction to QGIS plugin "Accessibility Calculator"</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">11. </span>Tutorial datasets</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-datasets">
+<span id="sample-dataset"></span><h1><span class="section-number">11. </span>Tutorial datasets<a class="headerlink" href="#tutorial-datasets" title="Link to this heading"></a></h1>
+<p>Our tutorial examples rely on two OSM spatial layers covering the Tel Aviv Metropolitan Area (TAMA), defined by a boundary polygon encompassing approximately 1,500 sq. km, paired with two national GTFS databases covering all of Israel.
+<span style="display: block; margin-top: 5px;"></span>
+The TAMA buildings and roads were extracted from raw data downloaded from Geofabrik (<a class="reference external" href="https://download.geofabrik.de/asia/israel-and-palestine.html">https://download.geofabrik.de/asia/israel-and-palestine.html</a>). The 200 MB zip file containing the entire region includes several distinct layers; we utilized <code class="docutils literal notranslate"><span class="pre">gis_osm_buildings_a_free_1</span></code> for the buildings and <code class="docutils literal notranslate"><span class="pre">gis_osm_roads_free_1</span></code> for the road network.
+<span style="display: block; margin-top: 5px;"></span>
+Raw OSM layers inherently use the global EPSG:4326 (WGS84) coordinate reference system, which relies on latitude/longitude degrees. To ensure precise distance and area calculations, we reprojected these layers into the localized Israeli Transverse Mercator (ITM) coordinate system (a local adaptation of UTM Zone 36N).
+<span style="display: block; margin-top: 5px;"></span>
+Using QGIS spatial selection tools, we isolated the buildings and road links falling strictly within the TAMA polygon. The resulting TAMA dataset contains roughly 257,000 buildings and 143,000 road links. For faster tests, we also constructed a significantly smaller dataset restricted strictly to the Tel Aviv city limits (51 sq. km), containing 27,000 buildings and 17,000 road links.</p>
+<ul class="simple">
+<li><p>The full TAMA layers are provided in the <a class="reference external" href="https://github.com/ishusterman/TAMA_QGIS_Project/archive/refs/heads/main.zip">TAMA_tutorial.zip</a> file (33 MB).</p></li>
+<li><p>The smaller Tel Aviv city layers are provided in the <a class="reference external" href="https://github.com/ishusterman/TLV_QGIS_Project/archive/refs/heads/main.zip">TLV_tutorial.zip</a> file (3.5 MB).</p></li>
+</ul>
+<p>Each of these zip files contains pre-configured QGIS project files (<code class="docutils literal notranslate"><span class="pre">TAMA.qgz</span></code> and <code class="docutils literal notranslate"><span class="pre">TLV.qgz</span></code>). We strongly advise opening these project files to familiarize yourself with the layers before running the tools.
+<span style="display: block; margin-top: 5px;"></span>
+In addition to the initial layers of roads and buildings we supply topologically cleaned versions of these layers, for both TAMA and Tel Aviv datasets.
+<span style="display: block; margin-top: 5px;"></span>
+The required public transport data is supplied as
+<a class="reference external" href="https://drive.google.com/file/d/1gW-HG58Ijj0SI1Eh7GtO62oTMHYavOSn/view?usp=drive_link">gtfs2018.zip</a> (102 MB)
+and
+<a class="reference external" href="https://drive.google.com/file/d/1CeTu8X2Bz-Ges6fsG93VyuXrKcVGbepL/view?usp=drive_link">gtfs2024.zip</a> (142 GB).</p>
+<script>
+  document.querySelectorAll("a[href^='https://drive.google.com']").forEach(a => {
+      a.setAttribute("target", "_blank");
+  });
+</script><p><span style="display: block; margin-top: 5px;"></span>
+To get started with one of the sample projects:</p>
+<ol class="arabic simple">
+<li><p><em>Extract the project ZIP file</em>. All necessary files and map layers will be located in the resulting folder.</p></li>
+<li><p><em>Copy the GTFS data folder</em> into this new project folder (not necessarily, yet convenient).</p></li>
+<li><p><em>Open the QGIS project</em> file (<code class="docutils literal notranslate"><span class="pre">TLV.qgz</span></code> or <code class="docutils literal notranslate"><span class="pre">TAMA.qgz</span></code>), and you are ready to begin!</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your latest settings are saved as defaults for future calculations in the parameters_accessibility.txt file in the project’s folder. The system will automatically recreate this file if it is deleted.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sample.html" class="btn btn-neutral float-left" title="10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="glossary.html" class="btn btn-neutral float-right" title="12. Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Geosimlab | Tel Aviv University.</p>
+  </div>
+
+  
+  <p class="custom-footer-text">Funded by the Israeli Ministry of Science and Technology</p>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

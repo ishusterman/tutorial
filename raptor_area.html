@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. Transit accessibility – database construction and service area maps &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>6. Transit accessibility computations &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -18,8 +18,8 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Transit Accessibility of all locations in the Region" href="raptor_map.html" />
-    <link rel="prev" title="4. Data preprocessing" href="building_pkl.html" /> 
+    <link rel="next" title="7. Car accessibility computations" href="car_accessibility.html" />
+    <link rel="prev" title="5. Prepare databases" href="prepare_database.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,24 +45,31 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Transit accessibility – database construction and service area maps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#building-database-for-transit-accessibility-computations">5.1. Building database for transit accessibility computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transit-accessibility-service-area">5.2. Transit accessibility – Service area</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#accessibility-from-the-services-fixed-time-departure">5.3. Accessibility from the services, fixed-time departure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#service-area-computations-the-log-file-and-the-structure-of-the-report">5.3.1. Service area computations - the log file and the structure of the report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Transit accessibility computations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transit-service-area-fixed-arrival-departure-time">6.1. Transit Service area, fixed arrival/departure time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accessibility-to-facility-parameters-and-computation-execution">6.1.1. Accessibility TO facility – parameters and computation execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessibility-to-destinations-the-log-file-and-the-structure-of-the-report">6.1.2. Accessibility TO destinations – the log file and the structure of the report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessibility-from-facilities-fixed-time-departure">6.1.3. Accessibility FROM facilities, fixed-time departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roundtrip-accessibility-fixed-time-departure">6.1.4. Roundtrip accessibility, fixed-time departure</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#accessibility-to-services-fixed-time-arrival">5.4. Accessibility to services, fixed-time arrival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#service-area-for-schedule-based-departure-or-arrival">5.5. Service area for schedule-based departure or arrival</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#service-area-for-schedule-based-arrival-departure-time">6.2. Service area for schedule-based arrival/departure time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cumulative-number-of-accessible-opportunities-fixed-arrival-departure-time">6.3. Cumulative number of accessible opportunities, fixed arrival/departure time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cumulative-number-of-to-opportunities-parameters-and-computation-execution">6.3.1. Cumulative number of TO-opportunities - parameters and computation execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumulative-number-of-to-opportunities-the-structure-of-the-report">6.3.2. Cumulative number of TO-opportunities - the structure of the report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumulative-number-of-from-and-roundtrip-opportunities-fixed-time-departure">6.3.3. Cumulative number of FROM- and ROUNDTRIP-opportunities, fixed-time departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumulative-number-opportunities-for-schedule-based-arrival-departure">6.3.4. Cumulative number opportunities for schedule-based arrival/departure</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roundtrip.html">10. IRoundtrip accessibility – the experimental option</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">11. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
@@ -82,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5. </span>Transit accessibility – database construction and service area maps</li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Transit accessibility computations</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -91,106 +98,312 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="transit-accessibility-database-construction-and-service-area-maps">
-<span id="raptor-area"></span><h1><span class="section-number">5. </span>Transit accessibility – database construction and service area maps<a class="headerlink" href="#transit-accessibility-database-construction-and-service-area-maps" title="Link to this heading"></a></h1>
-<p>To compute transit accessibility, one must translate the data on roads, buildings, and public transport routes and timetables into a database. Then, the service area for the set of facilities or accessibility of the entire region can be computed. This section explains the construction of the transit routing database and service area maps (Figure 1).</p>
+  <section id="transit-accessibility-computations">
+<span id="raptor-area"></span><h1><span class="section-number">6. </span>Transit accessibility computations<a class="headerlink" href="#transit-accessibility-computations" title="Link to this heading"></a></h1>
+<p>Transit accessibility is computed using the databases of roads, buildings, and public transport networks (routes and timetables) that were generated by the AC plugin during the “Prepare Databases” stage. This section details how to execute these computations.
+<span style="display: block; margin-top: 5px;"></span>
+The primary options for Transit Accessibility computations are displayed in Figure 1. Below, we explain a few options of the four main sections in detail, followed by an explanation of how the other options differ. For definitions regarding Service Area and Cumulative Opportunities maps, please refer back to Sections <a class="reference internal" href="introduction.html#introduction-versus1"><span class="std std-ref">2.8</span></a>, <a class="reference internal" href="introduction.html#introduction-versus2"><span class="std std-ref">2.9</span></a> and <a class="reference internal" href="introduction.html#introduction-timetable"><span class="std std-ref">2.10</span></a></p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow_single_location.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 1. Transit accessibility, database construction, and service area maps sections menu</p><section id="building-database-for-transit-accessibility-computations">
-<span id="raptor-area-buildings-database"></span><h2><span class="section-number">5.1. </span>Building database for transit accessibility computations<a class="headerlink" href="#building-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
-<p>To allow fast accessibility computations, the data on roads, buildings, and public transport routes and timetables are translated into databases. During this transformation, the buildings that are not connected to the road network are related to the nearest road link of the cleaned layer of roads. The shortest distance to these links is calculated, stored, and employed for establishing the network path between the building and bus stops. The result of this operation is stored in the database and the clean layers of roads and buildings are not changed.
-<span style="display: block; margin-top: 5px;"></span>
-To build the database for transit routing choose the <em>Transit routing database</em> (Figure 2):</p>
-<div style="text-align: center;">
-    <img src="_images/pkl1.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
-</div>
-<p>Figure 2. <i>Transit routing database</i> construction dialog</p><ul class="simple">
-<li><p><span class="guilabel">Layer of roads</span> - the clean layer of the road links. Must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">Layer of buildings</span> - the clean layer of buildings. Must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">id</span> - the unique identifier of a building in a table of buildings’ attributes.</p></li>
-<li><p><span class="guilabel">GTFS folder</span> - the path to the folder that contains GTFS files: <code class="docutils literal notranslate"><span class="pre">stops.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_times.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">routes.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">trips.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">calendar.txt</span></code>. The default path is the GTFS subfolder within the folder of the current QGIS project.</p></li>
-<li><p><span class="guilabel">Folder to store transit database</span>- the folder to store the constructed transit routing database. The system’s suggestion is a subfolder in the folder where the project is stored with the name that is a concatenation of the name of a project (TAMA) and “_pkl.”</p></li>
+<p>Figure 1. <i>Transit accessibility computations</i> menu</p><section id="transit-service-area-fixed-arrival-departure-time">
+<h2><span class="section-number">6.1. </span>Transit Service area, fixed arrival/departure time<a class="headerlink" href="#transit-service-area-fixed-arrival-departure-time" title="Link to this heading"></a></h2>
+<p>To compute <strong>Service Area maps</strong> (Figure 1), three datasets must be prepared and ready for use:</p>
+<ul class="simple">
+<li><p>The transit routing database (see <a class="reference internal" href="prepare_database.html#raptor-area-buildings-database"><span class="std std-ref">Section 5.3</span></a>).</p></li>
+<li><p>The topologically clean layer of buildings, loaded in the current QGIS project.</p></li>
+<li><p>The visualization layers (Voronoi polygons or hexagons).</p></li>
 </ul>
+<p>As outlined in <a class="reference internal" href="introduction.html#introduction-versus1"><span class="std std-ref">Section 2.8</span></a>, Transit Service Areas can be calculated for trips destined <em>TO</em> a location, originating <em>FROM</em> a location, or combined <em>ROUNDTRIP</em> journeys.</p>
+<p>We will start with a detailed walkthrough to calculate a <strong>TO</strong> transit service area based on a fixed arrival time and then describe how the other options adapt these principles.
+<span style="display: block; margin-top: 5px;"></span>
+Navigate to <em>Service area maps → fixed arrival/departure time</em>.</p>
+<section id="accessibility-to-facility-parameters-and-computation-execution">
+<span id="raptor-area-to"></span><h3><span class="section-number">6.1.1. </span>Accessibility TO facility – parameters and computation execution<a class="headerlink" href="#accessibility-to-facility-parameters-and-computation-execution" title="Link to this heading"></a></h3>
+<p>For TO-accessibility, the algorithm estimates the travel time for a transit trip based on the <em>latest possible departure</em> from its origin that still allows the user to arrive at the destination on time.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you construct several transit routing databases, e.g., for several versions of the transit network arrangements, use different folders for each of them because the database tables have constant names. It is worth constructing the dataset for a large area (of up to a million buildings) that covers all potentially interesting locations and regions.</p>
+<p>We exclude the initial waiting time from the total travel time for TO-accessibility calculations because a traveler can arrive at the stop at any point before the latest possible departure.</p>
 </div>
-<p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a transit routing database for TAMA see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.
-<span style="display: block; margin-top: 5px;"></span>
-In this tutorial, we limit our examples to the Tel Aviv Metropolitan Area (TAMA), with its 250K buildings. Yet, the GTFS datasets are provided for the entire Israel, and the databases for transit routing are constructed for the whole country. The examples of this tutorial consider two versions of the GTFS databases, one for June 2018, reflecting the state of the transit system before the Red LRT line was established in the Tel Aviv Metropolitan area, and one for June 2024, after the Red LRT line started to function.</p>
-</section>
-<section id="transit-accessibility-service-area">
-<h2><span class="section-number">5.2. </span>Transit accessibility – Service area<a class="headerlink" href="#transit-accessibility-service-area" title="Link to this heading"></a></h2>
-<p>This section explains the <em>Transit accessibility → Service Area maps</em> part of the Accessibility Calculator menu (Figure 1).
-<span style="display: block; margin-top: 5px;"></span>
-We present in detail the <em>From service locations – Fixed-time departure</em> option and then, the differences between this and three other options.
-See Sections Sections <a class="reference internal" href="introduction.html#introduction-versus1"><span class="std std-ref">2.7</span></a>, <a class="reference internal" href="introduction.html#introduction-versus2"><span class="std std-ref">2.8</span></a> and <a class="reference internal" href="introduction.html#introduction-timetable"><span class="std std-ref">2.9</span></a> for definitions of the Service Area and related computations.
-<span style="display: block; margin-top: 5px;"></span>
-To compute a service area, two datasets must be ready for use</p>
-<ul class="simple">
-<li><p>The transit routing database must be constructed, see section <a class="reference internal" href="#raptor-area-buildings-database"><span class="std std-ref">5.1</span></a>.</p></li>
-<li><p>The clean layer of buildings must be a part of the current QGIS project.</p></li>
-</ul>
-</section>
-<section id="accessibility-from-the-services-fixed-time-departure">
-<h2><span class="section-number">5.3. </span>Accessibility from the services, fixed-time departure<a class="headerlink" href="#accessibility-from-the-services-fixed-time-departure" title="Link to this heading"></a></h2>
-<p>The travel time in this case is estimated for the PT journey with the earliest arrival to the destination.
-<span style="display: block; margin-top: 5px;"></span>
-Choose <em>From service locations – fixed-time departure</em> (Figure 3):</p>
+<p><span style="display: block; margin-top: 5px;"></span>
+The dialog for configuring parameters for computing fixed-time TO-accessibility is shown in Figure 3.</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/pt-fr-a.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 3. <i>Service area maps → From service locations – Fixed-time departure</i> dialog</p><p>Parameters of the computations:
+<p>Figure 3. <i>The Transit service area maps → fixed arrival/departure time</i> dialog with the TO option selected.</p><p>The dialog box is divided into several logical blocks:
 <span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Transit routing database folder</span> — the folder that contains the transit routing database. Must contain the following files: <code class="docutils literal notranslate"><span class="pre">stops.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers_dict.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_by_route_stop.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code>
-<br/>
-<span class="guilabel">Output folder</span> — the folder for storing the results of the computation. The system’s suggestion is a subfolder in the folder where the QGIS project is stored with the name that is a concatenation of the name of a project (TAMA) and “_output.”
-<br/>
-<span class="guilabel">Output alias</span> — the alias for the files of results.
-<br/>
-<span class="guilabel">Layer of facilities</span> — the layer of the facility buildings, may be a selection set of the layer of buildings. In the case of the selection set, the chosen buildings are stored in the output folder in the geojson format.
-<br/>
-<span class="guilabel">id</span> — the unique identifier of the facility buildings.
-<br/>
-<span class="guilabel">Visualization layer</span> — the layer that will be used for visualization of accessibility maps, must be a part of the current QGIS project.
-<br/>
-<span class="guilabel">id</span> — the unique identifier of the visualization polygons, must be the subset of buildings’ identifiers. More information <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
-<br/>
-<span class="guilabel">Minimum number of transfers</span> — the minimum number of transfers of the transit trip, typically 0.
-<br/>
-<span class="guilabel">Maximum number of transfers</span> — the maximum number of transfers of the transit trip, may be 0, 1, or 2.
-<br/>
-<span class="guilabel">Maximum walk distance to the initial PT stop, m</span> — the maximum acceptable walking distance between the trip origin and the first bus stop. The default value is 400 m.
-<br/>
-<span class="guilabel">Maximum walk distance at the transfer, m</span> — the maximum acceptable walking distance between two stops at the transfer. The default value is 150 m.
-<br/>
-<span class="guilabel">Maximum walk distance from the last PT stop, m</span> — the maximum acceptable walking distance between the last stop of a trip and destination. The default value is 400 m.
-<br/>
-<span class="guilabel">Start at (hh:mm:ss)</span> — trip start time.
-<br/>
-<span class="guilabel">Walking speed (km/h)</span> — walking speed.
-<br/>
-<span class="guilabel">Maximum waiting time at the initial stop, min</span> — the maximum waiting time at the initial stop of the trip.
-<br/>
-<span class="guilabel">Maximum waiting time at the transfer stop, min</span> — the maximum waiting time at the transfer stop.
-<br/>
-<span class="guilabel">Maximum travel time, min</span> — the maximum total trip time.
-<br/></p>
-<p>Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.The <strong>Log</strong> tab presents the run metadata.
+<strong>Input block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Transit routing database folder</span>: The directory containing the transit routing database generated at the “Prepare Databases” stage. You can check that it includes <code class="docutils literal notranslate"><span class="pre">stops.json</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.json</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers.json</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_idx_in_route.json</span></code>, and <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code>.</p></li>
+<li><p><span class="guilabel">Layer of origins</span>: Origins are buildings where the trip to destinations can start. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+<li><p><span class="guilabel">Layer of destinations</span>: Destinations are buildings where the trip from origins can end. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+</ul>
+<p><strong>Time settings block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Arrival to destination at (hh:mm:ss)</span>: The absolute latest time the traveler must arrive at the destination facility.</p></li>
+<li><p><span class="guilabel">Maximum travel time, min</span>: The absolute maximum duration allowed for the entire trip (door-to-door).</p></li>
+</ul>
+<p><strong>Transit tolerance thresholds block</strong></p>
+<ul>
+<li><p><span class="guilabel">Maximum walk distance (up to 800m)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="guilabel">to the initial stop:</span> The maximum acceptable <em>network</em> walking distance from the trip origin to the first transit stop. The default is 400 m. This value must not exceed 800 m.</p></li>
+<li><p><span class="guilabel">at the transfer:</span> The maximum acceptable <em>network</em> walking distance between two different stops during a transfer. The default is 150 m. This value must not exceed 800 m.</p></li>
+<li><p><span class="guilabel">from the destination stop:</span> The maximum acceptable network walking distance from the final alighting stop to the actual destination building. The default is 400 m. This value must not exceed 800 m.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="guilabel">Maximum waiting time, min</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="guilabel">at the initial stop:</span> The maximum acceptable time travelers will wait at their first stop.</p></li>
+<li><p><span class="guilabel">at the transfer stop:</span> The maximum acceptable time travelers will wait when transferring between PT lines.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="guilabel">Number of transfers</span>: The minimum and maximum allowed number of transfers for a single transit trip. The allowed range is between 0 to 2, the default is between 0 and 1.</p></li>
+<li><p><span class="guilabel">Average walking speed (km/h)</span>: The assumed average pedestrian walking speed.</p></li>
+</ul>
+<p><strong>Output block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Save output as…</span>: Set the name of the .gpkg file that will collect the log file and the results of the computations. Additional copy of the log file will be saved in the .CSV format. The default name of the output .gpkg file is the concatenation of the date and time of the computations start, [YYYYMMDD] + “_” + [HHMMSS]. It is shown in the dialog box and, typically, is changed by the user.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The visualization layer is assigned automatically based on the user’s choice of the layers of origin and destinations.</p>
+</div>
+<p>Click <strong>Run</strong> to initiate the calculation. The <strong>Progress bar</strong> tracks the status of the computations. You can interrupt the process at any time by clicking <strong>Break</strong>. The <strong>Log</strong> tab presents the run metadata.
 <span style="display: block; margin-top: 5px;"></span>
-The results of the computations are stored as two CSV report files in the <span class="guilabel">Output folder</span>. The first depicts the service area - all buildings that can be reached from <em>at least one</em> of the facilities in <span class="guilabel">Maximum travel time</span> or faster. Each of these accessible buildings is represented by the record that contains the <span class="guilabel">id</span> of the facility that served it, and all details of the trip between the facility and the building.
+The computation results are saved as a .gpkg file containing up to three tables. Each table name begins with a 4-letter prefix key that codes your chosen computation options:</p>
+<ul class="simple">
+<li><p><strong>1st Letter (Mode):</strong> p (public transport) or c (car)</p></li>
+<li><p><strong>2nd Letter (Travel time- or Opportunities-based assessment):</strong> A (service Area) or O (cumulative number of Opportunities)</p></li>
+<li><p><strong>3rd Letter (Schedule awareness):</strong> f (fixed) or s (schedule-based) arrival/departure time</p></li>
+<li><p><strong>4th Letter (Direction):</strong> T (TO), F (FROM), or R (ROUNDTRIP)</p></li>
+</ul>
+<p><em>For example: The prefix pAfT represents public transport (p), service area-based accessibility assessment (A), fixed arrival time (f), TO-accessibility (T)</em></p>
+<p>The number of tables in your output depends on your settings and destination count:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfT_log</span></code>: A log of the computation run settings (e.g., <code class="docutils literal notranslate"><span class="pre">pAfT_log</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfT_fastest_trip_all</span></code>: This table maps the travel time between each origin building and its closest accessible destination within the maximum travel time. Each record includes the origin ID, the fastest destination’s ID, and a granular breakdown of the trip by legs.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This basic output is automatically added to your QGIS project and joined to the <strong>Visualization layer</strong> to render travel times.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfT_fastest_trip_by_destinations</span></code>: This complementary table is only generated if your destinations layer contains more than one location. It details the fastest total travel time and leg count from each accessible building to each specific destination. If a destination cannot be reached within the maximum travel time, its values are marked as NULL. To use this table, you must manually add it to your QGIS project from the .gpkg output file.</p></li>
+</ol>
+<p><em>Advanced Use Case</em>: The <em>…_by_destinations…</em> output is highly useful for advanced spatial analysis, such as identifying residential buildings from which a user can reach more than 50% of all downtown fashion shops within 30 minutes.
 <span style="display: block; margin-top: 5px;"></span>
-The service area is visualized based on the <span class="guilabel">Visualization layer</span>. For the example of the <em>From service locations – Fixed-time departure</em> computations and maps for the road network and buildings layer of TAMA see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">section 10.4.1</span></a> and <a class="reference internal" href="sample.html#sample-region-from-accessibility-fixed-time"><span class="std std-ref">section 10.5.1</span></a>.
-<span style="display: block; margin-top: 5px;"></span>
-The service area file does not contain information on whether a building can be served by more than one facility. This information can be retrieved from the second output file, where for each facility, all buildings that can be served by it are listed. This second file can be used for deeper analysis of the accessibility, for example for recognizing buildings that can be reached from half or more of the facilities. In both output files, the details of every leg for every trip are described in detail, see the next section.</p>
-<section id="service-area-computations-the-log-file-and-the-structure-of-the-report">
-<span id="raptor-area-log"></span><h3><span class="section-number">5.3.1. </span>Service area computations - the log file and the structure of the report<a class="headerlink" href="#service-area-computations-the-log-file-and-the-structure-of-the-report" title="Link to this heading"></a></h3>
-<p>The log file (Figure 4) in the results folder stores all settings of the run and the computation time and is also presented in a log tab.</p>
+For a concrete example using the TAMA road and building layers, see <a class="reference internal" href="sample.html"><span class="doc">Section 10</span></a>.</p>
+</section>
+<section id="accessibility-to-destinations-the-log-file-and-the-structure-of-the-report">
+<span id="raptor-area-log"></span><h3><span class="section-number">6.1.2. </span>Accessibility TO destinations – the log file and the structure of the report<a class="headerlink" href="#accessibility-to-destinations-the-log-file-and-the-structure-of-the-report" title="Link to this heading"></a></h3>
+<p>The log file (Figure 4) generated in the results folder records all run settings and the total computation time. This exact content is also mirrored in the UI’s Log tab.</p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/log_point.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
+      <img src="_images/log_point.png" style="width: 80%; border: 3px solid white;margin-bottom: 10px" />
   </div>
-<p>Figure 4. Log file of the <i>From service locations – fixed-time departure</i> transit computations</p><p>The CSV file of results contains all the details of a trip to each accessible building (Figure 5):</p>
+<p>Figure 4. Log file for the fixed arrival time, TO-facility transit computations.</p><p>The basic results table <code class="docutils literal notranslate"><span class="pre">pAfT_fastest_trip_all</span></code> contains the step-by-step details of the trip from each accessible building TO the closest destination (Figure 5):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Origin_aid</p></td>
+<td><p>The unique aid of the start building.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Start_time</p></td>
+<td><p>The exact time a traveler leaves the origin building.</p></td>
+</tr>
+<tr class="row-even"><td><p>Walk_time<sub>1</sub></p></td>
+<td><p>The walking duration to the initial boarding stop.</p></td>
+</tr>
+<tr class="row-odd"><td><p>BStop_ID<sub>1</sub></p></td>
+<td><p>The GTFS stop_id of the initial boarding stop.</p></td>
+</tr>
+<tr class="row-even"><td><p>Wait_time<sub>1</sub></p></td>
+<td><p>The time spent waiting at the initial boarding stop, set zero in case of TO accessibility since the latest possible departure is considered</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bus_start_time<sub>1</sub></p></td>
+<td><p>The departure time of the first motorized transit leg.</p></td>
+</tr>
+<tr class="row-even"><td><p>Line_ID<sub>1</sub></p></td>
+<td><p>The GTFS line_id of the transit line used for the first leg.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ride_time<sub>1</sub></p></td>
+<td><p>The travel duration of the first motorized leg.</p></td>
+</tr>
+<tr class="row-even"><td><p>AStop_ID<sub>1</sub></p></td>
+<td><p>The GTFS stop_id of the stop where the traveler alights from the first leg.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bus_finish_time<sub>1</sub></p></td>
+<td><p>The arrival time to the stop of the first alighting.</p></td>
+</tr>
+<tr class="row-even"><td><p>Walk_time<sub>2</sub></p></td>
+<td><p>The walking duration to the first transfer stop (if applicable).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Next motorized legs and transfers</p></td>
+<td><p>Repeated fields for the second and third leg if occur.</p></td>
+</tr>
+<tr class="row-even"><td><p>DestWalk_time</p></td>
+<td><p>The walking duration from the destination stop to the destination building.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Destination_ID</p></td>
+<td><p>The unique ID of the destination building.</p></td>
+</tr>
+<tr class="row-even"><td><p>Destination_time</p></td>
+<td><p>The arrival time at the destination for the trip with the latest possible arrival, yet before the arrival time.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duration</p></td>
+<td><p>The total door-to-door trip duration.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 5. The layout of the fixed-time TO facility accessibility computations output.</p>
+<p>For a practical example of these outputs, see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">Section 10</span></a>.</p>
+</section>
+<section id="accessibility-from-facilities-fixed-time-departure">
+<h3><span class="section-number">6.1.3. </span>Accessibility FROM facilities, fixed-time departure<a class="headerlink" href="#accessibility-from-facilities-fixed-time-departure" title="Link to this heading"></a></h3>
+<p>To compute accessibility originating <em>from</em> specific origins, select the FROM option in the ACCESSIBILITY row of the dialog (Figure 6).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/area_type.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 6. The FROM accessibility computation is selected.</p><p>FROM-accessibility travel time is estimated based on the transit trip that results in the <em>earliest possible arrival</em> at the destination. Most parameters of the FROM-computations remain identical to the TO-accessibility setup. The basic difference lies in the definition of origins and destinations: the origin buildings (typically, facilities) now act as the starting points while the destinations, typically, are all buildings in the city.
+<span style="display: block; margin-top: 5px;"></span>
+Furthermore, the “Arrival time” in the Time settings is replaced by a “Start from the origin” time (Figure 7).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/sample/area_times.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 7. The configuration of the Arrival/Departure dialog for fixed-time FROM-accessibility.</p><p>The result .gpkg file for FROM-accessibility has the same structure as the TO-accessibility outputs, with minor adjustments of field names to reflect the trip FROM the origins to other buildings in the city.</p>
+</section>
+<section id="roundtrip-accessibility-fixed-time-departure">
+<h3><span class="section-number">6.1.4. </span>Roundtrip accessibility, fixed-time departure<a class="headerlink" href="#roundtrip-accessibility-fixed-time-departure" title="Link to this heading"></a></h3>
+<p>To compute roundtrip accessibility, select <strong>ROUNDTRIP</strong> in the ACCESSIBILITY row of the dialog (Figure 8).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/area_type_roundtrip.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 8. The ROUNDTRIP accessibility selection.</p><p>As explained in <a class="reference internal" href="introduction.html#introduction-versus2"><span class="std std-ref">Section 2.8</span></a>, a roundtrip journey consists of two distinct legs: from the origin to the destination, and from the destination back to the origin. While most parameters remain consistent with standard TO/FROM calculations, the user must explicitly define the temporal windows for both the outbound (Origin → Destination) and inbound (Destination → Origin) trips (Figure 9). The algorithm evaluates departure and arrival time intervals; the default resolution for these intervals is tied to the “maximum waiting time at the initial stop” parameter, though can be manually adjusted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For ROUNDTRIP accessibility, the maximum travel time applies to the entire outbound and return journey. For example, if you are analyzing TO- and FROM-accessibility using 45-minute trips, your maximum ROUNDTRIP travel time should be set to 90 minutes. Importantly, any building that takes longer than 2/3 of the total roundtrip time to reach in a single direction (e.g., 60 minutes out of a 90-minute total) is automatically considered inaccessible for the roundtrip.</p>
+</div>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/area_type_roundtrip_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 9. Temporal window configuration for ROUNDTRIP accessibility.</p><p>Unlike TO- and FROM-accessibility, ROUNDTRIP computations output the average roundtrip time across the selected journey periods. Because storing the details of every possible trip would be too data-intensive, the AC-plugin limits the output to six core characteristics:</p>
+<ul class="simple">
+<li><p>Average roundtrip travel time</p></li>
+<li><p>Standard deviation of the roundtrip travel time</p></li>
+<li><p>Average number of legs in the entire roundtrip</p></li>
+<li><p>Standard deviation of the number of legs</p></li>
+<li><p>Number of successful trials in the TO-computations</p></li>
+<li><p>Number of successful trials in the FROM-computations</p></li>
+</ul>
+<p>The full .gpkg output will generate either two or three tables, depending on your analysis:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfR_log</span></code>: The computation log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfR_fastest_trip_all</span></code>: Contains the six characteristics for every origin, along with the ID of the destination that offers the minimum average roundtrip time. <em>(Note: This table is automatically added to your QGIS project and joined to the Visualization layer to render travel times).</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pAfR_fastest_trip_by_destinations</span></code>: Contains the six characteristics calculated for the outbound and return journeys to each destination. This table is only generated if you are analyzing more than one destination.</p></li>
+</ul>
+</section>
+</section>
+<section id="service-area-for-schedule-based-arrival-departure-time">
+<span id="raptor-area-schedule-based"></span><h2><span class="section-number">6.2. </span>Service area for schedule-based arrival/departure time<a class="headerlink" href="#service-area-for-schedule-based-arrival-departure-time" title="Link to this heading"></a></h2>
+<p>Modern public transport users rarely walk to a stop blindly; they consult schedules or real-time apps, timing their departure from home to arrive at the stop just before the vehicle does. Alternatively, they select a specific bus that guarantees they arrive at their destination precisely when needed. When presented with multiple travel options within a specific time window, these informed travelers naturally select the route with the desired start, end, or shortest overall duration.
+<span style="display: block; margin-top: 5px;"></span>
+To facilitate schedule-based accessibility computations, we heavily modified the standard RAPTOR algorithm, separating these schedule-informed computations into distinct menu items within the AC plugin. The differences between fixed-time and schedule-based accessibility are conceptual, and comparing the outputs often yields insights into transit network efficiency.
+<span style="display: block; margin-top: 5px;"></span>
+To illustrate <strong>schedule-based TO accessibility</strong>, imagine a traveler who does not have a strict working hour and should arrive at the office between 8:30 and 9:00 AM. In terms of the AC-plugin, the “Earliest arrival time” is 8:30, and the “schedule-adjustment gap” is 30 minutes. Suppose there is only one transit stop a 3-minute walk away, serving two lines that reach the destination. Line 1 arrives at the stop at 8:05 AM and takes 30 minutes, resulting in an 8:35 AM arrival. Line 2 (an express route) arrives at the stop at 8:25 AM and takes 20 minutes, resulting in an 8:45 AM arrival.
+<span style="display: block; margin-top: 5px;"></span>
+A standard fixed-time RAPTOR algorithm would blindly select Line 1, as it yields the <em>earliest absolute arrival time</em> (8:35 AM), entirely ignoring Line 2. However, a schedule-informed traveler with a flexible departure window would consciously choose Line 2: it is 10 minutes faster, and the arrival time (8:45 AM) still falls within the acceptable 8:30–9:00 AM window. Notably, in both schedule-informed scenarios, the waiting time at the boarding stop is zero.
+<span style="display: block; margin-top: 5px;"></span>
+In the <strong>Schedule-Based</strong> TO-regime, the Accessibility Calculator natively accounts for these nuances. It simultaneously constructs two distinct accessibility maps: one based on the <em>earliest arrival</em>, and another based on the <em>fastest overall trip</em>. The user can utilize either map or directly compare how these two different behavioral models impact overall accessibility metrics.
+<span style="display: block; margin-top: 5px;"></span>
+The parameters for schedule-based accessibility are nearly identical to those for fixed-time calculations. The primary addition is the aforementioned schedule-adjustment gap, which defines the temporal flexibility the traveler has when choosing their start or arrival time, or both.</p>
+<ul class="simple">
+<li><p>For <strong>schedule-based FROM-accessibility</strong>, the strict “Start from facility” time is replaced by an “Earliest start” time and a “Schedule-adjustment gap.” The algorithm finds trips that allow the traveler to arrive at the destination anywhere between the “Earliest start” time and the “Earliest start” time plus the “schedule-adjustment gap.”</p></li>
+<li><p>For <strong>ROUNDTRIP analysis</strong>, the system seamlessly combines a schedule-based TO-trip (outbound) with a schedule-based FROM-trip (inbound).</p></li>
+</ul>
+<p>Figure 10 presents the Arrival/Departure part of the schedule-based accessibility computations for the ROUNDTRIP case.</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/area_type_roundtrip_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 10. The Schedule-adjustment gap parameter in schedule-based computations.</p><p>For practical examples of schedule-based accessibility, see <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">Section 10.6.2</span></a>, which directly compares fixed-time versus schedule-dependent accessibility estimates.</p>
+</section>
+<section id="cumulative-number-of-accessible-opportunities-fixed-arrival-departure-time">
+<span id="raptor-area-cumulative"></span><h2><span class="section-number">6.3. </span>Cumulative number of accessible opportunities, fixed arrival/departure time<a class="headerlink" href="#cumulative-number-of-accessible-opportunities-fixed-arrival-departure-time" title="Link to this heading"></a></h2>
+<p>This section details the calculations available under the <em>Transit accessibility → Сumulative opportunities maps</em> (Figure 11).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/transit_cumulative_menu.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 11. The <i>Transit accessibility → Сumulative opportunities maps</i> menu.</p><p>As with previous sections, we will first present a detailed walkthrough of the <em>Fixed arrival/departure → TO-accessibility</em> interface and subsequently describe the differences for the other available options.
+<span style="display: block; margin-top: 5px;"></span>
+Computing the cumulative number of opportunities requires a standard set of data:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Transit routing database:</span> See <em>Prepare databases → Transit routing database</em>.</p></li>
+<li><p><span class="guilabel">Layer of buildings:</span> This layer must be a part of the current QGIS project.</p></li>
+<li><p><span class="guilabel">Visualization layer:</span> Voronoi polygons or hexagons generated during data preprocessing.</p></li>
+</ul>
+<p>As usual, we will start with a detailed walkthrough of calculating a TO-CNO map based on a fixed departure time and then describe how the other options adapt these principles.</p>
+<section id="cumulative-number-of-to-opportunities-parameters-and-computation-execution">
+<h3><span class="section-number">6.3.1. </span>Cumulative number of TO-opportunities - parameters and computation execution<a class="headerlink" href="#cumulative-number-of-to-opportunities-parameters-and-computation-execution" title="Link to this heading"></a></h3>
+<p>Navigate to <em>Cumulative opportunities maps → fixed arrival/departure time</em> and
+choose the TO option from the dialog box (Figure 12).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/transit_cumulative_interface.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 12: The <i>Transit cumulative opportunities maps → Fixed arrival/departure time</i> dialog with the TO option selected.</p><p>The dialog box is divided into several logical blocks:
+<span style="display: block; margin-top: 5px;"></span>
+<strong>Input block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Transit routing database folder:</span> The directory containing the transit routing database generated at the “Prepare Databases” stage. You can check that it includes <code class="docutils literal notranslate"><span class="pre">stops.json</span></code>, <code class="docutils literal notranslate"><span class="pre">stoptimes.json</span></code>, <code class="docutils literal notranslate"><span class="pre">transfers.json</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_idx_in_route.json</span></code>, and <code class="docutils literal notranslate"><span class="pre">routes_by_stop.pkl</span></code></p></li>
+<li><p><span class="guilabel">Layer of origins:</span> Origins are buildings where the trip to destinations can start. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+<li><p><span class="guilabel">Opportunities’ attributes:</span> The attributes of the origin buildings that store quantity of various opportunities (e.g., population) available at each building.</p></li>
+<li><p><span class="guilabel">Layer of destinations:</span> Destinations are buildings where the trip from origins can end. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+</ul>
+<p><strong>Time settings</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Arrival to facility at (hh:mm:ss):</span> The absolute latest time the traveler must arrive at the destination facility.</p></li>
+<li><p><span class="guilabel">Maximum travel time, min</span>: The absolute maximum duration allowed for the entire trip (door-to-door).</p></li>
+</ul>
+<p><strong>Transit tolerance thresholds block</strong></p>
+<ul>
+<li><p><span class="guilabel">Maximum walk distance (up to 800m)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="guilabel">to the initial stop:</span> The maximum acceptable network walking distance from the trip origin to the first transit stop. The default is 400 m. This value must not exceed 800 m.</p></li>
+<li><p><span class="guilabel">at the transfer:</span> The maximum acceptable network walking distance between two different stops during a transfer. The default is 150 m. This value must not exceed 800 m.</p></li>
+<li><p><span class="guilabel">from the last stop:</span> The maximum acceptable network walking distance from the final alighting stop to the actual destination building. The default is 400 m. This value must not exceed 800 m.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="guilabel">Maximum waiting time, min</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="guilabel">at the initial stop:</span> The maximum acceptable time travelers will wait at their first stop.</p></li>
+<li><p><span class="guilabel">at the transfer stop:</span> The maximum acceptable time travelers will wait when transferring between PT lines.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="guilabel">Number of transfers</span>: The minimum and maximum allowed number of transfers for a single transit trip. The allowed range is between 0 to 2, the default is between 0 and 1.</p></li>
+<li><p><span class="guilabel">Average walking speed (km/h)</span>: The assumed average pedestrian walking speed.</p></li>
+</ul>
+<p><strong>Output block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Save output as…:</span> The name for the .gpkg file that will store the computation results.</p></li>
+<li><p><span class="guilabel">Save time bin</span> The accumulated number of opportunities is stored in distinct time bins -opportunities within X-minute, 2X-minute, 3X-minute, etc., trip. If the final time bin does not perfectly align with the <span class="guilabel">Maximum travel time</span>, the accumulated number of opportunities explicitly for the <span class="guilabel">Maximum travel time</span> is also stored. Typically, time bin X is set to 5 minutes.</p></li>
+</ul>
+<p>Click <strong>Run</strong> to initiate the calculation. The <strong>Progress bar</strong> tracks the status of the computations. You can interrupt the process at any time by clicking <strong>Break</strong>. The <strong>Log</strong> tab presents the run metadata.
+<span style="display: block; margin-top: 5px;"></span>
+The plugin will calculate the total number of buildings and the sum of the selected attributes’ values across all buildings from which each of the destination buildings can be assessed within X, 2X, 3X, etc., minutes. These metrics are stored as separate tables for each chosen attribute. The thematic map presents the cumulative number of opportunities accessible within the <span class="guilabel">Maximum travel time</span>.</p>
+</section>
+<section id="cumulative-number-of-to-opportunities-the-structure-of-the-report">
+<h3><span class="section-number">6.3.2. </span>Cumulative number of TO-opportunities - the structure of the report<a class="headerlink" href="#cumulative-number-of-to-opportunities-the-structure-of-the-report" title="Link to this heading"></a></h3>
+<p>The default output table presents the total number of buildings that can be reached from each of the region’s buildings by time bins - in X, 2X, etc., minutes (Figure 13):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
@@ -199,99 +412,41 @@ The service area file does not contain information on whether a building can be 
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Origin_ID</p></td>
-<td><p>The ID of the facility building</p></td>
+<td><p>The ID of the building of origin</p></td>
 </tr>
-<tr class="row-odd"><td><p>Start_time</p></td>
-<td><p>Time of the trip start</p></td>
+<tr class="row-odd"><td><p>Time X</p></td>
+<td><p>Total number of buildings accessible within X minutes</p></td>
 </tr>
-<tr class="row-even"><td><p>Walk_time<sub>1</sub></p></td>
-<td><p>Walk time to the initial stop</p></td>
+<tr class="row-even"><td><p>Time 2X</p></td>
+<td><p>Total number of buildings accessible within 2X minutes</p></td>
 </tr>
-<tr class="row-odd"><td><p>BStop_ID<sub>1</sub></p></td>
-<td><p>The ID of the initial stop</p></td>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
 </tr>
-<tr class="row-even"><td><p>Wait_time<sub>1</sub></p></td>
-<td><p>Waiting time at the initial stop</p></td>
-</tr>
-<tr class="row-odd"><td><p>Bus_start_time<sub>1</sub></p></td>
-<td><p>Start time of the first motorized leg of a trip</p></td>
-</tr>
-<tr class="row-even"><td><p>Line_ID<sub>1</sub></p></td>
-<td><p>ID of the line used for the first motorized leg of a trip</p></td>
-</tr>
-<tr class="row-odd"><td><p>Ride_time<sub>1</sub></p></td>
-<td><p>Duration of the first motorized leg of a trip</p></td>
-</tr>
-<tr class="row-even"><td><p>AStop_ID<sub>1</sub></p></td>
-<td><p>Alighting stop of the first motorized leg of a trip</p></td>
-</tr>
-<tr class="row-odd"><td><p>Bus_finish_time<sub>1</sub></p></td>
-<td><p>Finish time of the first leg of a trip</p></td>
-</tr>
-<tr class="row-even"><td><p>Walk_time<sub>2</sub></p></td>
-<td><p>Walking time to the first transfer stop</p></td>
-</tr>
-<tr class="row-odd"><td><p>BStop_ID<sub>2</sub></p></td>
-<td><p>ID of the first transfer stop</p></td>
-</tr>
-<tr class="row-even"><td><p>Wait_time<sub>2</sub></p></td>
-<td><p>Waiting time for a bus at the first transfer stop</p></td>
-</tr>
-<tr class="row-odd"><td><p>Next motorized legs and transfers</p></td>
-<td><p>…If more transfers are performed</p></td>
-</tr>
-<tr class="row-even"><td><p>DestWalk_time</p></td>
-<td><p>Walking time from the last stop to a destination</p></td>
-</tr>
-<tr class="row-odd"><td><p>Destination_ID</p></td>
-<td><p>The ID of the destination building</p></td>
-</tr>
-<tr class="row-even"><td><p>Destination_time</p></td>
-<td><p>Time of arrival to destination  for the journey with the earliest arrival to the destination</p></td>
-</tr>
-<tr class="row-odd"><td><p>Duration</p></td>
-<td><p>Total trip duration for the journey with the earliest arrival</p></td>
+<tr class="row-even"><td><p>Maximum travel time (if not a multiple of X)</p></td>
+<td><p>Total number of buildings accessible within the absolute maximum travel time</p></td>
 </tr>
 </tbody>
 </table>
-<p>Figure 5. The structure of the <em>From service locations – fixed-time departure</em> option output.</p>
-<p>The example of the  <em>From service locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+<p>Figure 13. The layout of the CNO output table for fixed-time TO-accessibility.</p>
+<p>The default thematic map visualizes the total number of buildings reachable within the maximum travel time. Additional result tables and secondary thematic maps represent the cumulative opportunities based on any specific user-selected attributes.
+<span style="display: block; margin-top: 5px;"></span>
+For a practical example of the <em>CNO maps → TO locations – fixed-time computations</em>, see <a class="reference internal" href="sample.html#sample-to-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
+<section id="cumulative-number-of-from-and-roundtrip-opportunities-fixed-time-departure">
+<h3><span class="section-number">6.3.3. </span>Cumulative number of FROM- and ROUNDTRIP-opportunities, fixed-time departure<a class="headerlink" href="#cumulative-number-of-from-and-roundtrip-opportunities-fixed-time-departure" title="Link to this heading"></a></h3>
+<p>Most of the parameters required for computing FROM- and ROUNDTRIP opportunities are identical to those used in TO-computations. The critical difference lies in establishing the departure time instead of the arrival time in the FROM case and two time intervals, the first for arrival to the destination for the TO-trip from origins to destinations, and the second for departures from the destinations back to origins for the FROM-trips back in case of the ROUNDTRIP. Note that FROM computations account for the opportunities’ attributes of the destination layer, while ROUNDTRIP accounts, like the TO-option, for the opportunities’ attributes of the origin layer.
+<span style="display: block; margin-top: 5px;"></span>
+The generated Log and Result files share the exact same structural format as those produced during TO-opportunities computations.
+<span style="display: block; margin-top: 5px;"></span>
+For a practical example of the <em>Transit accessibility → Cumulative opportunities maps → FROM locations – fixed-time computations</em>, see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="accessibility-to-services-fixed-time-arrival">
-<h2><span class="section-number">5.4. </span>Accessibility to services, fixed-time arrival<a class="headerlink" href="#accessibility-to-services-fixed-time-arrival" title="Link to this heading"></a></h2>
-<p>The travel time in this case is estimated for the PT journey with the latest departure from the origin.
+<section id="cumulative-number-opportunities-for-schedule-based-arrival-departure">
+<h3><span class="section-number">6.3.4. </span>Cumulative number opportunities for schedule-based arrival/departure<a class="headerlink" href="#cumulative-number-opportunities-for-schedule-based-arrival-departure" title="Link to this heading"></a></h3>
+<p>The rationale behind the schedule-based view of accessibility, alongside its core conceptual framework, is detailed in <a class="reference internal" href="prepare_database.html#building-data-visualization"><span class="std std-ref">Section 5.5</span></a>.
 <span style="display: block; margin-top: 5px;"></span>
-Run <em>To service locations – fixed-time arrival</em>. Most of the parameters of the to-accessibility computations are the same as for the from-accessibility. The major difference is in establishing facilities and buildings to serve: For the to-accessibility, facilities are destinations and not origins, as in the case of the from-accessibility (Figure 6).</p>
-  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/sample/area_opt.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
-  </div>
-<p>Figure 6. The Facilities/Origins part of the <i>To service locations - fixed time arrival</i> dialog</p><p>In addition, the trip’s start time is substituted by the arrival time (Figure 7).</p>
-  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/sample/area_opt2.png" style="width: 60%; border: 3px solid white;margin-bottom: 10px" />
-  </div>
-<p>Figure 7. The Arrival time part of the <i>To service locations - fixed time arrival</i> dialog</p><p>The Log and Result files for the to-accessibility have the same format as for the from-accessibility, with minor changes that reflect the changes in the direction of trips. The output table includes an additional attribute: “Latest time at destination”, that contains <span class="guilabel">Arrive before</span> time. The example of the <em>To service locations – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+(Examples of schedule-based cumulative opportunities computations can be found here, and a detailed comparison between fixed-time and schedule-dependent outputs is available <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a>).</p>
 </section>
-<section id="service-area-for-schedule-based-departure-or-arrival">
-<span id="raptor-area-schedule-based"></span><h2><span class="section-number">5.5. </span>Service area for schedule-based departure or arrival<a class="headerlink" href="#service-area-for-schedule-based-departure-or-arrival" title="Link to this heading"></a></h2>
-<p>The modern users of public transport are aware of the time the bus arrives at the stop they plan to start from or at the final stop of the trip. These travelers start their trip and walk to the initial stop to be there just before the bus arrival or choose the bus that arrives at the destination just before they want to be there. Having several travel options during the appropriate time interval, they choose the option that takes minimal time.
-<span style="display: block; margin-top: 5px;"></span>
-As an example of the “from” schedule-based accessibility computation, let us consider a traveler who is willing to start her PT trip to work between 8:00 and 8:30, and travel up to 45 minutes. Let us also assume that there is only one stop nearby at a 3-minute walk, two lines that take her to a destination and the buses of these lines arrive at this stop at 8:05 (Line 1) and 8:25 (Line 2), respectively. With the first line the total travel time is 30 minutes, and the arrival time will be 8:35. The second is an express line, the total travel time is 20 minutes and the traveler will be at the destination at 8:45. The standard <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> will choose the trip with the Line 1 and the earliest arrival to the destination, the second trip would not be considered at all. The schedule-informed traveler can also choose the second trip because it’s the fastest and the start time is still within the acceptable time interval. Note that in both cases, the time between the earliest start time and the actual start of the trip with the earliest arrival (8:02) or the fastest trip (8:22) is not included in the total travel time. In a Schedule-Based regime, the Accessibility Calculator considers both options and constructs two accessibility maps – one based on the earliest arrival and another based on the fastest trip. The user can choose any of them for accessibility assessment, as well as compare accessibility estimates for these two views of the travelers’ behavior.
-<span style="display: block; margin-top: 5px;"></span>
-In the case of the schedule-based to-accessibility computations, the latest arrival time is also substituted by the arrival interval. A traveler is allowed to arrive at the destination between the “Earliest arrival time” and the “Latest arrival time” that must be the same or later. As above, two maps are constructed and stored – one based on the trips with the latest start time and another based on the fastest trip. The “residual” time between the actual arrival and the latest possible arrival is not included in the travel time.
-<span style="display: block; margin-top: 5px;"></span>
-To compute accessibility for schedule-informed travelers we have modified the <a class="reference internal" href="glossary.html#term-RAPTOR-Algorithm"><span class="xref std std-term">RAPTOR algorithm</span></a> and organized these computations as separate items in the Accessibility Calculator menu. The difference between the accessibility computations for travelers behaving according to the fixed time start or finish of the trip, and for the travelers whose behavior is schedule-defined as conceptual, and we will be happy to know your experience in employing these two approaches and comparing the results.
-<span style="display: block; margin-top: 5px;"></span>
-The parameters of the <em>From locations – schedule-based departure</em> computations are almost the same as for the fixed-time from-accessibility. The difference is in the description of the start of the trip which is defined by two parameters:</p>
-<p><span class="guilabel">Earliest start time</span> — the earliest start time of a trip,
-<br/>
-<span class="guilabel">Latest start time is T minutes later, T =</span> … the latest start time of a trip.</p>
-<p>For the <em>To locations – schedule-based arrival accessibility</em>, the description of arrival to the destination is defined by:</p>
-<p><span class="guilabel">Earliest arrival time</span> — the time of the earliest arrival to a destination,
-<br/>
-<span class="guilabel">Latest arrival time is T minutes later, T =</span> … the latest arrival time of a trip.</p>
-<p>The examples of schedule-based accessibility are <a class="reference internal" href="sample.html#sample-schedule-based"><span class="std std-ref">here</span></a>.</p>
-<p>The <a class="reference internal" href="sample.html#sample-comparison-time-fixed-schedule-dependent"><span class="std std-ref">example section 10.6.2</span></a> contains the comparison between the estimates of the time-fixed and schedule-dependent accessibility.</p>
 </section>
 </section>
 
@@ -299,8 +454,8 @@ The parameters of the <em>From locations – schedule-based departure</em> compu
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="building_pkl.html" class="btn btn-neutral float-left" title="4. Data preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="raptor_map.html" class="btn btn-neutral float-right" title="6. Transit Accessibility of all locations in the Region" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="prepare_database.html" class="btn btn-neutral float-left" title="5. Prepare databases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="car_accessibility.html" class="btn btn-neutral float-right" title="7. Car accessibility computations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

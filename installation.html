@@ -18,7 +18,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Data preprocessing" href="building_pkl.html" />
+    <link rel="next" title="4. Data preprocessing" href="data_preprocessing.html" />
     <link rel="prev" title="2. Introduction" href="introduction.html" /> 
 </head>
 
@@ -45,14 +45,14 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roundtrip.html">10. IRoundtrip accessibility – the experimental option</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">11. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
@@ -83,31 +83,18 @@
              
   <section id="installation">
 <span id="id1"></span><h1><span class="section-number">3. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>You need a <a class="reference internal" href="glossary.html#term-QGIS"><span class="xref std std-term">QGIS</span></a> to be installed on your PC, see <a class="reference external" href="https://qgis.org">https://qgis.org</a>.</p>
-<ol class="arabic simple">
-<li><p>Go to <em>Plugin → Manage and Install Plugins</em> menu (Figure 1)</p></li>
-</ol>
+<p>To use the Accessibility Calculator, you must first have <a class="reference internal" href="glossary.html#term-QGIS"><span class="xref std std-term">QGIS</span></a> installed on your PC (for downloads and documentation, see <a class="reference external" href="https://qgis.org">https://qgis.org</a>). Navigate to the <em>Plugins → Manage and Install Plugins</em> menu (Figure 1).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/install1.png" style="width: 50%; border: 0px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 1: Step 1 of the Accessibility Calculator installation</p><ol class="arabic simple" start="2">
-<li><p>Choose <em>Install from ZIP</em> (Figure 2)</p></li>
-</ol>
+<p>Figure 1: Accessibility Calculator installation</p><p>Select the <strong>All</strong> tab, type “Accessibility Calculator” into the search bar, and click <strong>Install Plugin</strong> (Figure 2).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/install2.png" style="width: 90%; border: 0px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 2: Step 2 of the Accessibility Calculator installation</p><ol class="arabic simple" start="3">
-<li><p>Find <code class="docutils literal notranslate"><span class="pre">tau_accessibility_calculator.zip</span></code> file and click <strong>Install Plugin</strong>. The plugin will be installed in the directory
-<code class="docutils literal notranslate"><span class="pre">C:\Users\NameUser\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\</span></code></p></li>
-</ol>
-<p>The new button and menu item will be added to the toolbar panel and plugins’ menu</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/app2.png" style="width: 72%; border: 5px solid white;margin-bottom: 10px" />
-    <img src="_images/app3.png" style="width: 23%; border: 5px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 3: Two ways to activate the Accessibility Calculator plugin</p><div class="admonition note">
+<p>Figure 2: Accessibility Calculator plugin installation<p><p>Once the process is complete, a new button and menu item will automatically be added to your QGIS toolbar panel and plugins menu.</p>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you already have the installed version of this plugin, delete it, using the <em>Manage and Install Plugins</em> menu, before installing a new one. It is highly recommended to close QGIS after uninstalling the previous version of the Accessibility Calculator and then open QGIS again and install a new version.</p>
+<p>To be able to download experimental versions of the CA-plugin enable this option, see <a class="reference external" href="https://docs.qgis.org/3.44/en/docs/training_manual/qgis_plugins/fetching_plugins.html">https://docs.qgis.org/3.44/en/docs/training_manual/qgis_plugins/fetching_plugins.html</a></p>
 </div>
 </section>
 
@@ -116,7 +103,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="introduction.html" class="btn btn-neutral float-left" title="2. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="building_pkl.html" class="btn btn-neutral float-right" title="4. Data preprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_preprocessing.html" class="btn btn-neutral float-right" title="4. Data preprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

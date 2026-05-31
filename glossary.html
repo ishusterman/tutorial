@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>11. Glossary &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>12. Glossary &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -18,8 +18,8 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="12. License" href="license.html" />
-    <link rel="prev" title="10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area" href="sample.html" /> 
+    <link rel="next" title="13. License" href="license.html" />
+    <link rel="prev" title="11. Tutorial datasets" href="dataset.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,16 +45,17 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
 </ul>
 
         </div>
@@ -71,7 +72,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">11. </span>Glossary</li>
+      <li class="breadcrumb-item active"><span class="section-number">12. </span>Glossary</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,21 +82,21 @@
            <div itemprop="articleBody">
              
   <section id="glossary">
-<span id="id1"></span><h1><span class="section-number">11. </span>Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1><span class="section-number">12. </span>Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h1>
 <dl class="simple glossary">
-<dt id="term-Dijkstra-Algorithm">Dijkstra Algorithm<a class="headerlink" href="#term-Dijkstra-Algorithm" title="Link to this term"></a></dt><dd><p><a class="reference external" href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra’s Algorithm</a> An algorithm for finding the shortest paths on a graph.</p>
+<dt id="term-Dijkstra-Algorithm">Dijkstra Algorithm<a class="headerlink" href="#term-Dijkstra-Algorithm" title="Link to this term"></a></dt><dd><p>Dijkstra’s Algorithm <a class="reference external" href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">http://en.wikipedia.org/wiki/Dijkstra’s_algorithm</a> a foundational graph search algorithm used for finding the shortest paths between nodes (e.g., road intersections) within a network.</p>
 </dd>
-<dt id="term-GTFS">GTFS<a class="headerlink" href="#term-GTFS" title="Link to this term"></a></dt><dd><p><a class="reference external" href="https://developers.google.com/transit/gtfs">General Transit Feed Specification</a> A common format for storing public transportation routes, schedules and associated information.</p>
+<dt id="term-GRASS">GRASS<a class="headerlink" href="#term-GRASS" title="Link to this term"></a></dt><dd><p>Geographic Resources Analysis Support System, <a class="reference external" href="https://grass.osgeo.org/">https://grass.osgeo.org/</a> a free, open-source Geographic Information System (GIS) used for raster, vector, and geospatial processing. It is natively included within the standard QGIS installation package.</p>
 </dd>
-<dt id="term-GRASS">GRASS<a class="headerlink" href="#term-GRASS" title="Link to this term"></a></dt><dd><p><a class="reference external" href="https://grass.osgeo.org/">https://grass.osgeo.org/</a> A free open-source Geographic Information System for raster, vector, and geospatial processing. Is included in the installation package of the QGIS</p>
+<dt id="term-GTFS">GTFS<a class="headerlink" href="#term-GTFS" title="Link to this term"></a></dt><dd><p>General Transit Feed Specification <a class="reference external" href="https://developers.google.com/transit/gtfs">https://developers.google.com/transit/gtfs</a> a standardized, globally recognized data format used for storing public transportation routes, schedules, stops, and associated network information.</p>
 </dd>
-<dt id="term-OSM">OSM<a class="headerlink" href="#term-OSM" title="Link to this term"></a></dt><dd><p><a class="reference external" href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a> A free, open geographic database updated and maintained by a community of volunteers via open collaboration.</p>
+<dt id="term-OSM">OSM<a class="headerlink" href="#term-OSM" title="Link to this term"></a></dt><dd><p>OpenStreetMap (OSM) <a class="reference external" href="https://www.openstreetmap.org/">https://www.openstreetmap.org/</a> a free, open, and globally accessible geographic database updated and maintained through open collaboration by a community of volunteers.</p>
 </dd>
-<dt id="term-QGIS">QGIS<a class="headerlink" href="#term-QGIS" title="Link to this term"></a></dt><dd><p><a class="reference external" href="http://www.qgis.org">QGIS</a> A free open-source Geographic Information System for viewing, editing, and analysis of geospatial data.</p>
+<dt id="term-QGIS">QGIS<a class="headerlink" href="#term-QGIS" title="Link to this term"></a></dt><dd><p>QGIS <a class="reference external" href="http://www.qgis.org">http://www.qgis.org</a> a free, open-source Geographic Information System platform utilized for viewing, editing, mapping, and analyzing complex geospatial data.</p>
 </dd>
-<dt id="term-RAPTOR-Algorithm">RAPTOR Algorithm<a class="headerlink" href="#term-RAPTOR-Algorithm" title="Link to this term"></a></dt><dd><p><a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf">RAPTOR Algorithm</a> Round-based Public Transit Routing, an algorithm for finding the optimal route with public transport.</p>
+<dt id="term-RAPTOR-Algorithm">RAPTOR Algorithm<a class="headerlink" href="#term-RAPTOR-Algorithm" title="Link to this term"></a></dt><dd><p>Round-based Public Transit Routing RAPTOR <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf</a>. An advanced, highly efficient algorithm specifically designed for computing optimal routes and travel times within complex public transit networks.</p>
 </dd>
-<dt id="term-Voronoi-diagram">Voronoi diagram<a class="headerlink" href="#term-Voronoi-diagram" title="Link to this term"></a></dt><dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a> is a partition of a plane into regions close to each object of a given set.</p>
+<dt id="term-Voronoi-diagram">Voronoi diagram<a class="headerlink" href="#term-Voronoi-diagram" title="Link to this term"></a></dt><dd><p>Voronoi diagram <a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">https://en.wikipedia.org/wiki/Voronoi_diagram</a> a partition of a 2D plane into distinct polygonal regions based on distance to a specific dataset of points (e.g., building centroids). Any location within a given Voronoi polygon is closer to its corresponding center point than to any other point in the initial dataset.</p>
 </dd>
 </dl>
 </section>
@@ -104,8 +105,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="sample.html" class="btn btn-neutral float-left" title="10. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="license.html" class="btn btn-neutral float-right" title="12. License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dataset.html" class="btn btn-neutral float-left" title="11. Tutorial datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="13. License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

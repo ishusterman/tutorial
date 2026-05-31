@@ -18,8 +18,8 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Visualization of accessibility map" href="visualization.html" />
-    <link rel="prev" title="7. Сar accessibility" href="car_accessibility.html" /> 
+    <link rel="next" title="9. Visualization of accessibility maps" href="visualization.html" />
+    <link rel="prev" title="7. Car accessibility computations" href="car_accessibility.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,14 +45,14 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Сar accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roundtrip.html">10. IRoundtrip accessibility – the experimental option</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">11. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
@@ -83,72 +83,74 @@
              
   <section id="compare-accessibility-maps">
 <span id="relative-ready-made"></span><h1><span class="section-number">8. </span>Compare accessibility maps<a class="headerlink" href="#compare-accessibility-maps" title="Link to this heading"></a></h1>
-<p>Accessibility can be fully understood in a comparative study for two or more scenarios that consider different travel modes or different sets of parameters. The Compare accessibility maps part of the Accessibility Calculator menu (Figure 1) is developed for this purpose.</p>
+<p>To fully understand accessibility dynamics, it is highly recommended to perform a comparative study where accessibility is evaluated across two or more scenarios featuring different travel modes or parameter sets. The <strong>Compare accessibility maps</strong> module within the Accessibility Calculator menu (Figure 1) is designed specifically for this purpose.</p>
    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/mainwindow-compare.png" style="width: 35%; border: 3px solid white;margin-bottom: 10px" />
+    <img src="_images/mainwindow-compare.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
- <p>Figure 1. <i>Compare accessibility maps menu</i></p><p>The comparison is performed for the outcomes of two scenarios. On start, the Accessibility Calculator verifies that the comparison can be performed. The verification is based on the Log files of these scenarios that must be in the folder of each scenario’s output, otherwise the comparison will be quit.
-The compatibility tests verify that:</p>
-<ul class="simple">
-<li><p>The compared maps are both of the service areas, or region accessibility computations.</p></li>
-<li><p>The overlap between the two maps is not empty.</p></li>
-<li><p>When comparing Region maps, the time bins of both outputs are the same.</p></li>
-</ul>
-<p><span style="display: block; margin-top: 5px;"></span>
-Note that the comparison of the from- and to-accessibility maps is allowed.
+ <p>Figure 1. <i>Compare accessibility maps</i> menu</p><p>The comparison evaluates the outputs of two distinct scenarios. Upon initiation, the Accessibility Calculator first verifies that a valid comparison can be performed. This validation relies on the Log files generated during each scenario’s run, which are part  of the output.
 <span style="display: block; margin-top: 5px;"></span>
-If all tests are successfully passed, the comparison is made for the spatially overlapping parts of the outputs. The non-overlapping parts are presented as additional layers, together with the results of the comparison. The dialog and parameters of the <em>Compare accessibility maps → Service areas</em> and <em>Compare accessibility maps → Regions</em> are the same. We illustrate them with the <em>Compare accessibility maps → Service areas</em> comparison.</p>
-<blockquote>
-<div><div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+The compatibility tests ensure that:</p>
+<ul class="simple">
+<li><p>Both maps are of the identical type (i.e., either both are service areas, or both are cumulative opportunities maps).</p></li>
+<li><p>The spatial overlap between the two output maps is not empty.</p></li>
+<li><p>When comparing cumulative opportunities maps, both outputs utilize the exact same time bins.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can compare FROM-, TO-, and ROUNDTRIP-accessibility maps.</p>
+</div>
+<p>If all compatibility tests pass, the comparison is executed for the spatially overlapping sections of the outputs. The non-overlapping sections are generated as separate, additional layers alongside the main comparison results.
+<span style="display: block; margin-top: 5px;"></span>
+The dialog for <em>Compare accessibility maps → Service areas</em> is shown in Figure 2</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/compare.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 2. <i>Copmare accessibility maps</i> dialog</p></div></blockquote>
-<p><span class="guilabel">Result_1 folder</span> — the folder that contains the outputs of the first scenario.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Name of file_1</span>— the CSV file of the Scenario_1 results in the
-<span class="guilabel">Result_1 folder</span>.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Result_2 folder</span> — the folder that contains the results of the second scenario.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Name of file_2</span> — the CSV file of the Scenario_2 results in the <span class="guilabel">Result_2 folder</span>.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Output folder</span> — the folder to store the results of the comparison.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Output alias</span> — the alias for the files of results.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Visualization layer</span> — the name of the visualization layer, must be a part of the QGIS project.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">id</span> — the unique identifier of the visualization layer unit, must be the subset of the buildings’ identifiers.
-<span style="display: block; margin-top: 5px;"></span>
-For more information on the visulaization layers see <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
-<span style="display: block; margin-top: 5px;"></span>
-The measures of comparison:
-<br/>
-<span class="guilabel">Ratio: Result_1/Result_2</span> — the ratio of the result of the first scenario to the results of the second scenario, for the overlapping part of the outputs.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Difference: Result_1 - Result_2</span> — the difference between the result of the first scenario and the results of the second scenario, for the overlapping part of the outputs.
-<span style="display: block; margin-top: 5px;"></span>
-<span class="guilabel">Relative difference: [Result_1 - Result_2]/Result 2</span> — the difference between the result of the first scenario and the results of the second scenario divided by the result of the second scenario, for the overlapping part of the outputs. The results are presented in percentages.
-<span style="display: block; margin-top: 5px;"></span>
-For each of the three cases, in addition to the map of the selected measure of difference, two more maps are presented. The first presents the buildings accessible in Scenario 1 (Result_1 is not NULL) but inaccessible in Scenario 2 (Result_2 is NULL). The second, is the buildings that were accessible in Scenario 2 (Result_2 is not NULL) but not in Scenario 1 (Result_1 is NULL).
-<span style="display: block; margin-top: 5px;"></span>
-Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.
-<span style="display: block; margin-top: 5px;"></span>
-The <strong>Log</strong> tab repeats the <strong>Log</strong> information of each of the compared scenarios, the metadata about the chosen measures and the overlapping parts of the outputs. If the comparison has failed the Log file contains the reason for the failure (Figure 3).</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/compare_log.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
+<p>Figure 2. <i>Copmare accessibility maps</i> dialog for comparing two service area maps</p><ul class="simple">
+<li><p><span class="guilabel">Result_1</span>: The result .gpkg file for Scenario 1.</p></li>
+<li><p><span class="guilabel">Result_2</span>: The result .gpkg file for Scenario 2.</p></li>
+<li><p><span class="guilabel">Save results as</span>: The .gpkg file that contains the results of the comparison.</p></li>
+<li><p><span class="guilabel">Visualization layer</span>: The visual layer (e.g., Voronoi or hexagon) for mapping the results of the comparison. Must be active in the current QGIS project.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike previous dialogs, the comparison procedure requires the used to explicitly select the visualization layer. While the visualization layer for each output is recorded in its respective log file, and the comparison procedure tests whether these layers have the same resolution and meaning, the AC-plugin cannot automatically detect the layer’s location during the comparison stage.</p>
 </div>
-<p>Figure 3. The log file of the Compare accessibility maps output</p><p>The example of the <em>Compare accessibility map → Service areas</em>, see <a class="reference internal" href="sample.html#sample-compare-single"><span class="std std-ref">here</span></a>.
-<br/>
-The example of the <em>Compare accessibility map → Regions</em>, see <a class="reference internal" href="sample.html#sample-compare-region"><span class="std std-ref">here</span></a>.</p>
+<p>For more information on visualization layers, see <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
+<span style="display: block; margin-top: 5px;"></span>
+<strong>The measures of comparison:</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Ratio: (Result_1/Result_2)</span>: The ratio of the first scenario’s result to the second scenario’s result, calculated for the overlapping spatial extent.</p></li>
+<li><p><span class="guilabel">Difference: (Result_1 - Result_2)</span>: The absolute difference between the first scenario’s result and the second scenario’s result, for the overlapping extent.</p></li>
+<li><p><span class="guilabel">Relative difference: [(Result_1 - Result_2)/Result 2]</span>: The proportional difference between the two scenarios, calculated for the overlapping extent. These results are expressed as percentages.</p></li>
+</ul>
+<p>For each of these three measures, the plugin generates the primary map of the selected difference metric, alongside two supplementary maps:</p>
+<ul class="simple">
+<li><p>A map highlighting buildings that are accessible in Scenario 1 (Result_1 is not NULL) but inaccessible in Scenario 2 (Result_2 is NULL).</p></li>
+<li><p>A map highlights buildings that are accessible in Scenario 2 (Result_2 is not NULL) but inaccessible in Scenario 1 (Result_1 is NULL).</p></li>
+</ul>
+<p>Click <strong>Run</strong> to initiate the comparison. The <strong>Progress bar</strong> tracks the computation status. You can interrupt the process at any time by clicking <strong>Break</strong>.
+<span style="display: block; margin-top: 5px;"></span>
+The <strong>Log</strong> tab merges and displays the Log information from both scenarios, alongside metadata regarding the selected comparison measures and the overlapping extents. If the comparison fails, this Log file details the specific reasons for the failure (Figure 3).</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/compare_log.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
+</div>
+<p>Figure 3. The part of the log file of the Compare accessibility maps output </p><p>The dialog for the <em>Compare accessibility maps → Cumulative opportunities</em> is presented in Figure 4.</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/compare_cumulative.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div>
+<p>Figure 4. <i>Copmare accessibility maps</i> dialog for comparing two maps of cumulative number of opportunities.</p><p>Different from the case of service area maps comparison, the number of maps and the attributes exploited for constructing them can vary. The user should thus explicitly choose the layers from the .gpkg files of each of the outputs.</p>
+<ul class="simple">
+<li><p>For a practical example of the <em>Compare accessibility map → Service areas</em> tool, see <a class="reference internal" href="sample.html#sample-compare-single"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>For a practical example of the <em>Compare accessibility map → Cumulative opportunities</em> tool, see <a class="reference internal" href="sample.html#sample-compare-region"><span class="std std-ref">here</span></a>.</p></li>
+</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="car_accessibility.html" class="btn btn-neutral float-left" title="7. Сar accessibility" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="visualization.html" class="btn btn-neutral float-right" title="9. Visualization of accessibility map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="car_accessibility.html" class="btn btn-neutral float-left" title="7. Car accessibility computations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualization.html" class="btn btn-neutral float-right" title="9. Visualization of accessibility maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

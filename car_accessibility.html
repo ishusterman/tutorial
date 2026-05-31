@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>7. Сar accessibility &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>7. Car accessibility computations &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -16,11 +16,10 @@
       <script src="_static/documentation_options.js?v=7f41d439"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="8. Compare accessibility maps" href="relative_ready-made.html" />
-    <link rel="prev" title="6. Transit Accessibility of all locations in the Region" href="raptor_map.html" /> 
+    <link rel="prev" title="6. Transit accessibility computations" href="raptor_area.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,22 +45,21 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_pkl.html">4. Data preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility – database construction and service area maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_map.html">6. Transit Accessibility of all locations in the Region</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Сar accessibility</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#building-database-for-car-accessibility-computation">7.1. Building database for car accessibility computation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#from-service-locations-fixed-time-departure">7.2. From service locations, fixed-time departure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#from-service-locations-accessibility-report-and-a-log-file">7.3. From service locations accessibility report and a log file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#to-service-locations-fixed-time-arrival">7.4. To service locations, fixed-time arrival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#car-accessibility-region-maps">7.5. Car Accessibility, Region maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#car-accessibility-to-every-location-in-the-region">7.6. Car accessibility to every location in the region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Car accessibility computations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#car-service-area-maps-parameters-and-computation-execution">7.1. Car service area maps – parameters and computation execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#car-service-area-report-file">7.2. Car service area  - report file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#car-accessibility-from-facilities">7.3. Car accessibility FROM facilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roundtrip-accessibility">7.4. ROUNDTRIP Accessibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cumulative-number-of-opportunities-accessible-by-car">7.5. Cumulative number of opportunities accessible by car</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roundtrip.html">10. IRoundtrip accessibility – the experimental option</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">11. Assessing the effect of a new Light Rail Transit line on transport accessibility in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
@@ -81,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">7. </span>Сar accessibility</li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Car accessibility computations</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -90,243 +88,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ar-accessibility">
-<h1><span class="section-number">7. </span>Сar accessibility<a class="headerlink" href="#ar-accessibility" title="Link to this heading"></a></h1>
-<p>This section explains the <em>Car accessibility</em> branch of the Accessibility Calculator menu (Figure 1).</p>
+  <section id="car-accessibility-computations">
+<h1><span class="section-number">7. </span>Car accessibility computations<a class="headerlink" href="#car-accessibility-computations" title="Link to this heading"></a></h1>
+<p>This section details the <em>Car accessibility</em> branch of the Accessibility Calculator menu (Figure 1).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/mainwindow-car.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 1. The <i>Car accessibility</i> menu<p><p>Note that the car trip description is simpler than that of the transit trip and includes three components only – walk from the origin facility to the parking car, drive, and walk from the parking spot to the destination. Importantly, in the case of car accessibility, a fixed start/arrival time only makes sense.</p>
-<section id="building-database-for-car-accessibility-computation">
-<span id="building-data-car"></span><h2><span class="section-number">7.1. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
-<p>Constructing a car routing database demands a topologically clean road network and two basic attributes demanded by wayfinding algorithms. These attributes are:</p>
+<p>Figure 1. The <i>Car accessibility</i> menu<p><p>A car trip is inherently simpler than a transit trip and consists of only three legs: walking from the origin to the parked car, driving to the destination, and walking from the final parking spot to the destination building. In the current version of the plugin, we do not account for dynamic, congestion-dependent routing; therefore, only fixed start/arrival time accessibility is considered for car journeys.</p>
+<section id="car-service-area-maps-parameters-and-computation-execution">
+<span id="car-options"></span><h2><span class="section-number">7.1. </span>Car service area maps – parameters and computation execution<a class="headerlink" href="#car-service-area-maps-parameters-and-computation-execution" title="Link to this heading"></a></h2>
+<p>This section outlines the details for computing TO accessibility with cars(Figure 2). To perform these computations, you need the following:</p>
 <ul class="simple">
-<li><p>links’ <span class="bolditalic">traffic direction</span> that can be <strong>B</strong> (two-way link), <strong>F</strong> (One-way link, the driving is allowed along the direction the link is drawn), <strong>T</strong> (One-way link, driving is allowed against the direction the link is drawn), or <strong>N</strong>: Pedestrian-only link, always two-directional, and</p></li>
-<li><p>links’ <span class="bolditalic">maximum traffic speed</span></p></li>
+<li><p>The Car routing database (see <em>Prepare Databases → Car routing database</em>).</p></li>
+<li><p>The topologically clean layer of buildings, loaded in the current QGIS project.</p></li>
+<li><p>The visualization layer (Voronoi polygons or hexagons).</p></li>
 </ul>
-<p>Given the clean road layer, the Accessibility Calculator tests the layer’s attributes and finds candidates for these two fields. If there is more than one candidate for any of them, a user must choose the one to proceed.
-<span style="display: block; margin-top: 5px;"></span>
-In the current version of the plugin, we deal with the OSM and non-OSM layers of roads slightly differently. If the source of the road layer is the OSM database, then the link’s traffic direction is given by the ONEWAY attribute and the maximum traffic speed by the MAXSPEED attribute. The latter is defined in the OSM road layer by the type of road link - a highway, major city street, neighborhood secondary street, etc., given by the FCLASS attribute. The traffic speeds <span class="math notranslate nohighlight">\(V_p\)</span>, by the road link types <em>p</em>, are given in the <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> table (Figure 6, left) that contains three fields:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">seq</span></code> — the sequential number of the row;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">link_type</span></code> — the OSM type of a link;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">speed</span></code> — the free flow car speed on the link of this type.</p></li>
-</ul>
-<p>If the link’s type is missing in the FCLASS field of the OSM table, the the <span class="guilabel">Default speed</span> will be used. If the traffic direction is missing in the ONEWAY field the Default direction B (two-way) will be used.
-<span style="display: block; margin-top: 5px;"></span>
-For the non-OSM layer, the traffic direction and maximum traffic speed must be provided by the user.
-<span style="display: block; margin-top: 5px;"></span>
-The actual speed on the link is defined by the maximum speed and the congestion delay coefficient that depends on the hour of the day. The average speed by hours of the day is calculated based on the Congestion Delay Index (CDI) - a ratio of the average, for the hour of a day, speed, to the free flow speed. The CDI values, by hours, are given in the <code class="docutils literal notranslate"><span class="pre">cdi_index.csv</span></code> table (Figure 2, right) that we based on Figure 7 from Wei et al, 2022, paper <a class="reference external" href="https://doi.org/10.1016/j.eiar.2022.106808">https://doi.org/10.1016/j.eiar.2022.106808</a>.
-<span style="display: block; margin-top: 5px;"></span>
-The speed <span class="math notranslate nohighlight">\(V_p(t)\)</span> on the link <em>p</em> at hour <em>t</em> is calculated as <span class="math notranslate nohighlight">\(V_p(t) = V_p \cdot \text{CDI}_t\)</span></p>
- <style>
-     .custom-table {
-         border-collapse: collapse;
-         width: 100%;
-     }
-
-     .custom-table th, .custom-table td {
-         border: 1px solid #d3d3d3;
-         padding: 8px;
-         text-align: center;
-         vertical-align: middle;
-     }
-
-     .custom-table th {
-         background-color: white;
-         font-weight: normal;
-     }
-
-     .custom-table tr:nth-child(even) {
-         background-color: #f0f8ff;
-     }
-
-     .custom-table tr:nth-child(odd) {
-         background-color: white;
-     }
- </style>
-
- <div style="display: flex; justify-content: space-between; ;margin-bottom: 0px">
-
-     <div style="margin-right: 0px;">
-
-         <table class="custom-table" style="margin-right: 10px;">
-             <tr>
-                 <th style="width: 150px;">OSM link type (FCLASS)</th>
-                 <th style="width: 150px;">Maximum speed (free flow), km/h</th>
-             </tr>
-             <tr>
-                 <td>busway</td>
-                 <td>18</td>
-             </tr>
-             <tr>
-                 <td>cycleway</td>
-                 <td>15</td>
-             </tr>
-             <tr>
-                 <td>footway</td>
-                 <td>3</td>
-             </tr>
-             <tr>
-                 <td>motorway_link</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>track</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>residential</td>
-                 <td>30</td>
-             </tr>
-             <tr>
-                 <td>service</td>
-                 <td>40</td>
-             </tr>
-             <tr>
-                 <td>secondary</td>
-                 <td>50</td>
-             </tr>
-             <tr>
-                 <td>living_street</td>
-                 <td>30</td>
-             </tr>
-             <tr>
-                 <td>tertiary_link</td>
-                 <td>50</td>
-             </tr>
-         </table>
-     </div>
-
-     <div>
-
-         <table class="custom-table" style="margin-right: 10px;">
-             <tr>
-                 <th style="width: 150px;">Hour of the day</th>
-                 <th style="width: 100px;">Congestion Delay Index</th>
-             </tr>
-             <tr>
-                 <td>0</td>
-                 <td>1.00</td>
-             </tr>
-             <tr>
-                 <td>1</td>
-                 <td>1.00</td>
-             </tr>
-             <tr>
-                 <td>2</td>
-                 <td>1.00</td>
-             </tr>
-             <tr>
-                 <td>3</td>
-                 <td>1.00</td>
-             </tr>
-             <tr>
-                 <td>4</td>
-                 <td>1.00</td>
-             </tr>
-             <tr>
-                 <td>5</td>
-                 <td>0.90</td>
-             </tr>
-             <tr>
-                 <td>6</td>
-                 <td>0.75</td>
-             </tr>
-             <tr>
-                 <td>7</td>
-                 <td>0.60</td>
-             </tr>
-             <tr>
-                 <td>8</td>
-                 <td>0.60</td>
-             </tr>
-             <tr>
-                 <td>9</td>
-                 <td>0.65</td>
-             </tr>
-         </table>
-     </div>
- </div>
-<p>
- Figure 2. Several first rows of the free flow speeds table
- <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">car_speed_by_link_type.csv</span>
- (left) and the CDI table
- <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">cdi_index.csv</span>
- (right). The values of the free flow speed and CDI can be changed by the user.</p><p>To construct a database for car routing database, choose <em>Data preprocessing → Car routing database (Figure 3)</em>:</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/pkl_car1.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 3: <i>Car routing database</i> construction dialog</p><ul class="simple">
-<li><p><span class="guilabel">Layer of buildings</span> - the clean layer of buildings, must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">id</span> - the unique identifier of a building.</p></li>
-<li><p><span class="guilabel">Layer of roads</span> — the clean layer of the road links, must be a part of the current GIS project.</p></li>
-<li><p><span class="guilabel">Default speed (km/h)</span>- the free flow speed on the link, when unknown.</p></li>
-<li><p><span class="guilabel">Default direction</span>- the traffic direction on the link, when unknown, always <strong>B</strong>.</p></li>
-<li><p><span class="guilabel">direction</span>- traffic direction on the link, <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>.</p></li>
-<li><p><span class="guilabel">speed</span>- the field in the attribute table of the layer of roads that contains the link’s free speed.</p></li>
-<li><p><span class="guilabel">link type</span> — the field in the attribute table of the layer of roads that contains the link’s type.</p></li>
-<li><p><span class="guilabel">Folder to store car database</span> - the folder to store the database for car routing. The system’s suggestion is the same subfolder that is suggested for the transit routing database with the name that is a concatenation of the name of a project (TAMA) and “_pkl.”</p></li>
-</ul>
-<p>To construct a car routing database, the existence and consistency of the critical roads’ attributes must be tested. To do that click <strong>Test Road Attributes</strong>.
-<span style="display: block; margin-top: 5px;"></span>
-Road Attributes test
-The test starts with the search of the FCLASS field. If this field is found, the layer’s source is OSM, and the names of the direction and maximum speed attributes are ONEWAY and MAXSPEED, respectively. The Accessibility Calculator tests whether the values in the FCLASS field are found in the car_speed_by_link_type.csv table. If they are not, the user is asked to fix the problem and the test is quit. If they are, the values in the fields ONEWAY and MAXSPEED are tested. The values of the ONEWAY attribute must be B, F, T, or N, and the maximum speed must be between 0 and 120 km/h. If these conditions are satisfied, the test is passed, otherwise the user is again asked to fix the table.
-<span style="display: block; margin-top: 5px;"></span>
-If the field FCLASS is not found, the layer is considered a non-OSM one. In this case, the Accessibility Calculator searches for fields that can represent links’ traffic direction and free speed and presents candidate fields with the percentage of likelihood, for the user’s choice. The likelihood is given by the percentage of the values in the field that satisfy the consistency criterion: the direction must be noted by <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>, and the maximum speed must be between 0 and 120 km/h. The user must choose one of the fields that satisfy the criterion.
-<span style="display: block; margin-top: 5px;"></span>
-The test takes several seconds, and the Progress bar will show the test progress. If the test fails, the reasons for the failure are presented, and a user is asked to fix the data. If the test is passed, the user can take the next step and construct the database.
-<span style="display: block; margin-top: 5px;"></span>
-Click <strong>Run</strong> to start car routing database construction. The <strong>Progress bar</strong> will show the progress of the computations. If something went wrong, you could break the process by pressing <strong>Break</strong>. The <strong>Log</strong> tab contains information about the parameters and the process of construction. For a detailed example of building a car routing database see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">section 10.2</span></a>.</p>
-</section>
-<section id="from-service-locations-fixed-time-departure">
-<span id="car-options"></span><h2><span class="section-number">7.2. </span>From service locations, fixed-time departure<a class="headerlink" href="#from-service-locations-fixed-time-departure" title="Link to this heading"></a></h2>
-<p>Below, we present in detail the <em>From service locations – Fixed-time departure</em> computations and then present the differences between it and each of the three other options.</p>
-<ul class="simple">
-<li><p>Car routing database, see <em>Construct Databases → Car routing database</em></p></li>
-<li><p>The layer of buildings must be a part of the current QGIS project.</p></li>
-</ul>
-<p>Choose a  <em>Service Area maps → From service locations → Fixed-time departure</em> (Figure 4).</p>
+<p>Navigate to <em>Car accessibility → Service area maps.</em></p>
 <div style="display: flex; justify-content: center;">
      <img src="_images/car_area.png" style="width: 100%; border: 0px solid black;margin-bottom: 10px" />
 </div>
-<p>Figure 4. Car accessibility, Service area maps <i>From service locations – Fixed-time departure</i> dialog</p><p><span class="guilabel">Car routing database folder</span> — the folder of the car routing database. Must contain the following files: <code class="docutils literal notranslate"><span class="pre">graph.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">graph_rev.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">dict_vertex_buildings.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">dict_building_vertex.pkl</span></code>.
-<br/>
-<span class="guilabel">Output folder</span> — the folder for storing the results of the computation. The system’s suggestion is a subfolder in the folder where the QGIS project is stored with the name that is a concatenation of the name of a project and “_output.”
-<br/>
-<span class="guilabel">Output alias</span> — the alias for the files of results.
-<br/>
-<span class="guilabel">Layer of facilities</span> — the layer of the facility buildings, may be a selection from the layer of buildings. In the case of the selection set, the chosen buildings are stored in the output folder in the geojson format.
-<br/>
-<span class="guilabel">id</span> — the unique identifier of the facility buildings.
-<br/>
-<span class="guilabel">Visualization layer</span> — the layer that will be used for visualization of accessibility maps, must be a part of the current QGIS project.
-<br/>
-<span class="guilabel">id</span> — the unique identifier of the visualization polygons, must be the subset of buildings’ identifiers. More information <a class="reference internal" href="visualization.html"><span class="doc">here</span></a>.
-<br/>
-<span class="guilabel">Walking distance from origin to car parking, m</span> — a typical walking distance from the building to the parking car.
-<br/>
-<span class="guilabel">Walking distance from car parking to destination, m</span> — a typical walking distance from the parking car to the destination.
-<br/>
-<span class="guilabel">Walking speed (km/h)</span> — walking speed.
-<br/>
-<span class="guilabel">Start at (hh:mm:ss)</span> — trip start time.
-<br/>
-<span class="guilabel">Maximum travel time</span> — the maximum total trip time.
-<br/>
-Click <strong>Run</strong> to start. The <strong>Progress bar</strong> shows the progress of the computations. You can break the process of the computations by pressing <strong>Break</strong>.The <strong>Log</strong> tab contains the metadata about the computations (next section).
+<p>Figure 2. The <i>Car accessibility → Service area maps</i> dialog with the TO option selected.</p><p>Just as in the case of the transit accessibility, the dialog box is divided into several logical blocks:
 <span style="display: block; margin-top: 5px;"></span>
-The results of the computations are stored as two CSV report files in the <span class="guilabel">Output folder</span>. The first depicts the service area and contains all buildings that can be reached from <em>at least one</em> of the facilities in <span class="guilabel">Maximum travel time</span> or faster. Each of these buildings is represented by the record that contains the <span class="guilabel">id</span> of the facility that served it in a minimal time, and all details of the trip between the closest facility and the reached building. The report contains details of every leg for every trip and is described in detail in the next section. The service area is visualized based on the <span class="guilabel">Visualization layer</span>.
+<strong>Input block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Car routing database folder</span>: The directory containing the car routing database generated during the “Prepare Databases” stage. You can check that it includes <code class="docutils literal notranslate"><span class="pre">graph.json</span></code>, <code class="docutils literal notranslate"><span class="pre">dict_building_vertex.json</span></code>, <code class="docutils literal notranslate"><span class="pre">dict_vertex_buildings.json</span></code>.</p></li>
+<li><p><span class="guilabel">Layer of origins</span>: Origins are buildings where the trip to destinations can start. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+<li><p><span class="guilabel">Layer of destinations</span>: Destinations are buildings where the trip from origins can end. It may be the entire layer of buildings or a selection set, prepared by the user in advance.</p></li>
+</ul>
+<p><strong>Time settings block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Arrival to destination  at (hh:mm:ss)</span>: The absolute latest time the traveler must arrive at the destination facility.</p></li>
+<li><p><span class="guilabel">Maximum travel time, min</span>: The absolute maximum duration allowed for the entire door-to-door trip (walk + drive + walk).</p></li>
+</ul>
+<p><strong>Parking access and egress, Minimal driving distance</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Average walking distance from the origin building to the parking place, m</span>: The assumed average network walking distance to the parked car. The default is 100 m.</p></li>
+<li><p><span class="guilabel">Average walking distance from the parking place to the destination building, m</span>: The assumed average network walking distance to the destination building. The default is 100 m.</p></li>
+<li><p><span class="guilabel">Average walking speed (km/h)</span>: The assumed average pedestrian walking speed.</p></li>
+<li><p><span class="guilabel">Minimal distance that is worth driving, m (cannot exceed 800m)</span>: If the network distance between the origin and destination is lower than this distance, the trip will be performed by foot.</p></li>
+</ul>
+<p><strong>Output block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Save output as…</span>: Set the name of the .gpkg file of the results of the computations. Additional copy of the log file will be saved in a .CSV format. The default output file name is the concatenation of the date and time of the computations start, [YYYYMMDD] + “_” + [HHMMSS] is shown in the dialog box and, typically, is changed by the user.</p></li>
+</ul>
+<p>Click <strong>Run</strong> to initiate the calculation. The <strong>Progress bar</strong> tracks the status of the computations. You can interrupt the process at any time by clicking <strong>Break</strong>. The <strong>Log</strong> tab records metadata regarding the computations (detailed in the next section).
 <span style="display: block; margin-top: 5px;"></span>
-The service area file does not contain information on whether the building can be served by more than one facility. This information can be retrieved from the second output file, where for each origin, all served buildings that can be served and the travel time from the facility to this building are listed. This second file can be used for deeper analysis of the accessibility, for example for recognizing buildings that can be reached from half or more of the facilities. In both output files, the details of every leg for every trip are described in detail, see the next section.</p>
+The computation results consist of several tables. See <a class="reference internal" href="raptor_area.html#raptor-area-to"><span class="std std-ref">section 6.1.1</span></a> for detailed description of the output structure.</p>
 </section>
-<section id="from-service-locations-accessibility-report-and-a-log-file">
-<h2><span class="section-number">7.3. </span>From service locations accessibility report and a log file<a class="headerlink" href="#from-service-locations-accessibility-report-and-a-log-file" title="Link to this heading"></a></h2>
-<p>The log file (Figure 5) in the folder of the results stores all the settings of the run and the computations time and is also presented in a log tab.</p>
-  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/log_car.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px" />
-  </div>
-<p>Figure 5. Log file of the <i>From service locations – fixed-time departure</i> computations for the car</p><p>The CSV file of results contains all the details of a trip to each accessible building (Figure 6). The corresponding map presents the total travel time from the set of facilities to each accessible building.</p>
+<section id="car-service-area-report-file">
+<h2><span class="section-number">7.2. </span>Car service area  - report file<a class="headerlink" href="#car-service-area-report-file" title="Link to this heading"></a></h2>
+<p>The primary results sheet contains the details of the fastest trip to each accessible building (Figure 3). The corresponding thematic map visualizes the total travel time to the closest facility from each of the buildings from which the set of facilities can be reached. The additional table contains the fastest trips from each accessible building to each destination.</p>
 <style>
     .custom-table {
         border-collapse: collapse;
@@ -364,45 +175,51 @@ The service area file does not contain information on whether the building can b
         <th style="width: 200px;">Meaning</th>
     </tr>
     <tr>
-        <td>Origin_ID</td>
-        <td>The ID of the facility building</td>
+        <td>Origin_aid</td>
+        <td>The unique aid of the facility building.</td>
     </tr>
     <tr>
-        <td>Destination_ID</td>
-        <td>The ID of the destination building</td>
+        <td>Destination_aid</td>
+        <td>The unique aid of the destination building.</td>
     </tr>
     <tr>
         <td>Duration</td>
-        <td>Total travel time</td>
+        <td>The total door-to-door travel time.</td>
     </tr>
 </table>
-<p>Figure 6. The structure of the <i>Car accessibility → Service area → From locations – fixed-time departure</i> output file.</p><p>The example of the <em>From service locations – Fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-car-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+<p>Figure 3. The layout of the <i>Car accessibility → Car service area maps, TO locations, fixed-time</i>.</p><p>For a practical example of these computations, see <a class="reference internal" href="sample.html#sample-car-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="to-service-locations-fixed-time-arrival">
-<h2><span class="section-number">7.4. </span>To service locations, fixed-time arrival<a class="headerlink" href="#to-service-locations-fixed-time-arrival" title="Link to this heading"></a></h2>
-<p>Run <em>To service locations – Fixed-time arrival</em>. Most of the parameters of the to-accessibility computations are the same as for the from-accessibility. The major difference is in establishing facilities and buildings to serve: For the to-accessibility, facilities are destinations and not origins, as in the case of the from-accessibility (Figure 7).</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/area_opt.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 7. The Destinations/Origins part of the <i>To service locations – Fixed-time arrival</i> dialog </p><p>In addition, the trip’s start time is substituted by the arrival time (Figure 8).</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/sample/area_opt2.png" style="width: 70%; border: 3px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 8. The Arrive time setup of the <i>To service locations – Fixed-time arrival</i> dialog</p><p>The Log and Result files for the to-accessibility have the same format as for the <em>from-accessibility</em> with minor changes that reflect the changes in the direction of trips. An example of the Car accessibility for Service Area <em>To service locations – fixed-time arrival</em> computations can be seen <a class="reference internal" href="sample.html#sample-car-from-accessibility-fixed-time"><span class="std std-ref">here</span></a> .</p>
+<section id="car-accessibility-from-facilities">
+<h2><span class="section-number">7.3. </span>Car accessibility FROM facilities<a class="headerlink" href="#car-accessibility-from-facilities" title="Link to this heading"></a></h2>
+<p>To compute accessibility originating <em>from</em> specific facilities, select the FROM option in the ACCESSIBILITY row of the dialog (Figure 4).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/car_type.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 4. The FROM accessibility selection.</p><p>For FROM-accessibility, the travel time is estimated based on the car trip that results in the earliest possible arrival at the destination. Most parameters remain identical to the TO-accessibility setup, while, the arrival time parameter is replaced by a start time (Figure 5).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/car_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 5. The Arrival/Departure time configuration for fixed-time FROM-accessibility.</p><p>The result file for FROM-accessibility shares the same structure as the TO-accessibility outputs, with minor header adjustments to reflect the reversed trip direction (from the facilities outward to all buildings).
+<span style="display: block; margin-top: 5px;"></span>
+The Log and Result files for FROM-accessibility maintain the same format as those for TO-accessibility. For an example of FROM Car accessibility, see <a class="reference internal" href="sample.html#sample-car-from-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="car-accessibility-region-maps">
-<h2><span class="section-number">7.5. </span>Car Accessibility, Region maps<a class="headerlink" href="#car-accessibility-region-maps" title="Link to this heading"></a></h2>
-<p>The Region maps for car accessibility are built in the same way as they are built for transit accessibility, see <a class="reference internal" href="raptor_map.html#raptor-map-fixed-time"><span class="std std-ref">section 6.1</span></a>. All parameters are the same as those used for computing car service areas, plus the list of attributes for accessibility assessment. The default assessment is based, just as it was for transit accessibility, on the number of accessible buildings
-<span style="display: block; margin-top: 5px;"></span>
-The output is organized in the same way as it is organized in the case of region transit accessibility computations and the default thematic map presents the number of buildings reachable in <span class="guilabel">Maximum travel time</span>. Additional result files contain accessibility measures for each of the attributes chosen for assessment and each of these results is also presented by the thematic map.
-<span style="display: block; margin-top: 5px;"></span>
-The example of the <em>From every location – fixed-time departure</em> computations for car accessibility can be seen <a class="reference internal" href="sample.html#sample-car-to-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+<section id="roundtrip-accessibility">
+<h2><span class="section-number">7.4. </span>ROUNDTRIP Accessibility<a class="headerlink" href="#roundtrip-accessibility" title="Link to this heading"></a></h2>
+<p>To compute roundtrip accessibility, select ROUNDTRIP in the ACCESSIBILITY row of the dialog (Figure 6).</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/car_roundtrip.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 6. The ROUNDTRIP accessibility selection.</p><p>As explained in <a class="reference internal" href="introduction.html#introduction-versus1"><span class="std std-ref">Section 2.8</span></a>, a roundtrip journey consists of two distinct legs: from the home origin to the facility, and from the facility back to the home origin. While most parameters remain consistent with standard TO/FROM calculations, the user must explicitly define the temporal windows for both the outbound (Home → Destination) and inbound (Destination → Home) trips (Figure 7). The algorithm evaluates the departure and arrival time intervals to find valid roundtrips.</p>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <img src="_images/car_roundtrip_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+  </div>
+<p>Figure 7. Temporal window configuration for ROUNDTRIP accessibility.</p><p>For an example of Car ROUNDTRIP accessibility, see here.</p>
 </section>
-<section id="car-accessibility-to-every-location-in-the-region">
-<h2><span class="section-number">7.6. </span>Car accessibility to every location in the region<a class="headerlink" href="#car-accessibility-to-every-location-in-the-region" title="Link to this heading"></a></h2>
-<p>To compute the to-accessibility of every location in the region run the <em>To every location – fixed-time arrival</em>. Most of the parameters of the region’s car to-accessibility computations are the same as for the from-accessibility. The only difference is in establishing origins and destinations, which, in the case of regional accessibility are often the same, and the user must be very careful not to confuse between them.
+<section id="cumulative-number-of-opportunities-accessible-by-car">
+<h2><span class="section-number">7.5. </span>Cumulative number of opportunities accessible by car<a class="headerlink" href="#cumulative-number-of-opportunities-accessible-by-car" title="Link to this heading"></a></h2>
+<p>The CNO maps for car trips are generated using the exact same principles and workflows as CNO maps for transit accessibility (see <a class="reference internal" href="raptor_area.html#raptor-area-cumulative"><span class="std std-ref">Section 6.3</span></a>).
 <span style="display: block; margin-top: 5px;"></span>
-The Log and Result files are the same as for the from-accessibility, with minor differences that reflect the from-accessibility to the to-accessibility changes. The example of the <em>Car accessibility → Region maps → To every location – fixed-time departure</em> computations see <a class="reference internal" href="sample.html#sample-car-to-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
+The output is also organized identically to the transit computations: the default thematic map visualizes the total number of buildings reachable within the <span class="guilabel">Maximum travel time</span>. If additional opportunity attributes (e.g., number of jobs) were selected for assessment, the calculated measures for each attribute are stored in the results file and can be visualized as secondary thematic maps. For examples of <em>Car accessibility → Cumulative opportunities maps</em> for FROM/TO/ROUNDTRIP accessibility, see <a class="reference internal" href="sample.html#sample-car-to-accessibility-fixed-time"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>
 
@@ -410,7 +227,7 @@ The Log and Result files are the same as for the from-accessibility, with minor 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="raptor_map.html" class="btn btn-neutral float-left" title="6. Transit Accessibility of all locations in the Region" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="raptor_area.html" class="btn btn-neutral float-left" title="6. Transit accessibility computations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="relative_ready-made.html" class="btn btn-neutral float-right" title="8. Compare accessibility maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Prepare databases &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
+
+  
+    <link rel="shortcut icon" href="_static/app.png"/>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Transit accessibility computations" href="raptor_area.html" />
+    <link rel="prev" title="4. Data preprocessing" href="data_preprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Introduction to QGIS plugin "Accessibility Calculator"
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Prepare databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#add-lines-to-gtfs">5.1. Add lines to GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-lines-from-gtfs">5.2. Delete lines from GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-a-database-for-transit-accessibility-computations">5.3. Building a database for transit accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-database-for-car-accessibility-computation">5.4. Building database for car accessibility computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-layers-for-visualization-and-lower-resolution-computation">5.5. Preparing layers for visualization and lower-resolution computation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Introduction to QGIS plugin "Accessibility Calculator"</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Prepare databases</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prepare-databases">
+<span id="prepare-database"></span><h1><span class="section-number">5. </span>Prepare databases<a class="headerlink" href="#prepare-databases" title="Link to this heading"></a></h1>
+<p>To facilitate rapid accessibility computations, data regarding roads, buildings, and public transport routes and timetables are converted into dedicated databases. We recommend constructing these databases for a wider area (yet up to one million buildings) to ensure it covers all potentially relevant locations and regions. To establish and compare different public transport development scenarios, the AC plugin allows users to modify the existing GTFS by adding or deleting lines.
+<br/>
+During database construction, any building not directly connected to the road network is connected to the nearest link within the cleaned road layer enabling establishing the network path between the building and nearby bus stops. All computational results are stored directly in the database, leaving the original road and building layers entirely unaltered.
+<br/>
+The menu for the <em>Prepare databases</em> section is presented in Figure 4.</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/prepare_database.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px;" />
+</div>
+<p>Figure 4. The menu of the <i>Prepare Databases</i> section</p><section id="add-lines-to-gtfs">
+<h2><span class="section-number">5.1. </span>Add lines to GTFS<a class="headerlink" href="#add-lines-to-gtfs" title="Link to this heading"></a></h2>
+<p>The user is responsible for organizing additional lines as a separate GTFS dataset, manually or using external software. The example in this tutorial is constructed with the Google’s TransitFeed Python library (<a class="reference external" href="https://github.com/google/transitfeed">https://github.com/google/transitfeed</a>) that aims for reading, validating, and writing transit schedule information in the GTFS format. Another library that can be used for this purpose is <a class="reference external" href="https://github.com/ipea/gtfstools/blob/main/README.md">https://github.com/ipea/gtfstools/blob/main/README.md</a>.
+<br/>
+To avoid the format errors in this new dataset, it is crucial to validate it using the official validation tools, like <a class="reference external" href="https://gtfs.org/getting-started/validate/">https://gtfs.org/getting-started/validate/</a>. Since the study of transit network development demands, usually, comparison of several scenarios, we recommend constructing one GTFS of all possible additional lines; then some of them can be selected via the dialog interface for incorporating into the existing GTFS (Figure 5).</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/add_lines.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px;" />
+</div>
+<p>Figure 5. The <i>Add lines to GTFS</i> dialog</p><p>When using the “Add lines to GTFS” tool, the user must configure the following parameters:</p>
+<ul class="simple">
+<li><p><span class="guilabel">The folder of the initial GTFS dataset</span>: The directory containing the baseline GTFS.</p></li>
+<li><p><span class="guilabel">The folder of the additional GTFS dataset</span> : The user must select the directory containing the new GTFS data for the transit lines they wish to add to the network.</p></li>
+<li><p><span class="guilabel">Line selection panels (and search bar)</span>: The dialog features a dual-pane interface to select the specific routes to be added. The left pane lists the routes of the additional GTFS dataset (displaying their Short Name and Description). The user selects the desired routes and uses the right-pointing arrow (→) to move them into the right pane.</p></li>
+<li><p>If you need to quickly find lines in the left pane, use the - <span class="guilabel">Enter short names of lines to add (comma separated)</span> search bar and the <strong>Find</strong> button to filter the list.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After the search is performed, the left pane shows the found lines only. To restore the full list of lines in the left panel empty the search bar and click the Find button again</p>
+</div>
+<ul class="simple">
+<li><p><span class="guilabel">Folder to store the modified GTFS dataset</span>: The user must choose the destination directory where the newly combined and modified GTFS dataset will be saved.</p></li>
+</ul>
+<p>Once all desired lines are selected in the right pane, click <strong>Run</strong> to execute the merger. The progress bar at the bottom will display the status of the operation.</p>
+</section>
+<section id="delete-lines-from-gtfs">
+<h2><span class="section-number">5.2. </span>Delete lines from GTFS<a class="headerlink" href="#delete-lines-from-gtfs" title="Link to this heading"></a></h2>
+<p>This dialog allows users to remove specific transit lines from the existing dataset (Figure 6).</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/del_lines.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px;" />
+</div>
+<p>Figure 6. The <i>Delete lines from GTFS</i> dialog</p><p>When using the “Delete lines from GTFS” tool, the user must configure the following parameters:</p>
+<ul class="simple">
+<li><p><span class="guilabel">The folder of the initial GTFS dataset</span>: Specify the directory containing the original GTFS files from which transit lines will be removed.</p></li>
+<li><p><span class="guilabel">Enter route short names to delete (comma separated)</span>: This search bar allows the user to quickly locate specific transit lines by their short route names. Enter the numbers separated by commas and click the Find button to filter the available routes in the left pane list.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After the search is performed, the left pane shows the found lines only. To restore the full list of lines in the left panel empty the search bar and click the Find button again</p>
+</div>
+<ul class="simple">
+<li><p><span class="guilabel">Line selection panels</span>: The dialog uses a dual-pane interface to manage line deletion. The left pane lists the routes available within the initial GTFS dataset. The user must select the routes they wish to <em>remove</em> and use the right-pointing arrow (→) to move them into the right pane. Any lines placed on the right pane will be excluded from the final dataset.</p></li>
+<li><p><span class="guilabel">Folder to store modified dataset</span>: Select the destination directory where the newly modified GTFS dataset (which will no longer contain the deleted lines) will be saved.</p></li>
+</ul>
+<p>Once all fields are populated and the unwanted lines are moved to the right pane, click <strong>Run</strong> to generate the new dataset. The progress bar at the bottom will track the operation’s status.</p>
+</section>
+<section id="building-a-database-for-transit-accessibility-computations">
+<span id="raptor-area-buildings-database"></span><h2><span class="section-number">5.3. </span>Building a database for transit accessibility computations<a class="headerlink" href="#building-a-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
+<p>To construct the database required for transit accessibility computations, select <em>Prepare databases → Transit routing database</em> (Figure 7):</p>
+<div style="text-align: center;">
+    <img src="_images/pkl1.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
+</div>
+<p>Figure 7. The <i>Transit routing database</i> construction dialog</p><ul class="simple">
+<li><p><span class="guilabel">Layer of buildings</span>: The topologically cleaned layer of building foundations must be a part of the current QGIS project.</p></li>
+<li><p><span class="guilabel">Layer of roads</span>: The topologically cleaned layer of road links must be a part of the current QGIS project.</p></li>
+<li><p><span class="guilabel">Maximum length of a single walk (must not exceed 800 m)</span>: The upper limit on pedestrian network walks between a building and a transit stop. A strict maximum limit of 800 meters is imposed. The default value for it is set to 400 meters.</p></li>
+<li><p><span class="guilabel">GTFS folder</span>: The directory path containing the GTFS dataset (<code class="docutils literal notranslate"><span class="pre">stops.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_times.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">routes.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">trips.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">calendar.txt</span></code>). By default, the system searches for a “GTFS” subfolder within the current QGIS project directory.</p></li>
+<li><p><span class="guilabel">Choose a day for constructing a database</span>: the data in GTFS dataset covers a week or longer period of time. The control shows you the covered dates. Be careful to distinguish between working days and weekend.</p></li>
+<li><p><span class="guilabel">Folder to store a database</span>: The destination directory where the generated transit routing database will be saved. By default, the system suggests a subfolder within the project directory, using a concatenated name combining the GTFS folder’s name and “_json”.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are constructing multiple transit routing databases (e.g., to evaluate different transit network scenarios), you must use separate, distinct folders for each one, as the generated dataset files utilize identical, constant filenames.</p>
+</div>
+<p>Click <strong>Run</strong> to execute. The <strong>Progress bar</strong> will track the computation status. You can halt the process at any time by clicking <strong>Break</strong>. The <strong>Log</strong> tab provides detailed information regarding the selected parameters and the overall database construction process.
+<br/>
+In addition to constructing the transit routing database, this module generates two spatial layers and one internal database: The first is the layer of the PT lines (separated by direction), the second is the layer of the PT stops that visualize the GTFS database. The internal database contains artificial links of two kinds: Links of the first kind connect buildings that are not connected by the existing link to the nearest road link; links of the second connect stops located close to the transit lines to those lines. Links of both kinds enable walks between buildings that are not connected to the network by existing links and the nearby transit stops.
+<br/>
+<strong>Note</strong> on GTFS Line Geometries: Transit routing does not require explicit geographic representation of the lines, and data providers frequently omit this detail. As a result, the generated lines may appear as straight-line connections between stops rather than following the actual physical road network.
+<br/>
+In this tutorial, our analysis is limited to the Tel Aviv Metropolitan Area (TAMA), encompassing approximately 250,000 buildings. However, the provided GTFS datasets cover all of Israel, and the resulting transit routing databases are constructed on a national scale. The examples in this tutorial utilize two distinct versions of these GTFS databases: one from June 2018 (reflecting the transit system before the introduction of the Red LRT line in TAMA) and one from June 2024 (reflecting the network after the Red LRT line became operational). For a detailed, step-by-step example of building a transit routing database for TAMA, please refer to <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">Section 10.2</span></a>.</p>
+</section>
+<section id="building-database-for-car-accessibility-computation">
+<span id="building-data-car"></span><h2><span class="section-number">5.4. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
+<p>Constructing a car routing database requires a topologically clean road network and two essential attributes demanded by wayfinding algorithms:</p>
+<ul class="simple">
+<li><p><strong>Traffic direction:</strong> Can be <strong>B</strong> (two-way link), <strong>F</strong> (one-way link, driving allowed in the digitized direction), <strong>T</strong> (one-way link, driving allowed against the digitized direction), or <strong>N</strong> (pedestrian-only link, always two-directional).</p></li>
+<li><p><strong>Free-flow traffic speed:</strong> The unimpeded speed limit along the link.</p></li>
+</ul>
+<p>Given a clean road layer, the Accessibility Calculator evaluates the layer’s attributes to identify candidates for these two fields, and the OSM and non-OSM road layers are handled slightly differently. To recognize the source, the user must <span class="guilabel">Check if road layer is OSM</span>.
+<br/>
+If the source is the OSM database, the link’s traffic direction is derived from the ONEWAY attribute, and the free-flow traffic speed is derived from the MAXSPEED attribute. The values of the MAXSPEED attribute are dictated by the road link type stored in the FCLASS attribute, e.g., highway, major city street, secondary neighborhood street.
+<br/>
+The list of FCLASS types is defined at the OSM site and does not change, and the free-flow traffic speed by the FCLASS types is stored in the <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> table (Figure 8):</p>
+ <style>
+     .custom-table {
+         border-collapse: collapse;
+         width: 100%;
+         margin-bottom: 10px;
+     }
+     .custom-table th, .custom-table td {
+         border: 1px solid #d3d3d3;
+         padding: 8px;
+         text-align: center;
+         vertical-align: middle;
+     }
+     .custom-table th {
+         background-color: white;
+         font-weight: normal;
+     }
+     .custom-table tr:nth-child(even) {
+         background-color: #f0f8ff;
+     }
+     .custom-table tr:nth-child(odd) {
+         background-color: white;
+     }
+ </style>
+
+ <table class="custom-table">
+     <tr>
+         <th style="width: 50%;">OSM link type (FCLASS)</th>
+         <th style="width: 50%;">Maximum speed (free flow), km/h</th>
+     </tr>
+     <tr><td>busway</td><td>18</td></tr>
+     <tr><td>cycleway</td><td>15</td></tr>
+     <tr><td>footway</td><td>3</td></tr>
+     <tr><td>motorway_link</td><td>40</td></tr>
+     <tr><td>track</td><td>40</td></tr>
+     <tr><td>residential</td><td>30</td></tr>
+     <tr><td>service</td><td>40</td></tr>
+     <tr><td>secondary</td><td>50</td></tr>
+     <tr><td>living_street</td><td>30</td></tr>
+     <tr><td>...</td><td>...</td></tr>
+ </table>
+<p>
+ Figure 8. The first several rows of the free-flow speeds table
+ <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">car_speed_by_link_type.csv</span>
+ The user can manually edit the values in this table.</p><p>If, for some reason, the link type in the FCLASS field is not listed in the <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> table, the <em>default speed</em> will be applied for the links of this type. Similarly, if the traffic direction in the ONEWAY field differs from B/F/T/N or not listed, the <em>default direction</em> B (two-way) will be applied.
+<br/>
+The actual travel speed on a link is determined by the free-flow speed multiplied by a congestion delay coefficient, which varies depending on the hour of the day. The average hourly speed is calculated using the Congestion Delay Index - CDI(t) - the ratio of the average speed at a specific hour to the free-flow speed. Hourly CDI(t) values are stored in the cdi_index.csv table (Figure 9), which is based on Figure 12 from Wei et al. (2022)  (<a class="reference external" href="https://doi.org/10.1016/j.eiar.2022.106808">https://doi.org/10.1016/j.eiar.2022.106808</a>).
+<br/>
+The adjusted speed <span class="math notranslate nohighlight">\(V_{FCLASS}(t)\)</span> on the link <em>l</em> at hour <em>t</em> is calculated as:
+<br/></p>
+<p><span class="math notranslate nohighlight">\(V_{FCLASS}(t) = V_{FCLASS} \cdot \text{CDI(t)}\)</span></p>
+ <style>
+     .custom-table {
+         border-collapse: collapse;
+         width: 100%;
+         margin-bottom: 10px;
+     }
+     .custom-table th, .custom-table td {
+         border: 1px solid #d3d3d3;
+         padding: 8px;
+         text-align: center;
+         vertical-align: middle;
+     }
+     .custom-table th {
+         background-color: white;
+         font-weight: normal;
+     }
+     .custom-table tr:nth-child(even) {
+         background-color: #f0f8ff;
+     }
+     .custom-table tr:nth-child(odd) {
+         background-color: white;
+     }
+ </style>
+
+ <table class="custom-table">
+     <tr>
+         <th style="width: 50%;">Hour of the day</th>
+         <th style="width: 50%;">Congestion Delay Index</th>
+     </tr>
+     <tr><td>0</td><td>1.00</td></tr>
+     <tr><td>1</td><td>1.00</td></tr>
+     <tr><td>2</td><td>1.00</td></tr>
+     <tr><td>3</td><td>1.00</td></tr>
+     <tr><td>4</td><td>1.00</td></tr>
+     <tr><td>5</td><td>0.90</td></tr>
+     <tr><td>6</td><td>0.75</td></tr>
+     <tr><td>7</td><td>0.60</td></tr>
+     <tr><td>...</td><td>...</td></tr>
+ </table>
+<p>
+ Figure 9. The CDI(t) table
+ <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">cdi_index.csv</span>. The user can manually edit the values in the table.</p><p>To construct a car routing database, go to <em>Prepare Database → Car routing database</em> (Figure 10):</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/pkl_car1.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div>
+<p>Figure 10. The <i>Car routing database construction</i> dialog</p><ul class="simple">
+<li><p><span class="guilabel">Layer of buildings</span>: The clean building layer, which must be a part of the current QGIS project.</p></li>
+<li><p><span class="guilabel">Layer of roads</span>: The clean layer of road links, which must be a part of the current QGIS project.</p></li>
+</ul>
+<p><strong>Verify road data block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Check if road layer is OSM</span>: Click the button for checking</p></li>
+</ul>
+<p>If the source of the road layer is <strong>OSM</strong>, the dialog will be extended as in Figure 11: you will see the obligatory fields of the OSM</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/pkl_car2.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div>
+<p>Figure 11. The <i>Car routing database construction</i> dialog in case the source of the road layer is OSM</p><p>If the source of the road layer is <strong>not OSM</strong>, the dialog will be extended as in Figure 12.</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="_images/pkl_car3.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+</div>
+<p>Figure 12. The Car routing database construction dialog in case the source of the road layer is not OSM</p><p>The user must explicitly provide the fields representing traffic direction and free-flow speed</p>
+<ul class="simple">
+<li><p><strong>Choose attribute for direction:</strong> Choose one of the fields in the roads layer containing the traffic direction (<strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong>). Typically, one field only satisfies this condition</p></li>
+<li><p><strong>Choose attribute for speed:</strong> The attribute field in the roads layer containing the link’s free-flow speed. All numeric fields are typically listed, choose one with great care.</p></li>
+<li><p><strong>Test road attributes:</strong> Critical road attributes must be verified before database constructing. The values of maximum speed and the values of the direction attribute must be exactly <strong>B</strong>, <strong>F</strong>, <strong>T</strong>, or <strong>N</strong> and known for the great majority of links, while the speeds must be between 0 and 120 km/h. When testing this, NULL or missing values, if their share is not high enough, are substituted by the default values.</p></li>
+</ul>
+<p>The default values of link direction and speed must be provided for any road layer:</p>
+<ul class="simple">
+<li><p><span class="guilabel">Default link direction</span>: The fallback traffic direction applied when unknown, always defaults to B.</p></li>
+<li><p><span class="guilabel">Default link speed (km/h)</span>: The fallback free-flow speed applied when a link’s speed is unknown.</p></li>
+</ul>
+<p><strong>Output block</strong></p>
+<ul class="simple">
+<li><p><span class="guilabel">Folder to store car database</span>: The destination directory where the database will be saved. The system defaults to suggesting the same subfolder used for the transit routing database, named by concatenating the project name (e.g., TAMA) and “_CAR_json”.</p></li>
+</ul>
+<p>Once all tests pass, the user can proceed by clicking <strong>Run</strong> to build the car routing database. The <strong>Progress bar</strong> tracks the computation, and the operation can be interrupted at any time using the <strong>Break</strong> button.
+<br/>
+The <strong>Log</strong> tab records parameter details and construction progress. For a comprehensive example of building a car routing database, see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">Section 10.2</span></a>.</p>
+</section>
+<section id="preparing-layers-for-visualization-and-lower-resolution-computation">
+<span id="building-data-visualization"></span><h2><span class="section-number">5.5. </span>Preparing layers for visualization and lower-resolution computation<a class="headerlink" href="#preparing-layers-for-visualization-and-lower-resolution-computation" title="Link to this heading"></a></h2>
+<p>The Accessibility Calculator can perform computations at the resolution of a single building, the highest possible level, or at the aggregated levels of hexagons of the size chosen by the user. When the computations are performed at a resolution of buildings, a discontinuous layer of building footprints is unsuitable for clear visualization at the building resolution, the high-resolution visual representation is instead based on Voronoi polygons generated from the building centroids (<a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons</a>) that inherit the unique aid identifiers of their corresponding buildings. To prevent large polygons of the stand-alone buildings or at the boundaries of the study area, the Voronoi polygons are clipped using 50 m radius buffers around the building centroids.
+<br/>
+For the lower resolution computation and visualization, the Accessibility Calculator exploits hexagon layers. The default hexagon side lengths are 50, 100, 200, 400, and 800 m, though user-defined dimensions can also be specified. The QGIS Create Grid algorithm (<a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid</a>) is utilized to construct these hexagon layers.
+<br/>
+Each hexagon layer covers the full extent of the building layer, and any hexagon that does not overlap a building is automatically excluded. Each hexagon inherits its aid identifier from the building closest to its centroid. If multiple buildings are equidistant from the centroid, the building with the lowest aid value is selected. A single building might be the closest to more than one hexagon centroid; in such cases, those adjacent hexagons are dissolved into a single polygon.
+<br/>
+When exploiting hexagon layer for accessibility computations at a lower than building resolution the computations are performed for the building which aid is the same as the aid of a hexagon and the results are assigned to the hexagon. When computing Cumulative Opportunities, parameters of all buildings which centroids are within the hexagon are summed up.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hexagons are also used for lower-resolution assessment of accessibility, and the attributes of the hexagons are computed based on the buildings’ attributes. That is why, if buildings’ attributes are changed, the layers of hexagons must be rebuilt.</p>
+</div>
+<p>To generate layers of Voronoi polygons and hexagons, go to <em>Prepare Databases → Build visualization layers</em> (Figure 13):</p>
+<div style="text-align: center;">
+    <img src="_images/pkl_visualization_clean.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
+</div>
+<p>Figure 13. The <i>Build visualization layers</i> dialog</p><ul class="simple">
+<li><p><span class="guilabel">Layer of buildings</span>: The topologically clean building layer, which must be a part of the current QGIS project. All active polygon layers will appear in the dropdown menu; ensure you select the correct one.</p></li>
+<li><p><span class="guilabel">Folder to store layers for visualization</span>: The destination directory for the generated visualization layers. By default, the system suggests a subfolder within the project directory, named by concatenating the project name (e.g., TAMA) and “_visio”. We recommend utilizing this designated folder for all visualization outputs.</p></li>
+</ul>
+<p>Click <strong>Run</strong> to initiate the process. The <strong>Progress bar</strong> tracks the computation status. You can halt the layer generation at any time by clicking <strong>Break</strong>. The <strong>Log</strong> tab records detailed information regarding the selected parameters and the overall construction process.
+<br/>
+Upon completion, the newly generated layers are automatically added to the current GIS project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_preprocessing.html" class="btn btn-neutral float-left" title="4. Data preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="raptor_area.html" class="btn btn-neutral float-right" title="6. Transit accessibility computations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Geosimlab | Tel Aviv University.</p>
+  </div>
+
+  
+  <p class="custom-footer-text">Funded by the Israeli Ministry of Science and Technology</p>
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
