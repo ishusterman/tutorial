@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QGIS ACCESSIBILITY plugin &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>Accessibility calculator plugin &mdash; Introduction to QGIS plugin &#34;Accessibility calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -19,7 +19,7 @@
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Workshop Conventions" href="welcome.html" /> 
+    <link rel="next" title="1. Introduction" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,7 +31,7 @@
           
           
           <a href="#" class="icon icon-home">
-            Introduction to QGIS plugin "Accessibility Calculator"
+            Introduction to QGIS plugin "Accessibility calculator"
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,20 +42,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">3. Data preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">4. Prepare databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">6. Car accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">7. Compare accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">8. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 
         </div>
@@ -64,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Introduction to QGIS plugin "Accessibility Calculator"</a>
+          <a href="#">Introduction to QGIS plugin "Accessibility calculator"</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +71,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">QGIS ACCESSIBILITY plugin</li>
+      <li class="breadcrumb-item active">Accessibility calculator plugin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,122 +80,105 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="qgis-accessibility-plugin">
-<h1>QGIS ACCESSIBILITY plugin<a class="headerlink" href="#qgis-accessibility-plugin" title="Link to this heading"></a></h1>
-</section>
-<section id="transport-accessibility-computations-for-the-users-of-public-transport-and-private-car">
-<h1>Transport accessibility computations for the users of public transport and private car<a class="headerlink" href="#transport-accessibility-computations-for-the-users-of-public-transport-and-private-car" title="Link to this heading"></a></h1>
-<section id="license-copying">
-<h2>License &amp; Copying<a class="headerlink" href="#license-copying" title="Link to this heading"></a></h2>
-</section>
-<section id="workshop-modules">
-<h2>Workshop Modules<a class="headerlink" href="#workshop-modules" title="Link to this heading"></a></h2>
+  <section id="accessibility-calculator-plugin">
+<h1>Accessibility calculator plugin<a class="headerlink" href="#accessibility-calculator-plugin" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#directions">1.1. Directions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#files-tables-and-fields">1.2. Files, tables, and fields</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#menus">1.3. Menus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#dialog-form-controls">1.4. Dialog form controls</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#notes">1.5. Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-is-it-all-about">1.1. What is it all about?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#accessibility-calculator-accounts-for-every-component-of-a-trip">1.2. Accessibility Calculator accounts for every component of a trip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-algorithms-employed-in-accessibility-calculator">1.3. The Algorithms employed in Accessibility Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-data-necessary-for-accessibility-computations">1.4. The data necessary for accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-menu-of-accessibility-calculator">1.5. The menu of Accessibility  Calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#data-preprocessing">1.6. Data Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#prepare-databases">1.7. Prepare Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#to-from-and-roundtrip-accessibility">1.8. TO-, FROM-, and ROUNDTRIP-accessibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#service-area-versus-cumulative-number-of-opportunities">1.9. Service Area versus Cumulative Number of Opportunities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable">1.10. Adjustment of the trip’s start or arrival time to the transit timetable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#car-speed-for-accessibility-computation">1.11. Car speed for accessibility computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#comparison-of-accessibility-maps-obtained-in-different-scenarios">1.12. Comparison of accessibility maps obtained in different scenarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#visualization-of-accessibility-computations-and-lower-resolution-computations">1.13. Visualization of accessibility computations and lower-resolution computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#format-of-input-data-and-outputs-of-the-computations">1.14. Format of input data and outputs of the computations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-is-it-all-about">2.1. What is it all about?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#accessibility-calculator-accounts-for-every-component-of-a-trip">2.2. Accessibility Calculator accounts for every component of a trip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-algorithms-employed-in-accessibility-calculator">2.3. The Algorithms employed in Accessibility Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-data-necessary-for-accessibility-computations">2.4. The data necessary for accessibility computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#the-menu-of-accessibility-calculator">2.5. The menu of Accessibility  Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#data-preprocessing">2.6. Data Preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#prepare-databases">2.7. Prepare Databases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#to-from-and-roundtrip-accessibility">2.8. TO-, FROM-, and ROUNDTRIP-accessibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#service-area-versus-cumulative-number-of-opportunities">2.9. Service Area versus Cumulative Number of Opportunities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#adjustment-of-the-trips-start-or-arrival-time-to-the-transit-timetable">2.10. Adjustment of the trip’s start or arrival time to the transit timetable</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#car-speed-for-accessibility-computation">2.11. Car speed for accessibility computation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#comparison-of-accessibility-maps-obtained-in-different-scenarios">2.12. Comparison of accessibility maps obtained in different scenarios</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#visualization-of-accessibility-computations-and-lower-resolution-computations">2.13. Visualization of accessibility computations and lower-resolution computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#format-of-input-data-and-outputs-of-the-computations">2.14. Format of input data and outputs of the computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">3. Data preprocessing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_preprocessing.html#cleaning-road-network-layer">3.1. Cleaning road network layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_preprocessing.html#cleaning-the-layer-of-buildings-foundations">3.2. Cleaning the layer of buildings foundations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_preprocessing.html#cleaning-road-network-layer">4.1. Cleaning road network layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_preprocessing.html#cleaning-the-layer-of-buildings-foundations">4.2. Cleaning the layer of buildings foundations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">4. Prepare databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#add-lines-to-gtfs">4.1. Add lines to GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#delete-lines-from-gtfs">4.2. Delete lines from GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#building-a-database-for-transit-accessibility-computations">4.3. Building a database for transit accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#building-database-for-car-accessibility-computation">4.4. Building database for car accessibility computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#preparing-layers-for-visualization-and-lower-resolution-computation">4.5. Preparing layers for visualization and lower-resolution computation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="prepare_database.html">5. Prepare databases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#add-lines-to-gtfs">5.1. Add lines to GTFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#delete-lines-from-gtfs">5.2. Delete lines from GTFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#building-a-database-for-transit-accessibility-computations">5.3. Building a database for transit accessibility computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#building-database-for-car-accessibility-computation">5.4. Building database for car accessibility computation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prepare_database.html#preparing-layers-for-visualization-and-lower-resolution-computation">5.5. Preparing layers for visualization and lower-resolution computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility computations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#transit-service-area-fixed-arrival-departure-time">5.1. Transit Service area, fixed arrival/departure time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-to-facility-parameters-and-computation-execution">5.1.1. Accessibility TO facility – parameters and computation execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-to-destinations-the-log-file-and-the-structure-of-the-report">5.1.2. Accessibility TO destinations – the log file and the structure of the report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-from-facilities-fixed-time-departure">5.1.3. Accessibility FROM facilities, fixed-time departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#roundtrip-accessibility-fixed-time-departure">5.1.4. Roundtrip accessibility, fixed-time departure</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#transit-service-area-fixed-arrival-departure-time">6.1. Transit Service area, fixed arrival/departure time</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-to-facility-parameters-and-computation-execution">6.1.1. Accessibility TO facility – parameters and computation execution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-to-destinations-the-log-file-and-the-structure-of-the-report">6.1.2. Accessibility TO destinations – the log file and the structure of the report</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#accessibility-from-facilities-fixed-time-departure">6.1.3. Accessibility FROM facilities, fixed-time departure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#roundtrip-accessibility-fixed-time-departure">6.1.4. Roundtrip accessibility, fixed-time departure</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#service-area-for-schedule-based-arrival-departure-time">6.2. Service area for schedule-based arrival/departure time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#cumulative-number-of-accessible-opportunities-fixed-arrival-departure-time">6.3. Cumulative number of accessible opportunities, fixed arrival/departure time</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-to-opportunities-parameters-and-computation-execution">6.3.1. Cumulative number of TO-opportunities - parameters and computation execution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-to-opportunities-the-structure-of-the-report">6.3.2. Cumulative number of TO-opportunities - the structure of the report</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-from-and-roundtrip-opportunities-fixed-time-departure">6.3.3. Cumulative number of FROM- and ROUNDTRIP-opportunities, fixed-time departure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-opportunities-for-schedule-based-arrival-departure">6.3.4. Cumulative number opportunities for schedule-based arrival/departure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#service-area-for-schedule-based-arrival-departure-time">5.2. Service area for schedule-based arrival/departure time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raptor_area.html#cumulative-number-of-accessible-opportunities-fixed-arrival-departure-time">5.3. Cumulative number of accessible opportunities, fixed arrival/departure time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-to-opportunities-parameters-and-computation-execution">5.3.1. Cumulative number of TO-opportunities - parameters and computation execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-to-opportunities-the-structure-of-the-report">5.3.2. Cumulative number of TO-opportunities - the structure of the report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-of-from-and-roundtrip-opportunities-fixed-time-departure">5.3.3. Cumulative number of FROM- and ROUNDTRIP-opportunities, fixed-time departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="raptor_area.html#cumulative-number-opportunities-for-schedule-based-arrival-departure">5.3.4. Cumulative number opportunities for schedule-based arrival/departure</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-service-area-maps-parameters-and-computation-execution">7.1. Car service area maps – parameters and computation execution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-service-area-report-file">7.2. Car service area  - report file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-accessibility-from-facilities">7.3. Car accessibility FROM facilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#roundtrip-accessibility">7.4. ROUNDTRIP Accessibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#cumulative-number-of-opportunities-accessible-by-car">7.5. Cumulative number of opportunities accessible by car</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">6. Car accessibility computations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-service-area-maps-parameters-and-computation-execution">6.1. Car service area maps – parameters and computation execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-service-area-report-file">6.2. Car service area  - report file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#car-accessibility-from-facilities">6.3. Car accessibility FROM facilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#roundtrip-accessibility">6.4. ROUNDTRIP Accessibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="car_accessibility.html#cumulative-number-of-opportunities-accessible-by-car">6.5. Cumulative number of opportunities accessible by car</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="visualization.html#the-style-of-presentation">9.1. The style of presentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualization.html#visualization-of-results-of-comparison-between-accessibility-maps">9.2. Visualization of results of comparison between accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">7. Compare accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">8. Visualization of accessibility maps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#the-style-of-presentation">8.1. The style of presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#visualization-of-results-of-comparison-between-accessibility-maps">8.2. Visualization of results of comparison between accessibility maps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#data-arrangements">10.1. Data arrangements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#data-preprocessing">10.2. Data preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#preparing-tama-databases">10.3. Preparing TAMA databases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#transit-accessibility-service-area-maps">10.4. Transit accessibility, service area maps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#transit-accessibility-fixed-time-arrival-departure">10.4.1. Transit accessibility, fixed-time arrival/departure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#transit-accessibility-schedule-based-arrival-departure-time">10.4.2. Transit accessibility, schedule-based arrival/departure time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#car-accessibility">10.4.3. CAR accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#data-arrangements">9.1. Data arrangements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#data-preprocessing">9.2. Data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#preparing-tama-databases">9.3. Preparing TAMA databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#transit-accessibility-service-area-maps">9.4. Transit accessibility, service area maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#transit-accessibility-fixed-time-arrival-departure">9.4.1. Transit accessibility, fixed-time arrival/departure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#transit-accessibility-schedule-based-arrival-departure-time">9.4.2. Transit accessibility, schedule-based arrival/departure time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#car-accessibility">9.4.3. CAR accessibility</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#cumulative-number-of-opportunities-accessible-with-public-transport">10.5. Cumulative number of opportunities accessible with public transport</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample.html#compare-accessibility-maps">10.6. Compare accessibility maps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-service-area-maps">10.6.1. Compare service area maps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-fixed-time-and-schedule-based-accessibility">10.6.2. Compare fixed-time and schedule-based accessibility</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-cumulative-number-of-opportunities-maps">10.6.3. Compare cumulative number of opportunities maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#cumulative-number-of-opportunities-accessible-with-public-transport">9.5. Cumulative number of opportunities accessible with public transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html#compare-accessibility-maps">9.6. Compare accessibility maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-service-area-maps">9.6.1. Compare service area maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-fixed-time-and-schedule-based-accessibility">9.6.2. Compare fixed-time and schedule-based accessibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#compare-cumulative-number-of-opportunities-maps">9.6.3. Compare cumulative number of opportunities maps</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 </div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="welcome.html" class="btn btn-neutral float-right" title="1. Workshop Conventions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. Prepare databases &mdash; Introduction to QGIS plugin &#34;Accessibility Calculator&#34;</title>
+  <title>4. Prepare databases &mdash; Introduction to QGIS plugin &#34;Accessibility calculator&#34;</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=7593414c" />
@@ -19,8 +19,8 @@
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Transit accessibility computations" href="raptor_area.html" />
-    <link rel="prev" title="4. Data preprocessing" href="data_preprocessing.html" /> 
+    <link rel="next" title="5. Transit accessibility computations" href="raptor_area.html" />
+    <link rel="prev" title="3. Data preprocessing" href="data_preprocessing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            Introduction to QGIS plugin "Accessibility Calculator"
+            Introduction to QGIS plugin "Accessibility calculator"
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -43,27 +43,26 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">1. Workshop Conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">4. Data preprocessing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Prepare databases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#add-lines-to-gtfs">5.1. Add lines to GTFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#delete-lines-from-gtfs">5.2. Delete lines from GTFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-a-database-for-transit-accessibility-computations">5.3. Building a database for transit accessibility computations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-database-for-car-accessibility-computation">5.4. Building database for car accessibility computation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#preparing-layers-for-visualization-and-lower-resolution-computation">5.5. Preparing layers for visualization and lower-resolution computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_preprocessing.html">3. Data preprocessing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Prepare databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#add-lines-to-gtfs">4.1. Add lines to GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete-lines-from-gtfs">4.2. Delete lines from GTFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-a-database-for-transit-accessibility-computations">4.3. Building a database for transit accessibility computations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-database-for-car-accessibility-computation">4.4. Building database for car accessibility computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-layers-for-visualization-and-lower-resolution-computation">4.5. Preparing layers for visualization and lower-resolution computation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">6. Transit accessibility computations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">7. Car accessibility computations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">8. Compare accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">9. Visualization of accessibility maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample.html">10. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dataset.html">11. Tutorial datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">12. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">13. License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contacts.html">14. Contact US</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raptor_area.html">5. Transit accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="car_accessibility.html">6. Car accessibility computations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relative_ready-made.html">7. Compare accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">8. Visualization of accessibility maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. LICENSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 
         </div>
@@ -72,7 +71,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Introduction to QGIS plugin "Accessibility Calculator"</a>
+          <a href="index.html">Introduction to QGIS plugin "Accessibility calculator"</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -80,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">5. </span>Prepare databases</li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Prepare databases</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -90,7 +89,7 @@
            <div itemprop="articleBody">
              
   <section id="prepare-databases">
-<span id="prepare-database"></span><h1><span class="section-number">5. </span>Prepare databases<a class="headerlink" href="#prepare-databases" title="Link to this heading"></a></h1>
+<span id="prepare-database"></span><h1><span class="section-number">4. </span>Prepare databases<a class="headerlink" href="#prepare-databases" title="Link to this heading"></a></h1>
 <p>To facilitate rapid accessibility computations, data regarding roads, buildings, and public transport routes and timetables are converted into dedicated databases. We recommend constructing these databases for a wider area (yet up to one million buildings) to ensure it covers all potentially relevant locations and regions. To establish and compare different public transport development scenarios, the AC plugin allows users to modify the existing GTFS by adding or deleting lines.
 <br/>
 During database construction, any building not directly connected to the road network is connected to the nearest link within the cleaned road layer enabling establishing the network path between the building and nearby bus stops. All computational results are stored directly in the database, leaving the original road and building layers entirely unaltered.
@@ -100,7 +99,7 @@ The menu for the <em>Prepare databases</em> section is presented in Figure 4.</p
     <img src="_images/prepare_database.png" style="width: 50%; border: 3px solid white;margin-bottom: 10px;" />
 </div>
 <p>Figure 4. The menu of the <i>Prepare Databases</i> section</p><section id="add-lines-to-gtfs">
-<h2><span class="section-number">5.1. </span>Add lines to GTFS<a class="headerlink" href="#add-lines-to-gtfs" title="Link to this heading"></a></h2>
+<h2><span class="section-number">4.1. </span>Add lines to GTFS<a class="headerlink" href="#add-lines-to-gtfs" title="Link to this heading"></a></h2>
 <p>The user is responsible for organizing additional lines as a separate GTFS dataset, manually or using external software. The example in this tutorial is constructed with the Google’s TransitFeed Python library (<a class="reference external" href="https://github.com/google/transitfeed">https://github.com/google/transitfeed</a>) that aims for reading, validating, and writing transit schedule information in the GTFS format. Another library that can be used for this purpose is <a class="reference external" href="https://github.com/ipea/gtfstools/blob/main/README.md">https://github.com/ipea/gtfstools/blob/main/README.md</a>.
 <br/>
 To avoid the format errors in this new dataset, it is crucial to validate it using the official validation tools, like <a class="reference external" href="https://gtfs.org/getting-started/validate/">https://gtfs.org/getting-started/validate/</a>. Since the study of transit network development demands, usually, comparison of several scenarios, we recommend constructing one GTFS of all possible additional lines; then some of them can be selected via the dialog interface for incorporating into the existing GTFS (Figure 5).</p>
@@ -124,7 +123,7 @@ To avoid the format errors in this new dataset, it is crucial to validate it usi
 <p>Once all desired lines are selected in the right pane, click <strong>Run</strong> to execute the merger. The progress bar at the bottom will display the status of the operation.</p>
 </section>
 <section id="delete-lines-from-gtfs">
-<h2><span class="section-number">5.2. </span>Delete lines from GTFS<a class="headerlink" href="#delete-lines-from-gtfs" title="Link to this heading"></a></h2>
+<h2><span class="section-number">4.2. </span>Delete lines from GTFS<a class="headerlink" href="#delete-lines-from-gtfs" title="Link to this heading"></a></h2>
 <p>This dialog allows users to remove specific transit lines from the existing dataset (Figure 6).</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/del_lines.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px;" />
@@ -145,7 +144,7 @@ To avoid the format errors in this new dataset, it is crucial to validate it usi
 <p>Once all fields are populated and the unwanted lines are moved to the right pane, click <strong>Run</strong> to generate the new dataset. The progress bar at the bottom will track the operation’s status.</p>
 </section>
 <section id="building-a-database-for-transit-accessibility-computations">
-<span id="raptor-area-buildings-database"></span><h2><span class="section-number">5.3. </span>Building a database for transit accessibility computations<a class="headerlink" href="#building-a-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
+<span id="raptor-area-buildings-database"></span><h2><span class="section-number">4.3. </span>Building a database for transit accessibility computations<a class="headerlink" href="#building-a-database-for-transit-accessibility-computations" title="Link to this heading"></a></h2>
 <p>To construct the database required for transit accessibility computations, select <em>Prepare databases → Transit routing database</em> (Figure 7):</p>
 <div style="text-align: center;">
     <img src="_images/pkl1.png" style="width: 100%; border: 3px solid white; margin-bottom: 10px;" />
@@ -171,7 +170,7 @@ In addition to constructing the transit routing database, this module generates 
 In this tutorial, our analysis is limited to the Tel Aviv Metropolitan Area (TAMA), encompassing approximately 250,000 buildings. However, the provided GTFS datasets cover all of Israel, and the resulting transit routing databases are constructed on a national scale. The examples in this tutorial utilize two distinct versions of these GTFS databases: one from June 2018 (reflecting the transit system before the introduction of the Red LRT line in TAMA) and one from June 2024 (reflecting the network after the Red LRT line became operational). For a detailed, step-by-step example of building a transit routing database for TAMA, please refer to <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">Section 10.2</span></a>.</p>
 </section>
 <section id="building-database-for-car-accessibility-computation">
-<span id="building-data-car"></span><h2><span class="section-number">5.4. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
+<span id="building-data-car"></span><h2><span class="section-number">4.4. </span>Building database for car accessibility computation<a class="headerlink" href="#building-database-for-car-accessibility-computation" title="Link to this heading"></a></h2>
 <p>Constructing a car routing database requires a topologically clean road network and two essential attributes demanded by wayfinding algorithms:</p>
 <ul class="simple">
 <li><p><strong>Traffic direction:</strong> Can be <strong>B</strong> (two-way link), <strong>F</strong> (one-way link, driving allowed in the digitized direction), <strong>T</strong> (one-way link, driving allowed against the digitized direction), or <strong>N</strong> (pedestrian-only link, always two-directional).</p></li>
@@ -273,7 +272,15 @@ The adjusted speed <span class="math notranslate nohighlight">\(V_{FCLASS}(t)\)<
  </table>
 <p>
  Figure 9. The CDI(t) table
- <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">cdi_index.csv</span>. The user can manually edit the values in the table.</p><p>To construct a car routing database, go to <em>Prepare Database → Car routing database</em> (Figure 10):</p>
+ <span style="color: rgb(231, 76, 60); border: 1px solid rgb(225, 228, 229); font-size: 0.9em; padding: 0 2px; line-height: 1; display: inline;">cdi_index.csv</span>. </p><p>The user can customize Car Speed and CDI parameters by editing two reference tables: <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">cdi_index.csv</span></code>. These modifications can be applied either globally (permanently) for all future database builds, or locally for specific project calculations.
+To change default values across all future car routing database builds, update the master configuration files located in your QGIS user profile. Make your file explorer to show hidden items and navigate to your QGIS configuration folder depending on your installed version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="o">&lt;</span><span class="n">YourUsername</span><span class="o">&gt;</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">QGIS</span>\<span class="n">QGIS3</span>\<span class="n">profiles</span>\<span class="n">default</span>\<span class="n">python</span>\<span class="n">plugins</span>\<span class="n">tau_net_calc</span>\<span class="n">config</span>\ <span class="ow">or</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="o">&lt;</span><span class="n">YourUsername</span><span class="o">&gt;</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">QGIS</span>\<span class="n">QGIS4</span>\<span class="n">profiles</span>\<span class="n">default</span>\<span class="n">python</span>\<span class="n">plugins</span>\<span class="n">tau_net_calc</span>\<span class="n">config</span>\
+</pre></div>
+</div>
+<p>Edit and save the target CSV files. All subsequent network builds will use these values as defaults.</p>
+<p>For the project-specific changes with the existing car routing database, find these files in the folder where you currently used car database is stored (see below in this section) and edit the local copies of <code class="docutils literal notranslate"><span class="pre">car_speed_by_link_type.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">cdi_index.csv</span></code>. When a car routing database is constructed, the plugin copies both system tables directly into this folder and exploits them for computations. Locate modifications are applied directly during runtime without a pre-computation confirmation or validation step. Ensure data formatting and value ranges are correct before launching computations.</p>
+<p>To construct a car routing database, go to <em>Prepare Database → Car routing database</em> (Figure 10):</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/pkl_car1.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
@@ -313,14 +320,14 @@ The adjusted speed <span class="math notranslate nohighlight">\(V_{FCLASS}(t)\)<
 The <strong>Log</strong> tab records parameter details and construction progress. For a comprehensive example of building a car routing database, see <a class="reference internal" href="sample.html#sample-data-preprocessing"><span class="std std-ref">Section 10.2</span></a>.</p>
 </section>
 <section id="preparing-layers-for-visualization-and-lower-resolution-computation">
-<span id="building-data-visualization"></span><h2><span class="section-number">5.5. </span>Preparing layers for visualization and lower-resolution computation<a class="headerlink" href="#preparing-layers-for-visualization-and-lower-resolution-computation" title="Link to this heading"></a></h2>
+<span id="building-data-visualization"></span><h2><span class="section-number">4.5. </span>Preparing layers for visualization and lower-resolution computation<a class="headerlink" href="#preparing-layers-for-visualization-and-lower-resolution-computation" title="Link to this heading"></a></h2>
 <p>The Accessibility Calculator can perform computations at the resolution of a single building, the highest possible level, or at the aggregated levels of hexagons of the size chosen by the user. When the computations are performed at a resolution of buildings, a discontinuous layer of building footprints is unsuitable for clear visualization at the building resolution, the high-resolution visual representation is instead based on Voronoi polygons generated from the building centroids (<a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#voronoi-polygons</a>) that inherit the unique aid identifiers of their corresponding buildings. To prevent large polygons of the stand-alone buildings or at the boundaries of the study area, the Voronoi polygons are clipped using 50 m radius buffers around the building centroids.
 <br/>
 For the lower resolution computation and visualization, the Accessibility Calculator exploits hexagon layers. The default hexagon side lengths are 50, 100, 200, 400, and 800 m, though user-defined dimensions can also be specified. The QGIS Create Grid algorithm (<a class="reference external" href="https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid">https://docs.qgis.org/3.40/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#create-grid</a>) is utilized to construct these hexagon layers.
 <br/>
 Each hexagon layer covers the full extent of the building layer, and any hexagon that does not overlap a building is automatically excluded. Each hexagon inherits its aid identifier from the building closest to its centroid. If multiple buildings are equidistant from the centroid, the building with the lowest aid value is selected. A single building might be the closest to more than one hexagon centroid; in such cases, those adjacent hexagons are dissolved into a single polygon.
 <br/>
-When exploiting hexagon layer for accessibility computations at a lower than building resolution the computations are performed for the building which aid is the same as the aid of a hexagon and the results are assigned to the hexagon. When computing Cumulative Opportunities, parameters of all buildings which centroids are within the hexagon are summed up.</p>
+When exploiting hexagon layer for accessibility computations at a lower than building resolution the computations are performed for the building which aid is the same as the aid of a hexagon and the results are assigned to the hexagon. When computing Cumulative Opportunities, parameters of all buildings which centroids are within the hexagon are summed up. These sums are prepared at the stage of the hexagons construction for every numeric attribute of the layer of buildings besides ID-related ones. The sums are stored as hexagons’ attributes which names repeat the names of the attributes in the layer of buildings.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The hexagons are also used for lower-resolution assessment of accessibility, and the attributes of the hexagons are computed based on the buildings’ attributes. That is why, if buildings’ attributes are changed, the layers of hexagons must be rebuilt.</p>
@@ -343,8 +350,8 @@ Upon completion, the newly generated layers are automatically added to the curre
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="data_preprocessing.html" class="btn btn-neutral float-left" title="4. Data preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="raptor_area.html" class="btn btn-neutral float-right" title="6. Transit accessibility computations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_preprocessing.html" class="btn btn-neutral float-left" title="3. Data preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="raptor_area.html" class="btn btn-neutral float-right" title="5. Transit accessibility computations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
