@@ -61,7 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">12. LICENSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 
@@ -110,14 +110,8 @@ To avoid the format errors in this new dataset, it is crucial to validate it usi
 <ul class="simple">
 <li><p><span class="guilabel">The folder of the initial GTFS dataset</span>: The directory containing the baseline GTFS.</p></li>
 <li><p><span class="guilabel">The folder of the additional GTFS dataset</span> : The user must select the directory containing the new GTFS data for the transit lines they wish to add to the network.</p></li>
+<li><p><span class="guilabel">CSV File of Route_IDs to Add (optional)</span>: You can prepare one or more CSV tables of Route_ID values of the lines in additional GTFS dataset and select these lines for addition at once. This operation is useful when the GTFS of additional lines is large, and can be repeated several times. Click the Apply button to filter the available routes in the left pane list.</p></li>
 <li><p><span class="guilabel">Line selection panels (and search bar)</span>: The dialog features a dual-pane interface to select the specific routes to be added. The left pane lists the routes of the additional GTFS dataset (displaying their Short Name and Description). The user selects the desired routes and uses the right-pointing arrow (→) to move them into the right pane.</p></li>
-<li><p>If you need to quickly find lines in the left pane, use the - <span class="guilabel">Enter short names of lines to add (comma separated)</span> search bar and the <strong>Find</strong> button to filter the list.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After the search is performed, the left pane shows the found lines only. To restore the full list of lines in the left panel empty the search bar and click the Find button again</p>
-</div>
-<ul class="simple">
 <li><p><span class="guilabel">Folder to store the modified GTFS dataset</span>: The user must choose the destination directory where the newly combined and modified GTFS dataset will be saved.</p></li>
 </ul>
 <p>Once all desired lines are selected in the right pane, click <strong>Run</strong> to execute the merger. The progress bar at the bottom will display the status of the operation.</p>
@@ -130,14 +124,8 @@ To avoid the format errors in this new dataset, it is crucial to validate it usi
 </div>
 <p>Figure 6. The <i>Delete lines from GTFS</i> dialog</p><p>When using the “Delete lines from GTFS” tool, the user must configure the following parameters:</p>
 <ul class="simple">
-<li><p><span class="guilabel">The folder of the initial GTFS dataset</span>: Specify the directory containing the original GTFS files from which transit lines will be removed.</p></li>
-<li><p><span class="guilabel">Enter route short names to delete (comma separated)</span>: This search bar allows the user to quickly locate specific transit lines by their short route names. Enter the numbers separated by commas and click the Find button to filter the available routes in the left pane list.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After the search is performed, the left pane shows the found lines only. To restore the full list of lines in the left panel empty the search bar and click the Find button again</p>
-</div>
-<ul class="simple">
+<li><p><span class="guilabel">The GTFS dataset folder</span>: Specify the directory containing the original GTFS files from which transit lines will be removed.</p></li>
+<li><p><span class="guilabel">CSV File of Route_IDs to Delete (optional):</span>: You can prepare one or more CSV tables of Route_ID values and select these lines for deleting at once. This operation can be repeated several times. Click the Apply button to filter the available routes in the left pane list.</p></li>
 <li><p><span class="guilabel">Line selection panels</span>: The dialog uses a dual-pane interface to manage line deletion. The left pane lists the routes available within the initial GTFS dataset. The user must select the routes they wish to <em>remove</em> and use the right-pointing arrow (→) to move them into the right pane. Any lines placed on the right pane will be excluded from the final dataset.</p></li>
 <li><p><span class="guilabel">Folder to store modified dataset</span>: Select the destination directory where the newly modified GTFS dataset (which will no longer contain the deleted lines) will be saved.</p></li>
 </ul>

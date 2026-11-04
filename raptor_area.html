@@ -70,7 +70,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">12. LICENSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 
@@ -293,10 +293,11 @@ Furthermore, the “Arrival time” in the Time settings is replaced by a “Sta
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/area_type_roundtrip_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
   </div>
-<p>Figure 9. Temporal window configuration for ROUNDTRIP accessibility.</p><div class="admonition note">
+<p>Figure 9. Time settings configuration for ROUNDTRIP accessibility.</p><div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>ROUNDTRIP accessibility exploits additional threshold parameter called “Maximum lag imbalance ratio (k)”. This parameter is used to prevent scenarios where one leg of a roundtrip is drastically longer than the other. The meaning of k is the ratio of the travel time of the longer to the shorter leg. For example, if k = 2, then the trip is acceptable if ratio of the longer to the shorter leg is 2 or less. The value of k must be greater than 1, and the default value that we suggest is k = 2(Figure 10).</p>
+<p>ROUNDTRIP accessibility exploits two additional threshold parameters. The first is called “Minimal time gap between arrival and trip back” and its default value is 0, while maximum possible value is calculated as [The latest time of departure] – [Earliest time of arrival] – 30 minutes. The 30-minute reduction is chosen for guaranteeing enough (TO-travel-time, FROM-travel-time) data pairs.</p>
 </div>
+<p>The second parameter is “Maximum lag imbalance ratio (k)”. This parameter is used to prevent scenarios where one leg of a roundtrip is drastically longer than the other. The meaning of k is the ratio of the travel time of the longer to the shorter leg. For example, if k = 2, then the trip is acceptable if ratio of the longer to the shorter leg is 2 or less. The value of k must be greater than 1, and the default value that we suggest is k = 2 (Figure 10).</p>
 <p><span style="display: block; margin-top: 5px;"></span></p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <img src="_images/area_imbalance.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
@@ -339,7 +340,7 @@ The parameters for schedule-based accessibility are nearly identical to those fo
 </ul>
 <p>Figure 11 presents the Arrival/Departure part of the schedule-based accessibility computations for the ROUNDTRIP case.</p>
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-      <img src="_images/area_type_roundtrip_time.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
+      <img src="_images/area_type_roundtrip_time_schedule.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
   </div>
 <p>Figure 11. The Schedule-adjustment gap parameter in schedule-based computations.</p><p>For consistency, schedule-based accessibility calculations apply two key rules to waiting times:</p>
 <ul class="simple">

@@ -53,7 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sample.html">9. Assessing the effect of a new Light Rail Transit line in the Tel-Aviv Metropolitan Area</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dataset.html">10. Tutorial datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">11. Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">12. LICENSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">12. License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contacts.html">13. Contact US</a></li>
 </ul>
 
@@ -100,13 +100,30 @@ The compatibility tests ensure that:</p>
 </div>
 <p>If all compatibility tests pass, the comparison is executed for the spatially overlapping sections of the outputs. The non-overlapping sections are generated as separate, additional layers alongside the main comparison results.
 <span style="display: block; margin-top: 5px;"></span>
-The dialog for <em>Compare accessibility maps → Service areas</em> is shown in Figure 2</p>
+The dialog for <em>Compare accessibility maps → Service areas</em> maps shown in Figure 2</p>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/compare.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
 </div>
 <p>Figure 2. <i>Copmare accessibility maps</i> dialog for comparing two service area maps</p><ul class="simple">
-<li><p><span class="guilabel">Result_1</span>: The result .gpkg file for Scenario 1.</p></li>
-<li><p><span class="guilabel">Result_2</span>: The result .gpkg file for Scenario 2.</p></li>
+<li><p><span class="guilabel">Result_1 output GPKG file:</span>: The GeoPackage file of the Scenario 1 results.</p></li>
+</ul>
+<dl class="simple">
+<dt><span style="display: block; margin-top: 5px;"></span></dt><dd><p><span class="guilabel">Layer of the result_1</span></p>
+</dd>
+<dt><span style="display: block; margin-top: 5px;"></span></dt><dd><p><span class="guilabel">Attribute of the layer chosen for comparison</span></p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><span class="guilabel">Result_2 output GPKG file:</span>: The GeoPackage file of the Scenario 2 results.</p></li>
+</ul>
+<dl class="simple">
+<dt><span style="display: block; margin-top: 5px;"></span></dt><dd><p><span class="guilabel">Layer of the result_2</span></p>
+</dd>
+<dt><span style="display: block; margin-top: 5px;"></span></dt><dd><p><span class="guilabel">Attribute of the layer chosen for comparison</span></p>
+</dd>
+</dl>
+<p><span style="display: block; margin-top: 5px;"></span></p>
+<ul class="simple">
 <li><p><span class="guilabel">Save results as</span>: The .gpkg file that contains the results of the comparison.</p></li>
 <li><p><span class="guilabel">Visualization layer</span>: The visual layer (e.g., Voronoi or hexagon) for mapping the results of the comparison. Must be active in the current QGIS project.</p></li>
 </ul>
@@ -118,7 +135,6 @@ The dialog for <em>Compare accessibility maps → Service areas</em> is shown in
 <span style="display: block; margin-top: 5px;"></span>
 <strong>The measures of comparison:</strong></p>
 <ul class="simple">
-<li><p><span class="guilabel">Ratio: (Result_1/Result_2)</span>: The ratio of the first scenario’s result to the second scenario’s result, calculated for the overlapping spatial extent.</p></li>
 <li><p><span class="guilabel">Difference: (Result_1 - Result_2)</span>: The absolute difference between the first scenario’s result and the second scenario’s result, for the overlapping extent.</p></li>
 <li><p><span class="guilabel">Relative difference: [(Result_1 - Result_2)/Result 2]</span>: The proportional difference between the two scenarios, calculated for the overlapping extent. These results are expressed as percentages.</p></li>
 </ul>
@@ -133,11 +149,7 @@ The <strong>Log</strong> tab merges and displays the Log information from both s
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <img src="_images/compare_log.png" style="width: 90%; border: 3px solid white;margin-bottom: 10px" />
 </div>
-<p>Figure 3. The part of the log file of the Compare accessibility maps output </p><p>The dialog for the <em>Compare accessibility maps → Cumulative opportunities</em> is presented in Figure 4.</p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <img src="_images/compare_cumulative.png" style="width: 100%; border: 3px solid white;margin-bottom: 10px" />
-</div>
-<p>Figure 4. <i>Copmare accessibility maps</i> dialog for comparing two maps of cumulative number of opportunities.</p><p>Different from the case of service area maps comparison, the number of maps and the attributes exploited for constructing them can vary. The user should thus explicitly choose the layers from the .gpkg files of each of the outputs.</p>
+<p>Figure 3. The part of the log file of the Compare accessibility maps output </p><p>The dialog for the <em>Compare accessibility maps → Cumulative opportunities</em> is the same.</p>
 <ul class="simple">
 <li><p>For a practical example of the <em>Compare accessibility map → Service areas</em> tool, see <a class="reference internal" href="sample.html#sample-compare-single"><span class="std std-ref">here</span></a>.</p></li>
 <li><p>For a practical example of the <em>Compare accessibility map → Cumulative opportunities</em> tool, see <a class="reference internal" href="sample.html#sample-compare-region"><span class="std std-ref">here</span></a>.</p></li>
